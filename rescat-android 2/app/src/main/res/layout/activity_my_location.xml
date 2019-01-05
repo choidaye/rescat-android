@@ -9,136 +9,104 @@
 
 
     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#66000000">
+            android:layout_width="180dp"
+            android:layout_height="36dp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/loction2"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/pink_round_square">
 
         <TextView
-                android:id="@+id/infotext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="25dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="58dp"
-                android:fontFamily="sans-serif"
-                android:textStyle="bold"
+                android:textSize="14sp"
                 android:textColor="@color/white"
                 android:letterSpacing="-0.01"
-                android:lineSpacingExtra="7sp"
-                android:text="드래그해서
-움직일 수 있어요!"
-        />
+                android:gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:layout_toLeftOf="@+id/btn_ac_my_location_delete1"
+                android:text="인천시 계양구 계산동" />
+
+        <ImageView
+                android:id="@+id/btn_ac_my_location_delete1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="13dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_delete_w"/>
 
 
 
-        <RelativeLayout
-                android:layout_width="180dp"
-                android:layout_height="36dp"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/loction2"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/pink_round_square">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:letterSpacing="-0.01"
-                    android:gravity="center_horizontal"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/btn_ac_my_location_delete1"
-                    android:text="인천시 계양구 계산동" />
-
-            <ImageView
-                    android:id="@+id/btn_ac_my_location_delete1"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="13dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_delete_w"/>
-
-
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 
 
 
-        <RelativeLayout
-                android:id="@+id/loction2"
-                android:layout_width="180dp"
-                android:layout_height="36dp"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/location3"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/caramel_round_square">
+    <RelativeLayout
+            android:id="@+id/loction2"
+            android:layout_width="180dp"
+            android:layout_height="36dp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/location3"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/caramel_round_square">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:letterSpacing="-0.01"
-                    android:gravity="center_horizontal"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/btn_ac_my_location_delete2"
-                    android:text="서울시 서초구 서초동" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:letterSpacing="-0.01"
+                android:gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:layout_toLeftOf="@+id/btn_ac_my_location_delete2"
+                android:text="서울시 서초구 서초동" />
 
-            <ImageView
-                    android:id="@+id/btn_ac_my_location_delete2"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="13dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_delete_w"/>
-
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-                android:id="@+id/location3"
-                android:layout_width="180dp"
-                android:layout_height="36dp"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/infotext"
-                android:layout_marginBottom="22dp"
-                android:background="@drawable/caramel_round_square">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:letterSpacing="-0.01"
-                    android:gravity="center_horizontal"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="2dp"
-                    android:layout_toLeftOf="@+id/btn_ac_my_location_delete3"
-                    android:text="서울시 노원구 공릉동" />
-
-            <ImageView
-                    android:id="@+id/btn_ac_my_location_delete3"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginRight="13dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_delete_w"/>
+        <ImageView
+                android:id="@+id/btn_ac_my_location_delete2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="13dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_delete_w"/>
 
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
+    <RelativeLayout
+            android:id="@+id/location3"
+            android:layout_width="180dp"
+            android:layout_height="36dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="101dp"
+            android:background="@drawable/caramel_round_square">
 
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:letterSpacing="-0.01"
+                android:gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="2dp"
+                android:layout_toLeftOf="@+id/btn_ac_my_location_delete3"
+                android:text="서울시 노원구 공릉동" />
 
+        <ImageView
+                android:id="@+id/btn_ac_my_location_delete3"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="13dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_delete_w"/>
 
 
 

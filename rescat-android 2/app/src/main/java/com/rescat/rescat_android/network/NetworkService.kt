@@ -2,6 +2,7 @@ package com.rescat.rescat_android.network
 
 import com.google.gson.JsonObject
 import com.rescat.rescat_android.Get.GetMapResponse
+import com.rescat.rescat_android.Get.GetMyPageResponse
 import com.rescat.rescat_android.Post.PostUserLogin
 import com.rescat.rescat_android.Post.PostUserSignUp
 import com.rescat.rescat_android.Post.Response.PostUserLoginResponse
@@ -30,5 +31,17 @@ interface NetworkService{
         @Header("Authorization") auth : String,
         @Query("emdCode") emdcode : String
     ): Call<GetMapResponse>
+
+    //지도 마커 요청 및 수정
+
+
+    //마이페이지 조회
+    @GET("api/users/mypage")
+    fun getMyPage(
+        @Header("Authorization") auth : String
+    ): Call<GetMyPageResponse>
+
+
+
 
 }

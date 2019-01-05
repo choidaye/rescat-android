@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.ui.activity.sign.SignUpActivity
 import kotlinx.android.synthetic.main.fragment_my_page.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class MyPageFragment : Fragment() {
 
@@ -34,9 +35,13 @@ class MyPageFragment : Fragment() {
     }
 
     private fun setOnCLickListener() {
+
         btn_fg_my_page_sign_up.setOnClickListener {
-            activity!!.startActivityForResult(Intent(activity, SignUpActivity::class.java),requestCode)
+            startActivity<SignUpActivity>()
         }
+//        btn_fg_my_page_sign_up.setOnClickListener {
+//            activity!!.startActivityForResult(Intent(activity, SignUpActivity::class.java),requestCode)
+//        }
 
     }
 

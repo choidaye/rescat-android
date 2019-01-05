@@ -29,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         btn_sign_up_ok.setOnClickListener {
-            finish()
+            PostUserSignUpResponse()
         }
     }
 
@@ -56,11 +56,11 @@ class SignUpActivity : AppCompatActivity() {
             //통신 성공 시 수행되는 메소드
             override fun onResponse(call: Call<PostUserSignUpResponse>, response: Response<PostUserSignUpResponse>) {
                 if (response.isSuccessful){
-                    var token : String = response.body()!!.token
-                    Log.v("Sign Up Success", "토큰 + " + token)
-                    startActivity<MainActivity>()
-                }else{
-                    var message : String = response.body()!!.message
+                var token : String = response.body()!!.token
+                Log.v("Sign Up Success", "토큰 + " + token)
+                startActivity<MainActivity>()
+            }else{
+                 var message : String = response.body()!!.message
                     toast(message)
                 }
             }

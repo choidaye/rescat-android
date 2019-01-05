@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.menuitem_mypage -> {
-                    val fragment = MyPageFragment()
+                    val fragment = MyPageMemberFragment()
                     addFragment(fragment)
                     it.isChecked = true
                     true

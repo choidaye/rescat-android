@@ -1,6 +1,5 @@
 package com.rescat.rescat_android.ui.activity
 
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,14 +9,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.rescat.rescat_android.Get.GetMapResponse
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.MapData
-import com.rescat.rescat_android.network.ApplicationController
 import com.rescat.rescat_android.network.NetworkService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -27,7 +22,7 @@ class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var MapdataList : ArrayList<MapData>
 
     val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
+        RescatApplication.instance.networkService
     }
 
 
@@ -110,7 +105,7 @@ class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
     val builder = LatLngBounds.Builder()
 
     private fun addNewMarker(data:MapData) {
-        val mMarker : Marker = mMap.addMarker(MarkerOptions().position(LatLng(data.latitude, data.longitude)))
+        val mMarker : Marker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng)))
         val mMarkerOption = MarkerOptions()
 
 
