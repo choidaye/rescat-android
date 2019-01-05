@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.mypage.MyLocationActivity">
+
+
+
+
+
+        <RelativeLayout
+                android:layout_width="180dp"
+                android:layout_height="36dp"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/loction2"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/pink_round_square">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:letterSpacing="-0.01"
+                    android:gravity="center_horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/btn_ac_my_location_delete1"
+                    android:text="인천시 계양구 계산동" />
+
+            <ImageView
+                    android:id="@+id/btn_ac_my_location_delete1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="13dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_delete_w"/>
+
+
+
+        </RelativeLayout>
+
+
+
+
+        <RelativeLayout
+                android:id="@+id/loction2"
+                android:layout_width="180dp"
+                android:layout_height="36dp"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/location3"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/caramel_round_square">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:letterSpacing="-0.01"
+                    android:gravity="center_horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/btn_ac_my_location_delete2"
+                    android:text="서울시 서초구 서초동" />
+
+            <ImageView
+                    android:id="@+id/btn_ac_my_location_delete2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="13dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_delete_w"/>
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/location3"
+                android:layout_width="180dp"
+                android:layout_height="36dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="101dp"
+                android:background="@drawable/caramel_round_square">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    android:letterSpacing="-0.01"
+                    android:gravity="center_horizontal"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="2dp"
+                    android:layout_toLeftOf="@+id/btn_ac_my_location_delete3"
+                    android:text="서울시 노원구 공릉동" />
+
+            <ImageView
+                    android:id="@+id/btn_ac_my_location_delete3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginRight="13dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_delete_w"/>
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+

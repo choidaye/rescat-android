@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">rescat-android</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="google_map_api_key">AIzaSyBdVq0YVuTK7uhktt_gO6MnzyI79zttC6k</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search_result">Map</string>
+
+    <string name="terms">진행과 함께 <u>회원 약관</u>에 동의하는 것으로 간주합니다
+    </string>
+</resources>
