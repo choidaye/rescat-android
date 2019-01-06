@@ -7,21 +7,38 @@ import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.application.RescatApplication
+import com.rescat.rescat_android.model.HelpCardData
+import com.rescat.rescat_android.network.NetworkService
+import com.rescat.rescat_android.ui.activity.MainActivity
 import com.rescat.rescat_android.ui.activity.helpcat.AdoptActivity
+import com.rescat.rescat_android.ui.activity.helpcat.ProtectActivity
 import com.rescat.rescat_android.ui.adapter.HelpCatAdapter
 import kotlinx.android.synthetic.main.fragment_help.*
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HelpFragment : Fragment() {
 
     lateinit var helpCatAdapter: HelpCatAdapter
+    lateinit var helpCatProtectAdapter: HelpCatAdapter
 
-    var data: ArrayList<Int> = ArrayList()
+    var data: ArrayList<HelpCardData> = ArrayList()
+
+    var mapping: Map<TextView, RecyclerView> ?= null
+
+    val networkService: NetworkService by lazy {
+        RescatApplication.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +67,7 @@ class HelpFragment : Fragment() {
     }
 
     private fun buttonInit() {
+        mapping = mapOf(Pair(text_fund_fee, rv_help_cat_adopt), Pair(text_help_protection, rv_help_cat_protect))
         text_fund_fee.setOnClickListener {
             changeRadioButton(it as TextView)
         }
@@ -57,32 +75,81 @@ class HelpFragment : Fragment() {
         text_help_protection.setOnClickListener {
             changeRadioButton(it as TextView)
         }
+
+        btn_help_back.setOnClickListener {
+            (activity as MainActivity).addFragment(HelpCatFragment())
+        }
     }
 
     private fun setRecyclerView() {
-        data.add(1)
-        data.add(1)
-        data.add(1)
-        data.add(1)
-        data.add(1)
-        data.add(1)
-        data.add(1)
+        //Get Help Care Data
+        val getHelpCatData: Call<ArrayList<HelpCardData>> =
+            networkService.getHelpCareCard(0)
 
-        helpCatAdapter = HelpCatAdapter(data) {
-            val intent: Intent = Intent(activity, AdoptActivity::class.java)
-            startActivity(intent)
-        }
-        rv_help_cat.adapter = helpCatAdapter
-        rv_help_cat.layoutManager = LinearLayoutManager(activity)
+        getHelpCatData.enqueue(object :Callback<ArrayList<HelpCardData>> {
+            override fun onFailure(call: Call<ArrayList<HelpCardData>>, t: Throwable) {
+                Log.e("Sign Up Fail", t.toString())
+            }
 
-//        rv_help_cat.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+            override fun onResponse(call: Call<ArrayList<HelpCardData>>, response: Response<ArrayList<HelpCardData>>) {
+                if (response.isSuccessful){
+                    helpCatAdapter = HelpCatAdapter(response.body()!!) {
+                        val intent: Intent = Intent(activity, AdoptActivity::class.java)
+                        intent.putExtra("idx", it)
+                        startActivity(intent)
+                    }
+                    rv_help_cat_adopt.adapter = helpCatAdapter
+                    rv_help_cat_adopt.layoutManager = LinearLayoutManager(activity)
+
+                }else {
+                    var message : String = "failed"
+                    toast(message)
+                }
+            }
+        })
 
         context?.let {
             val itemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
 
             ContextCompat.getDrawable(it, R.drawable.line_divider)?.let {
                 itemDecoration.setDrawable(it)
-                rv_help_cat.addItemDecoration(itemDecoration)
+                rv_help_cat_adopt.addItemDecoration(itemDecoration)
+            }
+        }
+
+
+        //Get Adopt Data
+        val getAdoptCatData: Call<ArrayList<HelpCardData>> =
+            networkService.getHelpCareCard(1)
+
+        getAdoptCatData.enqueue(object :Callback<ArrayList<HelpCardData>> {
+            override fun onFailure(call: Call<ArrayList<HelpCardData>>, t: Throwable) {
+                Log.e("Sign Up Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<ArrayList<HelpCardData>>, response: Response<ArrayList<HelpCardData>>) {
+                if (response.isSuccessful){
+                    helpCatProtectAdapter = HelpCatAdapter(response.body()!!) {
+                        val intent: Intent = Intent(activity, ProtectActivity::class.java)
+                        intent.putExtra("idx", it)
+                        startActivity(intent)
+                    }
+                    rv_help_cat_protect.adapter = helpCatProtectAdapter
+                    rv_help_cat_protect.layoutManager = LinearLayoutManager(activity)
+
+                }else {
+                    var message : String = "failed"
+                    toast(message)
+                }
+            }
+        })
+
+        context?.let {
+            val itemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
+
+            ContextCompat.getDrawable(it, R.drawable.line_divider)?.let {
+                itemDecoration.setDrawable(it)
+                rv_help_cat_protect.addItemDecoration(itemDecoration)
             }
         }
     }
@@ -103,11 +170,13 @@ class HelpFragment : Fragment() {
     private fun selectedTextButton(textview: TextView) {
         textview.isSelected = true
         textview.setTypeface(textview.typeface, Typeface.BOLD)
+        mapping!!.get(textview)!!.visibility = View.VISIBLE
     }
 
     private fun unselectedTextButton(textview: TextView) {
         textview.isSelected = false
         textview.setTypeface(textview.typeface, Typeface.NORMAL)
+        mapping!!.get(textview)!!.visibility = View.GONE
     }
 
 }

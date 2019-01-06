@@ -4,18 +4,23 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.application.RescatApplication
+import com.rescat.rescat_android.model.HelpCardData
+import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
 import com.rescat.rescat_android.ui.adapter.HomeFundCardAdapter
 import com.rescat.rescat_android.ui.adapter.HomeHelpCatAdapter
 import com.rescat.rescat_android.ui.adapter.HomeMainBannerAdapter
 import kotlinx.android.synthetic.main.fragment_help_cat.*
-import java.util.*
-import kotlin.concurrent.schedule
+import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HelpCatFragment : Fragment() {
 
@@ -27,6 +32,11 @@ class HelpCatFragment : Fragment() {
     val MAX_TIME: Long = Long.MAX_VALUE
     var timer: CountDownTimer? = null
     var data: ArrayList<Int> = ArrayList()
+    var HelpCareData: ArrayList<HelpCardData> = ArrayList()
+
+    val networkService: NetworkService by lazy {
+        RescatApplication.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,9 +84,29 @@ class HelpCatFragment : Fragment() {
         data.add(1)
         data.add(1)
 
-        helpCatAdapter = HomeHelpCatAdapter(data)
-        rv_home_help_cat.adapter = helpCatAdapter
-        rv_home_help_cat.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        val getHelpPostMain: Call<ArrayList<HelpCardData>> =
+            networkService.getHelpPostMain()
+
+        getHelpPostMain.enqueue(object: Callback<ArrayList<HelpCardData>> {
+            override fun onFailure(call: Call<ArrayList<HelpCardData>>, t: Throwable) {
+                Log.e("Sign Up Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<ArrayList<HelpCardData>>, response: Response<ArrayList<HelpCardData>>) {
+                if (response.isSuccessful){
+                    HelpCareData = response.body()!!
+                    helpCatAdapter = HomeHelpCatAdapter(HelpCareData)
+                    rv_home_help_cat.adapter = helpCatAdapter
+                    rv_home_help_cat.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+                }else{
+                    var message : String = "failed"
+                    toast(message)
+                }
+            }
+        })
+
+
 
         fundCardAdapter = HomeFundCardAdapter(data)
         rv_home_fund_card.adapter = fundCardAdapter
