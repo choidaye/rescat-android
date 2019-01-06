@@ -47,12 +47,16 @@ class MarkerRequestActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        setOnBtnClickListener()
+
+    }
+
+    private fun setOnBtnClickListener() {
+
 
 
 
     }
-
-
 
 
     private fun MoveCamera(data: PostMarkerRequest){
@@ -69,12 +73,11 @@ class MarkerRequestActivity : AppCompatActivity(), OnMapReadyCallback {
 
         Log.e("mapresponse","맵통신 연결")
 
-        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ5Mjk2MjU4fQ.Svr3JqKjOzmIFoYN2_XY5AZdVFT70GtL3EnACscWJpE"
         var markerRequest : String = ""
 
 
         val postMarkerRequestResponse : Call<ArrayList<PostMarkerRequestResponse>> =
-           networkService.postMapResponse(token,markerRequest)
+           networkService.postMapResponse(markerRequest)
         postMarkerRequestResponse.enqueue(object : Callback<ArrayList<PostMarkerRequestResponse>>{
             override fun onFailure(call: Call<ArrayList<PostMarkerRequestResponse>>, t: Throwable) {
                 Log.e("TAG", "지도 통신에러")

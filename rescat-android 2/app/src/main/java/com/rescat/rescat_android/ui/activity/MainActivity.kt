@@ -25,13 +25,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupBottomNavi()
-
         setOnBtnClickListener()
+
 
 
     }
 
     private fun setOnBtnClickListener() {
+
+        btn_popup_cmap_report.setOnClickListener {
+
+        }
 
     }
 
@@ -66,6 +70,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == 2009){
@@ -75,12 +81,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    fun addFragment2(fragment: Fragment) {
+
+    //백버튼 살리기
+
+//    fun addFragmentBack(fragment: Fragment) {
 //        supportFragmentManager
 //            .beginTransaction()
 //            .replace(R.id.mypage_fragment_container, fragment, fragment.javaClass.simpleName)
 //            .addToBackStack(fragment.javaClass.simpleName)
 //            .commit()
+//    }
+//
+
+    //백버튼 두번 누르면 꺼지게 만들기
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//        if (){
+//
+//        }
 //    }
 
 

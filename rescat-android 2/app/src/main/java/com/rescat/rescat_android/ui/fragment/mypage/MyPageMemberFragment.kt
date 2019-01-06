@@ -15,10 +15,7 @@ import com.rescat.rescat_android.Preference.RescatPreference
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.network.NetworkService
-import com.rescat.rescat_android.ui.activity.mypage.MyLocationActivity
-import com.rescat.rescat_android.ui.activity.mypage.MyPostActivity
-import com.rescat.rescat_android.ui.activity.mypage.NoticeActivity
-import com.rescat.rescat_android.ui.activity.mypage.QuestionActivity
+import com.rescat.rescat_android.ui.activity.mypage.*
 import kotlinx.android.synthetic.main.fragment_my_page_member.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
@@ -66,16 +63,18 @@ class MyPageMemberFragment: Fragment(){
         btn_my_page_question.setOnClickListener {
             startActivity<QuestionActivity>()
         }
+
+        btn_my_page_modify_info.setOnClickListener {
+            startActivity<ModifyMyInfoActivity>()
+        }
     }
 
     private fun getMyPageResponse() {
 
         Log.e("response","리스폰스 들어옴")
 
-        val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ4NzU2OTEwfQ.XC0S5ywa4DYU4JYxenSio-4q7Pn-SDVyv0MY4S-_IeM"
-
         val getMyPageResponse : Call<GetMyPageResponse> =
-                networkService.getMyPage(token)
+                networkService.getMyPage()
             getMyPageResponse.enqueue(object :Callback<GetMyPageResponse>{
                 override fun onFailure(call: Call<GetMyPageResponse>, t: Throwable) {
                     Log.e("My page fail",t.toString())

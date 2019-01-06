@@ -12,9 +12,6 @@ import com.rescat.rescat_android.network.NetworkService
 class MyPostFundFragment : Fragment(){
 
 
-
-
-
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
     }

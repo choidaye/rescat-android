@@ -90,9 +90,62 @@
 
     </RelativeLayout>
 
+
+
+    <RelativeLayout
+            android:id="@+id/rl_ac_modify_my_info_name"
+            android:layout_below="@+id/rl_ac_modify_my_info_id"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b9b9b"
+                    android:lineSpacingExtra="8sp"
+                    android:text="실명"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="54dp"
+                    android:textColor="#de000000"
+                    android:lineSpacingExtra="8sp"
+                    android:text="최다예"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+                android:id="@+id/btn_ac_modify_my_info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_edit"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#1e000000"/>
+
+    </RelativeLayout>
+
+
     <RelativeLayout
             android:id="@+id/rl_ac_modify_my_info_nickname"
-            android:layout_below="@+id/rl_ac_modify_my_info_id"
+            android:layout_below="@+id/rl_ac_modify_my_info_name"
             android:layout_width="wrap_content"
             android:layout_height="52dp">
 
@@ -118,7 +171,7 @@
                     android:layout_marginLeft="40dp"
                     android:textColor="#de000000"
                     android:lineSpacingExtra="8sp"
-                    android:text="티티맘"/>
+                    android:text="GOOD"/>
 
 
         </LinearLayout>
@@ -190,21 +243,6 @@
 
     </RelativeLayout>
 
-    <Button
-            android:id="@+id/btn_marker_report_select_ok"
-            android:text="완료"
-            android:layout_width="320dp"
-            android:layout_height="48dp"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="18dp"
-            android:fontFamily="sans-serif"
-            android:layout_marginBottom="16dp"
-            android:textStyle="normal"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/button_caramel"/>
 
 
 

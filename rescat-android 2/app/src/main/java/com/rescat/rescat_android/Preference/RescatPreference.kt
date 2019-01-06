@@ -23,4 +23,8 @@ class RescatPreference(ctx: Context) {
     var latitude: Float
         get() = prefs.getFloat(LATITUDE, 0F)
         set(value) = prefs.edit().putFloat(LATITUDE, value).apply()
+
+    fun clear() {
+        prefs.edit().clear().commit()
+    }
 }
