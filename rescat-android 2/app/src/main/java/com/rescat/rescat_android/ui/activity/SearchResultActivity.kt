@@ -9,9 +9,9 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import com.rescat.rescat_android.Get.GetMapResponse
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
-import com.rescat.rescat_android.model.MapData
 import com.rescat.rescat_android.network.NetworkService
 
 class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -19,7 +19,7 @@ class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
 
-    lateinit var MapdataList : ArrayList<MapData>
+    lateinit var MapdataList : ArrayList<GetMapResponse>
 
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
@@ -88,7 +88,7 @@ class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
 
-       // getMapResponse()
+         getMapResponse()
         // 디폴트 받아온 좌표값을 여기서..!
 //        mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
 //        mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
@@ -104,7 +104,7 @@ class SearchResultActivity : AppCompatActivity(), OnMapReadyCallback {
     var count = 0
     val builder = LatLngBounds.Builder()
 
-    private fun addNewMarker(data:MapData) {
+    private fun addNewMarker(data:GetMapResponse) {
         val mMarker : Marker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng)))
         val mMarkerOption = MarkerOptions()
 

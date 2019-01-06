@@ -3,6 +3,7 @@ package com.rescat.rescat_android.ui.activity.sign
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_sign.*
 import org.jetbrains.anko.startActivity
 
@@ -22,6 +23,10 @@ class SignActivity : AppCompatActivity() {
 
         btn_login_go.setOnClickListener {
             startActivity<SignInActivity>()
+        }
+
+        btn_skip.setOnClickListener {
+            startActivity<MainActivity>()
         }
     }
 }

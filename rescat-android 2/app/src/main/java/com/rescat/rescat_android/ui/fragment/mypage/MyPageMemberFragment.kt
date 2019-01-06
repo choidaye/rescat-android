@@ -41,10 +41,12 @@ class MyPageMemberFragment: Fragment(){
         return inflater.inflate(R.layout.fragment_my_page_member, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         setOnCLickListener()
         getMyPageResponse()
-
 
     }
 
@@ -68,7 +70,9 @@ class MyPageMemberFragment: Fragment(){
 
     private fun getMyPageResponse() {
 
-        val token : String = RescatApplication.preference.token
+        Log.e("response","리스폰스 들어옴")
+
+        val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ4NzU2OTEwfQ.XC0S5ywa4DYU4JYxenSio-4q7Pn-SDVyv0MY4S-_IeM"
 
         val getMyPageResponse : Call<GetMyPageResponse> =
                 networkService.getMyPage(token)
@@ -79,8 +83,8 @@ class MyPageMemberFragment: Fragment(){
 
                 override fun onResponse(call: Call<GetMyPageResponse>, response: Response<GetMyPageResponse>) {
                     if (response.isSuccessful){
-                        val id : String = response.body()!!.nickname
-                        val nickname : String = response.body()!!.id
+                        val nickname : String = response.body()!!.nickname
+                        val id: String = response.body()!!.id
 
                         setMyPageView(id,nickname)
                     }
