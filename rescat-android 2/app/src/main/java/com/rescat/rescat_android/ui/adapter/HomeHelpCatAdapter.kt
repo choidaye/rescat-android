@@ -1,14 +1,15 @@
 package com.rescat.rescat_android.ui.adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.model.HelpCardData
 
-class HomeHelpCatAdapter(val data : ArrayList<Int>) : RecyclerView.Adapter<HomeHelpCatAdapter.Holder>() {
+class HomeHelpCatAdapter(val data : ArrayList<HelpCardData>) : RecyclerView.Adapter<HomeHelpCatAdapter.Holder>() {
 
     override fun getItemCount(): Int = data.size
 
@@ -18,12 +19,18 @@ class HomeHelpCatAdapter(val data : ArrayList<Int>) : RecyclerView.Adapter<HomeH
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.name.text = "레옹"
-        holder.content.text = "얼굴에 있는 얼룩이 특징인 레옹. 새로운 주인을 기다려요."
+        holder.name.text = data[position].name
+        holder.content.text = data[position].contents
+        if(data[position].type == 0) {
+            holder.type.setImageResource(R.drawable.img_tag_1)
+        } else {
+            holder.type.setImageResource(R.drawable.img_tag_2)
+        }
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val name : TextView = itemView.findViewById((R.id.text_home_help_cat_name))
         val content : TextView = itemView.findViewById(R.id.text_home_help_cat_content)
+        val type : ImageView = itemView.findViewById(R.id.image_help_cat_tag)
     }
 }
