@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="142dp">
+
+    <RelativeLayout
+            android:layout_width="34dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="13dp"
+            android:elevation="1dp"
+            android:background="@color/pink">
+
+        <TextView
+                android:id="@+id/tv_my_support_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="8sp"
+                android:textColor="@color/white"
+                android:lineSpacingExtra="6sp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_horizontal"
+                android:text="임시보호"/>
+
+
+    </RelativeLayout>
+
+    <ImageView
+            android:id="@+id/iv_my_support_photo"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            app:srcCompat="@drawable/img_default_2"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"/>
+
+
+
+    <LinearLayout
+            android:layout_toRightOf="@+id/iv_my_support_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="13dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="12dp"
+            android:layout_alignParentTop="true">
+
+        <TextView
+                android:id="@+id/tv_my_support_list_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#4a4a4a"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                tools:text="피부염에 걸린 당근이"/>
+
+        <TextView
+                android:id="@+id/tv_my_support_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#4a4a4a"
+                android:layout_marginRight="24dp"
+                android:fontFamily="sans-serif"
+                android:layout_marginTop="4dp"
+                tools:text="치료비를 위한 여러분의 관심이 필요해요. 피부염에 걸린 당근이를 도와주세요."/>
+    </LinearLayout>
+
+
+    <View
+            android:layout_width="330dp"
+            android:layout_height="4dp"
+            android:id="@+id/view_my_support_list_entire_percent"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/iv_my_support_photo"
+            android:background="#ffe7d7"/>
+
+    <View
+            android:layout_width="200dp"
+            android:layout_height="4dp"
+            android:id="@+id/view_my_support_list_percent"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/iv_my_support_photo"
+            android:background="@color/pink"/>
+
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tv_my_support_current_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#4a4a4a"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="50,0000원"/>
+
+            <TextView
+                    android:id="@+id/tv_my_support_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#4a4a4a"
+                    android:layout_marginLeft="6dp"
+                    android:text="19%"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="23dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/tv_my_support_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#4a4a4a"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="43"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="#4a4a4a"
+                    android:layout_marginLeft="6dp"
+                    android:text="일 남음"/>
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
