@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.model.PhotoData
 
-class AdoptInfoBannerAdapter(val data: ArrayList<Int>): PagerAdapter() {
+class AdoptInfoBannerAdapter(val data: ArrayList<PhotoData>): PagerAdapter() {
 
     override fun getCount(): Int = data.size
 
@@ -19,7 +20,7 @@ class AdoptInfoBannerAdapter(val data: ArrayList<Int>): PagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view: View = LayoutInflater.from(container.context).inflate(R.layout.item_adopt_info_banner, container, false)
-        setupData(view)
+        setupData(view, position)
 
         if (container != null) {
             container!!.addView(view)
@@ -33,26 +34,11 @@ class AdoptInfoBannerAdapter(val data: ArrayList<Int>): PagerAdapter() {
         }
     }
 
-    private fun setupData(view: View) {
+    private fun setupData(view: View, position: Int) {
         val image: ImageView = view.findViewById(R.id.image_adopt_info_banner)
-//        val content: TextView = view.findViewById(R.id.text_adopt_info_content)
-//        val name: TextView = view.findViewById(R.id.text_adopt_info_name)
-//        val age: TextView = view.findViewById(R.id.text_adopt_info_age)
-//        val gender: TextView = view.findViewById(R.id.text_adopt_info_gender)
-//        val kind: TextView = view.findViewById(R.id.text_adopt_info_kind)
-//        val tnr: TextView = view.findViewById(R.id.text_adopt_info_tnr)
-//        val vaccination: TextView = view.findViewById(R.id.text_adopt_info_vaccination)
-//        val uniqueness: TextView = view.findViewById(R.id.text_adopt_info_uniqueness)
-//
-//        content.text = "안경을 쓰고 있는 애교 많은 고양이 레옹,\n새로운 집사를 기다립니다."
-//
-//        name.text = "레옹"
-//        age.text = "2살"
-//        gender.text = "남아"
-//        kind.text = "믹스"
-//        tnr.text = "안함"
-//        vaccination.text = "모름"
-//
-//        uniqueness.text = "산책과 풀을 좋아하는 산책냥이입니다."
+        Glide.with(view.context).load(data[position].url).into(image)
+
     }
+
+
 }

@@ -25,7 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AdoptCommentFragment : Fragment() {
+class ProtectCommentFragment : Fragment() {
     lateinit var commentRecyclerViewAdapter: CommentRecyclerViewAdapter
     var idx: Int = 0
     var TEST_TOKEN:String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ4NzU2OTEwfQ.XC0S5ywa4DYU4JYxenSio-4q7Pn-SDVyv0MY4S-_IeM"
@@ -34,9 +34,9 @@ class AdoptCommentFragment : Fragment() {
         RescatApplication.instance.networkService
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         idx = arguments!!.getInt("idx")
     }
 
@@ -44,7 +44,6 @@ class AdoptCommentFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         InitRecyclerView()
         setButtonChange()
-        setButtonListener()
     }
 
     override fun onCreateView(
@@ -53,41 +52,6 @@ class AdoptCommentFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_adopt_comment, container, false)
-    }
-
-    private fun InitRecyclerView() {
-        val data :ArrayList<CommentData> = ArrayList()
-        commentRecyclerViewAdapter = CommentRecyclerViewAdapter(data)
-        rv_help_cat_comment.adapter = commentRecyclerViewAdapter
-        rv_help_cat_comment.layoutManager = LinearLayoutManager(activity)
-
-        context?.let {
-            val itemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
-
-            ContextCompat.getDrawable(it, R.drawable.line_divider)?.let {
-                itemDecoration.setDrawable(it)
-                rv_help_cat_comment.addItemDecoration(itemDecoration)
-            }
-        }
-        getCommentData()
-    }
-
-    private fun getCommentData() {
-        val getCarePostComment: Call<ArrayList<CommentData>> =
-            networkService.getCarePostComment(idx)
-
-        getCarePostComment.enqueue(object: Callback<ArrayList<CommentData>> {
-            override fun onFailure(call: Call<ArrayList<CommentData>>, t: Throwable) {
-                Log.e("Comment Fail", t.toString())
-            }
-
-            override fun onResponse(call: Call<ArrayList<CommentData>>, response: Response<ArrayList<CommentData>>) {
-                if(response.isSuccessful) {
-                    commentRecyclerViewAdapter.dataList = response.body()!!
-                    commentRecyclerViewAdapter.notifyDataSetChanged()
-                }
-            }
-        })
     }
 
     private fun setButtonChange() {
@@ -107,6 +71,41 @@ class AdoptCommentFragment : Fragment() {
                     btn_adopt_comment_send.setImageResource(R.drawable.ic_message_on)
                     btn_adopt_comment_send.isClickable = true
                     setButtonListener()
+                }
+            }
+        })
+    }
+
+    private fun InitRecyclerView() {
+        val data :ArrayList<CommentData> = ArrayList()
+        commentRecyclerViewAdapter = CommentRecyclerViewAdapter(data)
+        rv_help_cat_comment.adapter = commentRecyclerViewAdapter
+        rv_help_cat_comment.layoutManager = LinearLayoutManager(activity)
+        context?.let {
+            val itemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
+
+            ContextCompat.getDrawable(it, R.drawable.line_divider)?.let {
+                itemDecoration.setDrawable(it)
+                rv_help_cat_comment.addItemDecoration(itemDecoration)
+            }
+        }
+        getCommentData()
+    }
+
+
+    private fun getCommentData() {
+        val getCarePostComment: Call<ArrayList<CommentData>> =
+            networkService.getCarePostComment(idx)
+
+        getCarePostComment.enqueue(object: Callback<ArrayList<CommentData>> {
+            override fun onFailure(call: Call<ArrayList<CommentData>>, t: Throwable) {
+                Log.e("Comment Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<ArrayList<CommentData>>, response: Response<ArrayList<CommentData>>) {
+                if(response.isSuccessful) {
+                    commentRecyclerViewAdapter.dataList = response.body()!!
+                    commentRecyclerViewAdapter.notifyDataSetChanged()
                 }
             }
         })
@@ -136,12 +135,11 @@ class AdoptCommentFragment : Fragment() {
         }
     }
 
-
     companion object {
-        fun newInstance(idx: Int): AdoptCommentFragment {
+        fun newInstance(idx: Int): ProtectCommentFragment {
             val args = Bundle()
             args.putInt("idx", idx)
-            val fragment = AdoptCommentFragment()
+            val fragment = ProtectCommentFragment()
             fragment.arguments = args
             return fragment
         }
