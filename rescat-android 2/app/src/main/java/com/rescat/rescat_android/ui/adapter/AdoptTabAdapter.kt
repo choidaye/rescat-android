@@ -6,13 +6,15 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import com.rescat.rescat_android.ui.fragment.helpcat.adopt.AdoptCommentFragment
 import com.rescat.rescat_android.ui.fragment.helpcat.adopt.AdoptInfoFragment
 
-class AdoptTabAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
+class AdoptTabAdapter(fm: FragmentManager, val idx:Int): FragmentStatePagerAdapter(fm) {
     override fun getCount(): Int = 2
 
     override fun getItem(position: Int): Fragment? {
+        val adoptInfoFragment = AdoptInfoFragment.newInstance(idx)
+        val adoptcommentFragment = AdoptCommentFragment.newInstance(idx)
         return when (position) {
-            0 -> AdoptInfoFragment()
-            1 -> AdoptCommentFragment()
+            0 -> adoptInfoFragment
+            1 -> adoptcommentFragment
             else -> null
         }
     }

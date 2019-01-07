@@ -5,8 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".ui.activity.helpcat.AdoptActivity">
+        android:background="@color/white">
 
     <android.support.v7.widget.Toolbar
             android:layout_width="0dp"
@@ -19,11 +18,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+        <ImageView
+                android:id="@+id/btn_adopt_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:layout_marginRight="32dp"
+                android:layout_alignParentLeft="true"/>
+
         <TextView
+                android:id="@+id/text_help_fragment_title"
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
                 android:layout_gravity="left"
-                android:text="입양"
                 android:textColor="#4a4a4a"
                 android:textSize="20sp"
                 android:textStyle="bold" tools:layout_editor_absoluteY="14dp"

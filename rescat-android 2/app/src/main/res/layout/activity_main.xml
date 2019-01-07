@@ -36,6 +36,8 @@
             android:elevation="3dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:labelVisibilityMode="unlabeled"
+            app:itemIconSize="36dp"
             app:menu="@menu/bottombar_menu"
             android:id="@+id/main_bottom_navi">
     </android.support.design.widget.BottomNavigationView>
