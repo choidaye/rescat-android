@@ -22,7 +22,6 @@ class MyPostActivity : AppCompatActivity() {
     private fun setTabLayout() {
         myposttabAdapter = MyPostTabAdapter(supportFragmentManager)
         vp_my_post_fragment_container.adapter = myposttabAdapter
-
         tab_my_post.setupWithViewPager(vp_my_post_fragment_container)
     }
 

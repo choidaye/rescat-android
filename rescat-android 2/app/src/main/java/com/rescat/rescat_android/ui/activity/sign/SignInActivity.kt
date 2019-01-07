@@ -48,15 +48,18 @@ class SignInActivity : AppCompatActivity() {
 
         postLoginResponse.enqueue(object : Callback<PostUserLoginResponse> {
             override fun onFailure(call: Call<PostUserLoginResponse>, t: Throwable) {
-                Log.e("Sign Up Fail", t.toString())
+                Log.e("Sign In Fail", t.toString())
 
             }
 
             //통신 성공 시 수행되는 메소드
             override fun onResponse(call: Call<PostUserLoginResponse>, response: Response<PostUserLoginResponse>) {
                 if (response.isSuccessful){
+
                     var token : String = response.body()!!.token
-                    Log.v("Sign Up Success", "토큰 + " + token)
+                    Log.v("Sign In Success", "토큰 + " + token)
+                    RescatApplication.preference.token = token
+
                     startActivity<MainActivity>()
                 }else{
                     var message : String = response.body()!!.message

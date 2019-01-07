@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.activity.mypage.MyPostActivity">
 
 
@@ -28,7 +29,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="29dp"
                     android:layout_toRightOf="@+id/btn_ac_search_result_back"
-                    android:text="검색결과"
+                    android:text="내가 작성한 글"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
                     android:textColor="#4a4a4a"
                     android:textSize="20sp"/>
 

@@ -67,6 +67,7 @@
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
                         android:orientation="horizontal">
 
                     <TextView
@@ -74,9 +75,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#4a4a4a"
-                            android:layout_marginTop="24dp"
                             android:textSize="22sp"
                             android:text="티티엄마" />
+
+                    <ImageView
+                            android:id="@+id/my_bedge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_badge"/>
 
                 </LinearLayout>
 
@@ -244,6 +251,7 @@
 
 
             <RelativeLayout
+                    android:id="@+id/btn_my_page_my_support"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="12dp">
@@ -291,6 +299,32 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_mypage_more"/>
 
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:id="@+id/btn_my_page_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="#4a4a4a"
+                        android:layout_marginLeft="21dp"
+                        android:layout_centerVertical="true"
+                        android:text="문의하기" />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="16dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_mypage_more"/>
+
                 <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -315,9 +349,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="21dp"
-                    android:text="내활동"/>
+                    android:text="계정정보"/>
 
             <RelativeLayout
+                    android:id="@+id/btn_my_page_modify_info"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="12dp">
@@ -344,6 +379,7 @@
 
 
             <RelativeLayout
+                    android:id="@+id/btn_my_page_modify_pw"
                     android:layout_width="match_parent"
                     android:layout_height="48dp">
 
@@ -370,6 +406,7 @@
 
 
             <RelativeLayout
+                    android:id="@+id/btn_my_page_logout"
                     android:layout_width="match_parent"
                     android:layout_height="48dp">
 
@@ -400,9 +437,8 @@
                 android:layout_height="52dp"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/bg_cmap_gradient"/>
-
-
         </RelativeLayout>
+
     </ScrollView>
 
 

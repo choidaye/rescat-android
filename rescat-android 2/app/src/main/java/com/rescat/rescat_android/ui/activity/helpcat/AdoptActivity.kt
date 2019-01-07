@@ -10,6 +10,8 @@ import kotlinx.android.synthetic.main.activity_adopt.*
 
 class AdoptActivity : AppCompatActivity() {
 
+
+
     lateinit var tabAdapter: AdoptTabAdapter
     var idx: Int = 0
 
@@ -18,6 +20,7 @@ class AdoptActivity : AppCompatActivity() {
         setContentView(R.layout.activity_adopt)
 
         setTabLayout()
+
         setInitLayout()
         setBackButtonListener()
     }
@@ -25,6 +28,7 @@ class AdoptActivity : AppCompatActivity() {
 
     private fun setInitLayout() {
         text_help_fragment_title.text = "입양"
+
     }
 
     private fun setTabLayout() {
@@ -36,9 +40,11 @@ class AdoptActivity : AppCompatActivity() {
         tab_adopt.setupWithViewPager(vp_adopt_fragment_container)
     }
 
+
     private fun setBackButtonListener() {
         btn_adopt_back.setOnClickListener {
             finish()
         }
     }
+
 }

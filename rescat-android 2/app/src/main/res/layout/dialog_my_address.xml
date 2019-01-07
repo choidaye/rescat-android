@@ -8,7 +8,7 @@
 
 
     <TextView
-            android:id="@+id/tv_diolog_my_address_title"
+            android:id="@+id/tv_diolog_add_request_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="25dp"
-            android:layout_below="@+id/tv_diolog_my_address_title">
+            android:layout_below="@+id/tv_diolog_add_request_title">
 
         <RadioButton
                 android:id="@+id/rb_dialog_my_address_1"

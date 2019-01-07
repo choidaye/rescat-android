@@ -21,10 +21,13 @@ class NoticeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_notice)
 
 
-
+        setOnCLickListener()
         setRecyclerView()
     }
 
+    private fun setOnCLickListener() {
+
+    }
 
 
     private fun setRecyclerView() {

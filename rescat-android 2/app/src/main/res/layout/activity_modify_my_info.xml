@@ -5,7 +5,244 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.activity.mypage.ModifyMyInfoActivity">
+
+
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/white"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:textStyle="bold"
+            android:id="@+id/toolbar">
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:layout_toRightOf="@+id/btn_ac_search_result_back"
+                    android:text="정보수정"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20sp"/>
+
+            <ImageView
+                    android:id="@+id/btn_ac_search_result_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back"
+                    android:layout_marginRight="19dp"
+                    android:layout_alignParentLeft="true"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <RelativeLayout
+            android:layout_below="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:id="@+id/rl_ac_modify_my_info_id"
+            android:layout_marginTop="8dp"
+            android:layout_height="52dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b9b9b"
+                    android:lineSpacingExtra="8sp"
+                    android:text="아이디"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="#de000000"
+                    android:lineSpacingExtra="8sp"
+                    android:text="draw5481"/>
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#1e000000"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+            android:id="@+id/rl_ac_modify_my_info_name"
+            android:layout_below="@+id/rl_ac_modify_my_info_id"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b9b9b"
+                    android:lineSpacingExtra="8sp"
+                    android:text="실명"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="54dp"
+                    android:textColor="#de000000"
+                    android:lineSpacingExtra="8sp"
+                    android:text="최다예"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+                android:id="@+id/btn_ac_modify_my_info_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_edit"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#1e000000"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+            android:id="@+id/rl_ac_modify_my_info_nickname"
+            android:layout_below="@+id/rl_ac_modify_my_info_name"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b9b9b"
+                    android:lineSpacingExtra="8sp"
+                    android:text="닉네임"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="#de000000"
+                    android:lineSpacingExtra="8sp"
+                    android:text="GOOD"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+                android:id="@+id/btn_ac_modify_my_info_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_edit"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#1e000000"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_ac_modify_my_info_phonenum"
+            android:layout_below="@+id/rl_ac_modify_my_info_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b9b9b"
+                    android:lineSpacingExtra="8sp"
+                    android:text="전화번호"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginLeft="28dp"
+                    android:textColor="#de000000"
+                    android:lineSpacingExtra="8sp"
+                    android:text="01028023287"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+                android:id="@+id/btn_ac_modify_my_info_phonenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="18dp"
+                android:src="@drawable/ic_edit"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#1e000000"/>
+
+    </RelativeLayout>
+
 
 
 

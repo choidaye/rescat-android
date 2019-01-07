@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.Dialog
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -23,13 +22,12 @@ import com.google.android.gms.maps.model.*
 import com.rescat.rescat_android.Get.GetMapResponse
 
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.application.RescatApplication
 
-import com.rescat.rescat_android.R.id.tv_fg_cmap_my_address
-import com.rescat.rescat_android.model.MapData
-import com.rescat.rescat_android.network.ApplicationController
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.AddMarkerActivity
 import com.rescat.rescat_android.ui.activity.SearchActivity
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_my_address.*
 import kotlinx.android.synthetic.main.fragment_cat_map.*
 import org.jetbrains.anko.locationManager
@@ -39,17 +37,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 class CatMapFragment : Fragment(), OnMapReadyCallback,
     GoogleMap.OnMarkerClickListener {
 
-    lateinit var MapdataList : ArrayList<MapData>
+
+    lateinit var MapdataList : ArrayList<GetMapResponse>
 
     val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
+        RescatApplication.instance.networkService
     }
-
-
 
     //마커 클릭 이벤트
     override fun onMarkerClick(p0: Marker?) : Boolean{
@@ -59,7 +57,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         //toast(p0.toString())
         return true
     }
-
 
 
 
@@ -120,22 +117,23 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
         btn_fg_cmap_filter_all.setOnClickListener{
             allsetupMarkerMap()
+
         }
 
 
         btn_fg_cmap_filter_cat.setOnClickListener {
-            setupVisibleMap(1)
+            setupVisibleMap(2)
 
 
         }
 
 
         btn_fg_cmap_filter_hospital.setOnClickListener {
-            setupVisibleMap(2)
+            setupVisibleMap(1)
         }
 
         btn_fg_cmap_filter_eat.setOnClickListener {
-            setupVisibleMap(3)
+            setupVisibleMap(0)
         }
 
         btn_fg_cmap_my_address.setOnClickListener {
@@ -172,7 +170,7 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         mMap.clear()
 
         //foreach는 아이템갯수에 따라 반복문을 돌아준다.
-        MapdataList.filter { it.location_type == num }.forEach {
+        MapdataList.filter { it.category == num }.forEach {
 
             CircleOption(it)
             addNewMarker(it)
@@ -183,56 +181,55 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
     //통신
-
     private fun getMapResponse() {
 
-//        var getMapResponse = networkService.getMapResponse()
-//        getMapResponse.enqueue(object: Callback<GetMapResponse> {
-//            override fun onFailure(call: Call<GetMapResponse>, t: Throwable) {
-//                Log.e("TAG", "통신에러")
-//            }
+        Log.e("mapresponse","맵통신 연결")
+
+//        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ5Mjk2MjU4fQ.Svr3JqKjOzmIFoYN2_XY5AZdVFT70GtL3EnACscWJpE"
+        var emdcode ="1108072"
 //
-//            override fun onResponse(call: Call<GetMapResponse>, response: Response<GetMapResponse>) {
-//                if (response.isSuccessful){
-//
-//
-//                    MapdataList = response.body()!!.data
-//
-//                    setupVisibleMap(4)
-//                    allsetupMarkerMap()
-//
-//
-//
-//
-//
-//                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(response.body()!!.data[0].latitude,  response.body()!!.data[0].longitude), 15.0f))
-//
-//
-//
+
+        var getMapResponse = networkService.getMapResponse(emdcode)
+        getMapResponse.enqueue(object: Callback<ArrayList<GetMapResponse>> {
+            override fun onFailure(call: Call<ArrayList<GetMapResponse>>, t: Throwable) {
+                Log.e("TAG", "지도 통신에러")
+            }
+
+            override fun onResponse(call: Call<ArrayList<GetMapResponse>>, response: Response<ArrayList<GetMapResponse>>) {
+                if (response.isSuccessful){
+
+
+
+                    Log.e("TAG", "지도 통신완료")
+
+                    MapdataList = response.body()!!
+
+                    setupVisibleMap(4)
+                    allsetupMarkerMap()
+
+
+                    //카메라 줌
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(MapdataList[0].lat, MapdataList[0].lng), 15.0f))
+
 //                    mMap.addCircle(
 //                        CircleOptions().center(
 //                            LatLng(
-//                                response.body()!!.data[0].latitude,
-//                                response.body()!!.data[0].longitude
+//                                response.body()!!.lat,
+//                                response.body()!!.data[0].lng
 //                            )
 //                        ).radius(130.0).fillColor(Color.parseColor("#4Df29191")).strokeColor(Color.parseColor("#4Df29191"))
 //
 //                    )
-//
-//
-//
-//                }
-//
-//
-//
-//                Log.e("TAG", response.body().toString())
-//            }
-//        })
-//
+
+                }
+
+
+            }
+        })
+
 
 
     }
-
 
     //지도 시작
     override fun onMapReady(googleMap: GoogleMap) {
@@ -243,17 +240,14 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
             cv_marker_detail.setVisibility(View.GONE)
         }
 
-
-
-       // getMapResponse()
+       getMapResponse()
 
         // 디폴트 받아온 좌표값을 여기서..!
-//        mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
+  //     mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
 //        mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLn
-// g(-34.0, 151.0)))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(-34.0, 151.0)))
         //mMap.addMarker(MarkerOptions().position(LatLng(L,)))
-        Log.e("TAG", "지도 잘 보여진드아")
+        Log.e("mapshow", "지도 잘 보여진드아")
 
 
 
@@ -276,6 +270,8 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
             result = myaddressDialog.rb_dialog_my_address_1.text.toString()
             Log.v("asdf","다예맵2 + " + result)
         }
+
+
 
         myaddressDialog.rb_dialog_my_address_2.setOnCheckedChangeListener { buttonView, isChecked ->
 
@@ -306,32 +302,32 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
-
-    private fun getLastLocation() {
-        val isGPSEnabled = activity!!.locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        val isNetworkEnabled = activity!!.locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-
-
-        //gps 체크
-        if (isGPSEnabled || isNetworkEnabled) {
-            if (ActivityCompat.checkSelfPermission(
-                    activity!!,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                fusedLocationClient.lastLocation.addOnCompleteListener {
-                    if (it.isSuccessful && it.result != null) {
-                        currentLatitude = it.result!!.latitude
-                        currentLongitude = it.result!!.longitude
-
-                    }
-                }
-            }
-        } else {
-            toast("GPS를 체크해주세요.")
-        }
-    }
-
+//
+//    private fun getLastLocation() {
+//        val isGPSEnabled = activity!!.locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+//        val isNetworkEnabled = activity!!.locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+//
+//
+//        //gps 체크
+//        if (isGPSEnabled || isNetworkEnabled) {
+//            if (ActivityCompat.checkSelfPermission(
+//                    activity!!,
+//                    Manifest.permission.ACCESS_COARSE_LOCATION
+//                ) == PackageManager.PERMISSION_GRANTED
+//            ) {
+//                fusedLocationClient.lastLocation.addOnCompleteListener {
+//                    if (it.isSuccessful && it.result != null) {
+//                        currentLatitude = it.result!!.latitude
+//                        currentLongitude = it.result!!.longitude
+//
+//                    }
+//                }
+//            }
+//        } else {
+//            toast("GPS를 체크해주세요.")
+//        }
+//    }
+//
 
 
     var count = 0
@@ -339,12 +335,12 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
-//
-//    val mMarkerOption: MarkerOptions by lazy {
-//        MarkerOptions().apply {
-//            icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_cat))
-//        }
-//    }
+
+    val mMarkerOption: MarkerOptions by lazy {
+        MarkerOptions().apply {
+            icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_cat))
+        }
+    }
 
 
 
@@ -353,16 +349,16 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
-    private fun CircleOption(data:MapData){
+    private fun CircleOption(data:GetMapResponse){
 
-        when(data.location_type) {
-            1 -> {
+        when(data.category) {
+            2 -> {
                 mCircle = mMap.addCircle(
 
                     CircleOptions().center(
                         LatLng(
-                            data.longitude,
-                            data.latitude
+                            data.lng,
+                            data.lat
                         )
                     ).radius(130.0).fillColor(Color.parseColor("#4Df29191")).strokeColor(Color.parseColor("#4Df29191"))
 
@@ -377,28 +373,28 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
-    private fun addNewMarker(data:MapData) {
+    private fun addNewMarker(data:GetMapResponse) {
 
 
 
 
 
-        when(data.location_type){
+        when(data.category){
 
-            1 -> {
-                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.latitude, data.longitude))
+            2 -> {
+                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_cat)))
 
             }
 
-            2 -> {
-                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.latitude, data.longitude))
+            1-> {
+                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_hospital)))
             }
 
-            3->{
+            0->{
 
-                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.latitude, data.longitude))
+                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_food)))
 
             }
@@ -431,12 +427,12 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 //        }
 //
 
-//
+
 //        mMarker = mMap.addMarker(mMarkerOption)
-//
-//        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLatitude, currentLongitude), 15.0f))
-//        count++
-//
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLatitude, currentLongitude), 15.0f))
+ //       count++
+
         builder.include(mMarker.position)
         val bounds = builder.build()
         val padding = 0 // offset from edges of the map in pixels

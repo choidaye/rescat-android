@@ -3,6 +3,8 @@ package com.rescat.rescat_android.application
 import android.app.Application
 import com.rescat.rescat_android.Preference.RescatPreference
 import com.rescat.rescat_android.network.NetworkService
+import com.rescat.rescat_android.network.RescatNetworkInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -27,6 +29,7 @@ class RescatApplication : Application() {
     }
 
     fun buildNetWork() {
+
         retrofit= Retrofit.Builder()
             .baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create()).build()
         networkService = retrofit.create(NetworkService::class.java)

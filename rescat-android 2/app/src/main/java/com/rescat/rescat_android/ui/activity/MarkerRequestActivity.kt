@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -11,10 +12,15 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.rescat.rescat_android.Get.GetMapResponse
+import com.rescat.rescat_android.Get.GetMyPageCareResponse
+import com.rescat.rescat_android.Post.PostMarkerRequest
+import com.rescat.rescat_android.Post.Response.PostMarkerRequestResponse
+import com.rescat.rescat_android.Post.Response.PostUserLoginResponse
 import com.rescat.rescat_android.R
-import com.rescat.rescat_android.model.MapData
-import com.rescat.rescat_android.network.ApplicationController
+import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.network.NetworkService
+import kotlinx.android.synthetic.main.fragment_cat_map.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,10 +30,10 @@ class MarkerRequestActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
 
-    lateinit var MapdataList : ArrayList<MapData>
+    lateinit var MapdataList : ArrayList<PostMarkerRequest>
 
     val networkService: NetworkService by lazy {
-        ApplicationController.instance.networkService
+        RescatApplication.instance.networkService
     }
 
 
@@ -41,46 +47,66 @@ class MarkerRequestActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        setOnBtnClickListener()
+
     }
 
+    private fun setOnBtnClickListener() {
+
+
+
+
+    }
+
+
+    private fun MoveCamera(data: PostMarkerRequest){
+
+
+    }
 
 
 
 
 //통신
 
-    private fun getMapResponse() {
+    private fun PostMarkerRequestResponse() {
 
-//        var getMapResponse = networkService.getMapResponse()
-//        getMapResponse.enqueue(object: Callback<GetMapResponse> {
-//            override fun onFailure(call: Call<GetMapResponse>, t: Throwable) {
-//                Log.e("TAG", "통신에러")
-//            }
-//
-//            override fun onResponse(call: Call<GetMapResponse>, response: Response<GetMapResponse>) {
-//                if (response.isSuccessful){
-//                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(response.body()!!.data[0].latitude,  response.body()!!.data[0].longitude), 15.0f))
-//
-//                                mMap.addCircle(CircleOptions().
-//                                            center(LatLng(response.body()!!.data[0].latitude, response.body()!!.data[0].longitude)).
-//                                                   radius(100.0).strokeColor(Color.RED).fillColor(Color.parseColor("#80be9981"))
-//
-//                                              )
-//
-//                    response.body()!!.data.forEach {
-//                                               addNewMarker(it)
-//                                                it?.let {
-//                                                      addNewMarker(it)
-//                                                 }
-//                                              addNewMarker(it)
-//                    }
-//
-//                }
-//                Log.e("TAG", response.body().toString())
-//            }
-//
-//        })
+        Log.e("mapresponse","맵통신 연결")
 
+        var markerRequest : String = ""
+
+
+        val postMarkerRequestResponse : Call<ArrayList<PostMarkerRequestResponse>> =
+           networkService.postMapResponse(markerRequest)
+        postMarkerRequestResponse.enqueue(object : Callback<ArrayList<PostMarkerRequestResponse>>{
+            override fun onFailure(call: Call<ArrayList<PostMarkerRequestResponse>>, t: Throwable) {
+                Log.e("TAG", "지도 통신에러")
+            }
+
+            override fun onResponse( call: Call<ArrayList<PostMarkerRequestResponse>>, response: Response<ArrayList<PostMarkerRequestResponse>>) {
+
+                if (response.isSuccessful){
+
+                    //에드 마커
+
+                    //카메라 줌
+
+
+
+
+                    Log.e("TAG", "지도 통신완료")
+                }
+
+            }
+
+        })
+
+    }
+
+
+    private fun moveCamera(data:PostMarkerRequest){
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(data.lat, data.lng), 15.0f))
 
 
     }
@@ -91,9 +117,7 @@ class MarkerRequestActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
 
 
-        //mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
-
-        //getMapResponse()
+        PostMarkerRequestResponse()
         // 디폴트 받아온 좌표값을 여기서..!
 //        mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
 //        mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
@@ -106,12 +130,23 @@ class MarkerRequestActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
+
+
     var count = 0
     val builder = LatLngBounds.Builder()
 
-    private fun addNewMarker(data:MapData) {
-        val mMarker : Marker = mMap.addMarker(MarkerOptions().position(LatLng(data.latitude, data.longitude)))
-        val mMarkerOption = MarkerOptions()
+
+    lateinit var mMarker : Marker
+
+    private fun addNewMarker(data:PostMarkerRequest) {
+//        val mMarker : Marker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng)))
+//        val mMarkerOption = MarkerOptions()
+
+
+                mMarker = mMap.addMarker(MarkerOptions().position(LatLng(data.lat, data.lng))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_cat)))
+
+
 
 
         //주소받아오기
