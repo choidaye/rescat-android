@@ -67,6 +67,16 @@ class MyPageMemberFragment: Fragment(){
         btn_my_page_modify_info.setOnClickListener {
             startActivity<ModifyMyInfoActivity>()
         }
+
+        btn_my_page_modify_pw.setOnClickListener {
+            startActivity<ModifyPasswordActivity>()
+        }
+
+        btn_my_page_my_support.setOnClickListener {
+            startActivity<MySupportActivity>()
+        }
+
+
     }
 
     private fun getMyPageResponse() {

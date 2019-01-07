@@ -9,6 +9,8 @@ import kotlinx.android.synthetic.main.activity_adopt.*
 
 class AdoptActivity : AppCompatActivity() {
 
+
+
     lateinit var tabAdapter: AdoptTabAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +18,9 @@ class AdoptActivity : AppCompatActivity() {
         setContentView(R.layout.activity_adopt)
 
         setTabLayout()
+
+
+        intent.getIntExtra("idx",0)
     }
 
     private fun setTabLayout() {
@@ -24,4 +29,8 @@ class AdoptActivity : AppCompatActivity() {
 
         tab_adopt.setupWithViewPager(vp_adopt_fragment_container)
     }
+
+
+
+
 }

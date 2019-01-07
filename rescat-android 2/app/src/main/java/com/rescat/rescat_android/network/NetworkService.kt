@@ -1,9 +1,6 @@
 package com.rescat.rescat_android.network
 
-import com.rescat.rescat_android.Get.GetMapResponse
-import com.rescat.rescat_android.Get.GetMyPageCareResponse
-import com.rescat.rescat_android.Get.GetMyPageFundResponse
-import com.rescat.rescat_android.Get.GetMyPageResponse
+import com.rescat.rescat_android.Get.*
 import com.rescat.rescat_android.Post.PostUserLogin
 import com.rescat.rescat_android.Post.PostUserSignUp
 import com.rescat.rescat_android.Post.Response.PostMarkerRequestResponse
@@ -50,6 +47,8 @@ interface NetworkService{
     @GET("api/users/mypage/care-posts")
     fun getMyPostCare(): Call<ArrayList<GetMyPageCareResponse>>
 
+    //마이페이지 내 정보 수정
+
 
     //닉네임 변경
     @PUT("api/users/mypage/edit")
@@ -60,6 +59,11 @@ interface NetworkService{
     //마이페이지 후원 내가 쓴 글 조회
     @GET("api/users/mypage/fundings")
     fun getMyPostFund(): Call<ArrayList<GetMyPageFundResponse>>
+
+    //마이페이지 내가 후원한 글 조회
+
+    @GET("api/users/mypage/supporting")
+    fun getMySupprting():Call<ArrayList<GetMySupportingResponse>>
 
 
 

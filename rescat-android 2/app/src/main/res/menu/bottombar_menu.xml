@@ -3,18 +3,18 @@
 
     <item android:id="@+id/menuitem_catmap"
           android:icon="@drawable/ic_home_black_24dp"
-          android:title="고양이맵"
-          app:showAsAction="ifRoom"/>
+          app:showAsAction="ifRoom"
+          android:title="@null" />
 
     <item android:id="@+id/menuitem_helpcat"
-          android:icon="@drawable/ic_home_black_24dp"
+          android:icon="@drawable/selector_bottombar_home"
           android:enabled="true"
-          android:title="도와주세요"
+          android:titleCondensed="@null"/>
+          app:showAsAction="ifRoom"/>
 
-          app:showAsAction="ifRoom"/>
     <item android:id="@+id/menuitem_mypage"
-          android:icon="@drawable/ic_home_black_24dp"
-          android:title="내정보"
-          app:showAsAction="ifRoom"/>
+          android:icon="@drawable/selector_bottombar_mypage"
+          app:showAsAction="ifRoom"
+          android:title="@null"/>
 
 </menu>
