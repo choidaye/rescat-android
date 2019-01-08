@@ -8,13 +8,15 @@ import android.graphics.Color
 import android.os.Bundle
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.util.Log
-import android.widget.RadioButton
 import android.widget.TextView
-import com.google.gson.annotations.SerializedName
+import android.widget.Toast
 import com.rescat.rescat_android.Post.PostCareApplication
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
+import com.rescat.rescat_android.model.HouseType
 import com.rescat.rescat_android.network.NetworkService
+import com.rescat.rescat_android.ui.adapter.RadiobuttonAdapter
+import com.rescat.rescat_android.utils.ErrorBodyConverter
 import kotlinx.android.synthetic.main.activity_adopt_apply.*
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -22,19 +24,16 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AdoptApplyActivity : Activity() {
     var idx: Int = 0
     var TEST_TOKEN:String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ4NzU2OTEwfQ.XC0S5ywa4DYU4JYxenSio-4q7Pn-SDVyv0MY4S-_IeM"
-    var HOUSETYPE = mutableMapOf(R.id.btn_radio_apartment to "APARTMENT",
-                                 R.id.btn_radio_house to "HOUSING",
-                                 R.id.btn_radio_multiflex to "MULTIFLEX",
-                                 R.id.btn_radio_oneroom to "ONEROOM")
     var COMPANIONTYPE = mutableMapOf(R.id.btn_radio_companion to true,
                                      R.id.btn_radio_no_companion to false)
-    var checkId :Int = R.id.btn_radio_apartment
     var birth :Date  = Date()
+    lateinit var radioAdapter : RadiobuttonAdapter
 
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
@@ -55,32 +54,41 @@ class AdoptApplyActivity : Activity() {
         text_help_apply_title.text = "입양신청"
         text_help_apply_header_desc.text = "입양을 하시나요?\n당신의 아름다운 결심을 지지합니다."
         edit_adopt_apply_phone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+        var HouseList : ArrayList<HouseType> = ArrayList()
+        HouseList.add(HouseType(0, "아파트", "APARTMENT"))
+        HouseList.add(HouseType(1, "주택", "HOUSING"))
+        HouseList.add(HouseType(2, "다세대주택", "MULTIFLEX"))
+        HouseList.add(HouseType(3, "원룸", "ONEROOM"))
+        var booleans :ArrayList<Boolean> = ArrayList(4)
+        booleans.addAll(listOf(true, false, false, false))
+        radioAdapter = RadiobuttonAdapter(applicationContext, android.R.layout.simple_list_item_checked, HouseList, booleans)
+        gridView.adapter = radioAdapter
 
-        radio_group_house_type?.setOnCheckedChangeListener { group, checkedId ->
-            if(radio_group_house_type2.checkedRadioButtonId != -1) {
-                if (isChange) {
-                    isChange = false
-                } else {
-                    isChange = true
-                    val checked = findViewById<RadioButton>(radio_group_house_type2.checkedRadioButtonId)
-                    checked.isChecked = false
-                    checkId = checkedId
-                }
-            }
-        }
-
-        radio_group_house_type2?.setOnCheckedChangeListener { group, checkedId ->
-            if(radio_group_house_type.checkedRadioButtonId != -1) {
-                if(isChange) {
-                    isChange = false
-                } else {
-                    isChange = true
-                    val checked = findViewById<RadioButton>(radio_group_house_type.checkedRadioButtonId)
-                    checked.isChecked = false
-                    checkId = checkedId
-                }
-            }
-        }
+//        radio_group_house_type?.setOnCheckedChangeListener { group, checkedId ->
+//            if(radio_group_house_type2.checkedRadioButtonId != -1) {
+//                if (isChange) {
+//                    isChange = false
+//                } else {
+//                    isChange = true
+//                    val checked = findViewById<RadioButton>(radio_group_house_type2.checkedRadioButtonId)
+//                    checked.isChecked = false
+//                    checkId = checkedId
+//                }
+//            }
+//        }
+//
+//        radio_group_house_type2?.setOnCheckedChangeListener { group, checkedId ->
+//            if(radio_group_house_type.checkedRadioButtonId != -1) {
+//                if(isChange) {
+//                    isChange = false
+//                } else {
+//                    isChange = true
+//                    val checked = findViewById<RadioButton>(radio_group_house_type.checkedRadioButtonId)
+//                    checked.isChecked = false
+//                    checkId = checkedId
+//                }
+//            }
+//        }
 
         setDatePicker()
     }
@@ -162,7 +170,7 @@ class AdoptApplyActivity : Activity() {
         val phone = edit_adopt_apply_phone.text.toString()
         val birth = edit_adopt_apply_birth.text.toString()
         val job = edit_adopt_apply_job.text.toString()
-        val houseType = HOUSETYPE.get(checkId)
+        val houseType = (radioAdapter.getItem(radioAdapter.booleans.indexOf(true))).type
         val companionExperience = COMPANIONTYPE.get(radio_group_companion.checkedRadioButtonId)
         val finalWord = edit_adopt_apply_comment.text.toString()
         val address = edit_adopt_apply_address2.text.toString()
@@ -170,7 +178,6 @@ class AdoptApplyActivity : Activity() {
         val applicationData : PostCareApplication = PostCareApplication(0, name, phone, birth, address, job, houseType!!, companionExperience!!, finalWord)
 
         val postCareApplyApplication: Call<ResponseBody> = networkService.postCareApplication(TEST_TOKEN, applicationData, idx)
-
         postCareApplyApplication.enqueue(object: Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.e("Adopt Apply Fail", t.toString())
@@ -184,32 +191,13 @@ class AdoptApplyActivity : Activity() {
                     finish()
                 } else {
                     //TODO. get Error Message
-//                    val restError = RescatApplication.instance.retrofit.responseBodyConverter<RestError>(
-//                        RestError::class.java,
-//                        RestError::class.java.annotations
-//                    ).convert(response.errorBody()) as RestError
-//                    val errorMessage = restError.text.message
-                      val errorMessage = "TEST"
-
-                    Log.e("Error Response","Error" + errorMessage)
+                    val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+                    Toast.makeText(this@AdoptApplyActivity, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         })
 
     }
-
-    class RestError {
-         @SerializedName("text")
-         var text :ErrorData = ErrorData()
-     }
-
-    class ErrorData {
-        @SerializedName("field")
-        var field :String =""
-        @SerializedName("message")
-        var message :String =""
-    }
-
 }
 
 
