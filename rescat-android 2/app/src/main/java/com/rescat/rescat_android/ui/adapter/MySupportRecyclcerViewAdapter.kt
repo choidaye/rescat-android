@@ -1,5 +1,9 @@
 package com.rescat.rescat_android.ui.adapter
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -18,7 +22,11 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
+<<<<<<< HEAD
+class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: ArrayList<GetMySupportingResponse>) : RecyclerView.Adapter<MySupportRecyclcerViewAdapter.Holder>() {
+=======
 class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: ArrayList<GetMySupportingResponse>) : RecyclerView.Adapter<MySupportRecyclcerViewAdapter.Holder>(){
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MySupportRecyclcerViewAdapter.Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_my_support, parent, false)
@@ -27,7 +35,10 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
     }
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
     override fun onBindViewHolder(holder: MySupportRecyclcerViewAdapter.Holder, position: Int) {
         holder.title.text = mysupportinglist[position].title
         holder.contents.text = mysupportinglist[position].contents
@@ -35,7 +46,10 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
         holder.category.text = mysupportinglist[position].category.toString()
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
 //        try {
 //            var format = SimpleDateFormat("yyyy-MM-dd")
 //
@@ -67,7 +81,11 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
             .thumbnail(1.0f)
             .into(holder.photos)
 
+<<<<<<< HEAD
+        Log.e("viewholder", "뷰홀더 완료")
+=======
         Log.e("viewholder","뷰홀더 완료")
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
 
 
     }
@@ -76,6 +94,15 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
     override fun getItemCount(): Int = mysupportinglist.size
 
 
+<<<<<<< HEAD
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val title: TextView = itemView.findViewById(R.id.tv_my_support_list_title) as TextView
+        val contents: TextView = itemView.findViewById(R.id.tv_my_support_content) as TextView
+        val category: TextView = itemView.findViewById(R.id.tv_my_support_type) as TextView
+        //  val dday : TextView = itemView.findViewById(R.id.tv_my_support_date) as TextView
+        val currentAmount: TextView = itemView.findViewById(R.id.tv_my_support_current_amount) as TextView
+        val photos: ImageView = itemView.findViewById(R.id.iv_my_support_photo) as ImageView
+=======
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.tv_my_support_list_title) as TextView
@@ -84,10 +111,14 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
        //  val dday : TextView = itemView.findViewById(R.id.tv_my_support_date) as TextView
         val currentAmount : TextView = itemView.findViewById(R.id.tv_my_support_current_amount) as TextView
         val photos : ImageView = itemView.findViewById(R.id.iv_my_support_photo) as ImageView
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
 
 
     }
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
 }

@@ -1,0 +1,13 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+            android:drawable="@drawable/button_caramel_stroke"
+            android:textColor = "@color/caramel"
+            android:state_selected="false"/>
+    <item
+            android:state_selected="true"
+            android:textColor="@color/white"
+            android:drawable="@drawable/button_caramel_small" />
+
+</selector>
