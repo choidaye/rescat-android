@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+            >
+
+    <RadioButton
+        android:id="@+id/btn_radio"
+        android:layout_width="wrap_content"
+        android:minWidth="100dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:textSize="17sp"
+        android:textColor="#4a4a4a"
+        android:layout_weight="1"
+        android:buttonTint="@color/pink"
+        android:text=""
+        android:layout_marginTop="14dp"/>
+
+</LinearLayout>
