@@ -3,19 +3,20 @@ package com.rescat.rescat_android.ui.fragment.mypage
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
 import com.rescat.rescat_android.Get.GetMyPageResponse
-import com.rescat.rescat_android.Post.PostUserLogin
-import com.rescat.rescat_android.Post.Response.PostUserLoginResponse
-import com.rescat.rescat_android.Preference.RescatPreference
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
+import com.rescat.rescat_android.model.RegionData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.mypage.*
+import com.rescat.rescat_android.ui.adapter.MyNoticeRecyclerViewAdapter
+import com.rescat.rescat_android.ui.adapter.MyPageLocationRecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_notice.*
 import kotlinx.android.synthetic.main.fragment_my_page_member.*
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
@@ -28,6 +29,10 @@ class MyPageMemberFragment: Fragment(){
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
     }
+
+    var locationlist  = ArrayList<RegionData>()
+
+    lateinit var myPageLocationRecyclerViewAdapter: MyPageLocationRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +49,11 @@ class MyPageMemberFragment: Fragment(){
 
         setOnCLickListener()
         getMyPageResponse()
+        //setRecyclerView()
 
     }
+
+
 
     private fun setOnCLickListener() {
         btn_fg_my_page_go_notice.setOnClickListener {
@@ -79,6 +87,13 @@ class MyPageMemberFragment: Fragment(){
 
     }
 
+    private fun setRecyclerView() {
+
+        myPageLocationRecyclerViewAdapter = MyPageLocationRecyclerViewAdapter(activity!!, locationlist)
+        rv_ac_notice_list.adapter = myPageLocationRecyclerViewAdapter
+        rv_ac_notice_list.layoutManager = LinearLayoutManager(activity!!)
+    }
+
     private fun getMyPageResponse() {
 
         Log.e("response","리스폰스 들어옴")
@@ -94,6 +109,14 @@ class MyPageMemberFragment: Fragment(){
                     if (response.isSuccessful){
                         val nickname : String = response.body()!!.nickname
                         val id: String = response.body()!!.id
+                        val role : String = response.body()!!.role
+
+
+
+                        if (role == "CARETAKER"){
+                            my_bedge.setVisibility(View.VISIBLE)
+                        }
+
 
                         setMyPageView(id,nickname)
                     }

@@ -16,16 +16,8 @@
                 <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <TextView
-                            android:id="@+id/tv_rv_item_notice_title"
-                            android:textSize="16sp"
-                            android:text="제목"
-                            android:textColor="#de000000"
-                            android:lineSpacingExtra="8sp"
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
                      <TextView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -36,7 +28,7 @@
 
                 <TextView
                         android:id="@+id/tv_rv_item_notice_content"
-                        android:text="카테고리"
+                        android:text="내용이들어갑니다 내용이들어갑니다 내용이들어갑니다내용이들어갑니다 내용이들어갑니다 "
                         android:textSize="14sp"
                         android:layout_marginTop="4dp"
                         android:textStyle="normal"

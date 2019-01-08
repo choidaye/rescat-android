@@ -5,14 +5,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         tools:context=".ui.activity.mypage.MySupportActivity">
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
     <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="57dp"
@@ -51,10 +47,7 @@
 
     </android.support.v7.widget.Toolbar>
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 6d31a015b535a8b76e0e7853ecae41a71bc355ce
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_my_support_list"
             android:layout_below="@+id/toolbar"

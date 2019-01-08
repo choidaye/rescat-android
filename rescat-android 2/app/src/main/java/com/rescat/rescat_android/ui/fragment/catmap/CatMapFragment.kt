@@ -240,10 +240,10 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
             cv_marker_detail.setVisibility(View.GONE)
         }
 
-       getMapResponse()
+        getMapResponse()
 
         // 디폴트 받아온 좌표값을 여기서..!
-  //     mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
+        //     mMarker = mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
 //        mMap.addMarker(MarkerOptions().position(LatLng(-34.0, 151.0)).title("Marker in Sydney"))
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(-34.0, 151.0)))
         //mMap.addMarker(MarkerOptions().position(LatLng(L,)))
@@ -431,7 +431,7 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 //        mMarker = mMap.addMarker(mMarkerOption)
 
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(currentLatitude, currentLongitude), 15.0f))
- //       count++
+        //       count++
 
         builder.include(mMarker.position)
         val bounds = builder.build()

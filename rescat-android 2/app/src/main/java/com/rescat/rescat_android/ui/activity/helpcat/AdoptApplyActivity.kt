@@ -177,7 +177,7 @@ class AdoptApplyActivity : Activity() {
 
         val applicationData : PostCareApplication = PostCareApplication(0, name, phone, birth, address, job, houseType!!, companionExperience!!, finalWord)
 
-        val postCareApplyApplication: Call<ResponseBody> = networkService.postCareApplication(TEST_TOKEN, applicationData, idx)
+        val postCareApplyApplication: Call<ResponseBody> = networkService.postCareApplication(applicationData, idx)
         postCareApplyApplication.enqueue(object: Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.e("Adopt Apply Fail", t.toString())
@@ -191,8 +191,8 @@ class AdoptApplyActivity : Activity() {
                     finish()
                 } else {
                     //TODO. get Error Message
-                    val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
-                    Toast.makeText(this@AdoptApplyActivity, errorMessage, Toast.LENGTH_SHORT).show()
+//                    val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+//                    Toast.makeText(this@AdoptApplyActivity, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }
         })
