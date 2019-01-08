@@ -117,7 +117,7 @@ class AdoptCommentFragment : Fragment() {
             //TODO. 예외처리하기!
             val postCommentData: PostCareComment = PostCareComment(edit_adopt_comment.text.toString(), idx)
             val postCareComment: Call<CommentData> =
-                networkService.postCarePostComment(TEST_TOKEN, postCommentData, idx)
+                networkService.postCarePostComment(postCommentData, idx)
 
             postCareComment.enqueue(object: Callback<CommentData> {
                 override fun onFailure(call: Call<CommentData>, t: Throwable) {

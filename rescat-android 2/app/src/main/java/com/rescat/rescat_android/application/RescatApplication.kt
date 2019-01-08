@@ -8,12 +8,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 class RescatApplication : Application() {
 
 
     private val baseURL = "http://13.209.145.139:8080/"
     lateinit var networkService: NetworkService
-    lateinit var retrofit : Retrofit
 
 
     companion object {
@@ -29,9 +29,16 @@ class RescatApplication : Application() {
     }
 
     fun buildNetWork() {
-
-        retrofit= Retrofit.Builder()
-            .baseUrl(baseURL).addConverterFactory(GsonConverterFactory.create()).build()
+        val retrofit: Retrofit = Retrofit.Builder()
+            .client(
+                OkHttpClient.Builder()
+                    .apply {
+                        addInterceptor(RescatNetworkInterceptor())
+                    }.build()
+            )
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(baseURL)
+            .build()
         networkService = retrofit.create(NetworkService::class.java)
     }
 }

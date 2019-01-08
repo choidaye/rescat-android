@@ -88,6 +88,8 @@
         <activity android:name=".ui.activity.helpcat.ProtectApplyActivity">
         </activity>
         <activity android:name=".ui.activity.helpcat.ProtectCompleteActivity"/>
+        <activity android:name=".ui.activity.mypage.MySupportActivity">
+        </activity>
     </application>
 
 </manifest>
