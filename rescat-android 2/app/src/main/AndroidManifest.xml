@@ -79,6 +79,15 @@
         </activity>
         <activity android:name=".ui.activity.caretakerAuth.CareTakerPhotoAuthActivity">
         </activity>
+        <activity android:name=".ui.activity.helpcat.AdoptApplyActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.AdoptCompleteActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProtectActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProtectApplyActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProtectCompleteActivity"/>
     </application>
 
 </manifest>
