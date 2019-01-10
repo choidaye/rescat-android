@@ -4,15 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.View
+import android.widget.RelativeLayout
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.ui.fragment.catmap.CatMapFragment
 import com.rescat.rescat_android.ui.fragment.helpcat.HelpCatFragment
 import com.rescat.rescat_android.ui.fragment.mypage.MyPageFragment
 import com.rescat.rescat_android.ui.fragment.mypage.MyPageMemberFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.startActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,8 +38,11 @@ class MainActivity : AppCompatActivity() {
     private fun setOnBtnClickListener() {
 
         btn_popup_cmap_report.setOnClickListener {
+            this.startActivity<MarkerModifyRequestActivity>()
 
         }
+
+
 
     }
 
@@ -80,6 +87,11 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
+
+
+
+
 
 
     //백버튼 살리기

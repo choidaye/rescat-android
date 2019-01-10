@@ -56,7 +56,7 @@
             android:layout_height="186dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="34dp"
-            android:background="#fff5f0"
+            android:background="@drawable/img_caretaker"
             android:layout_below="@+id/toolbar"/>
 
 

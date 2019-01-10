@@ -8,15 +8,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.rescat.rescat_android.Get.GetMainPageFunding
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.HelpCardData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
+import com.rescat.rescat_android.ui.activity.helpcat.SupportAddActivity
 import com.rescat.rescat_android.ui.adapter.HomeFundCardAdapter
 import com.rescat.rescat_android.ui.adapter.HomeHelpCatAdapter
 import com.rescat.rescat_android.ui.adapter.HomeMainBannerAdapter
 import kotlinx.android.synthetic.main.fragment_help_cat.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +36,7 @@ class HelpCatFragment : Fragment() {
     var timer: CountDownTimer? = null
     var data: ArrayList<Int> = ArrayList()
     var HelpCareData: ArrayList<HelpCardData> = ArrayList()
+    var FundCardData: ArrayList<GetMainPageFunding> = ArrayList()
 
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
@@ -47,8 +51,14 @@ class HelpCatFragment : Fragment() {
 
         setRecyclerView()
         setViewPager()
-
+        setOnBtnClickListener()
         buttonInit()
+    }
+
+    private fun setOnBtnClickListener() {
+        btn_support_writer.setOnClickListener {
+            startActivity<SupportAddActivity>()
+        }
     }
 
     override fun onCreateView(
@@ -89,7 +99,7 @@ class HelpCatFragment : Fragment() {
 
         getHelpPostMain.enqueue(object: Callback<ArrayList<HelpCardData>> {
             override fun onFailure(call: Call<ArrayList<HelpCardData>>, t: Throwable) {
-                Log.e("Sign Up Fail", t.toString())
+                Log.e("Main page adopt", t.toString())
             }
 
             override fun onResponse(call: Call<ArrayList<HelpCardData>>, response: Response<ArrayList<HelpCardData>>) {
@@ -108,9 +118,28 @@ class HelpCatFragment : Fragment() {
 
 
 
-        fundCardAdapter = HomeFundCardAdapter(data)
-        rv_home_fund_card.adapter = fundCardAdapter
-        rv_home_fund_card.layoutManager = LinearLayoutManager(activity)
+        val getMainPageFunding : Call<ArrayList<GetMainPageFunding>>  =
+                networkService.getMainFunding()
+
+        getMainPageFunding.enqueue(object : Callback<ArrayList<GetMainPageFunding>>{
+            override fun onFailure(call: Call<ArrayList<GetMainPageFunding>>, t: Throwable) {
+                Log.e("Main page Fund", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<ArrayList<GetMainPageFunding>>, response: Response<ArrayList<GetMainPageFunding>>) {
+
+                if (response.isSuccessful){
+                    FundCardData = response.body()!!
+                    fundCardAdapter = HomeFundCardAdapter(FundCardData)
+                    rv_home_fund_card.adapter = fundCardAdapter
+                    rv_home_fund_card.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+                }
+
+            }
+        })
+
     }
 
     private fun setViewPager() {

@@ -44,7 +44,9 @@
                     android:layout_marginRight="24dp"
                     android:textSize="18sp"
                     android:textColor="#4a4a4a"
-                    android:text="완료"/>
+                    android:text="완료"
+                    android:layout_marginTop="0dp"
+                    android:layout_alignParentTop="true"/>
 
 
             <ImageView
@@ -95,6 +97,7 @@
                 android:hint="티티맘" />
 
         <Button
+                android:id="@+id/btn_password_check"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:background="@drawable/button_caramel"

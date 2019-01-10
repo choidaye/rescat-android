@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 
 import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProtectCommentFragment
-import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProtectInfoFragment
+import com.rescat.rescat_android.ui.fragment.mypage.mypost.MyPostCareFragment
+import com.rescat.rescat_android.ui.fragment.mypage.mypost.MyPostFundFragment
 
 
 class MyPostTabAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
@@ -14,8 +15,8 @@ class MyPostTabAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
     override fun getItem(position: Int): Fragment? {
         return when (position) {
 
-            0 -> ProtectInfoFragment()
-            1 -> ProtectCommentFragment()
+            0 -> MyPostCareFragment()
+            1 -> MyPostFundFragment()
 
             else -> null
         }

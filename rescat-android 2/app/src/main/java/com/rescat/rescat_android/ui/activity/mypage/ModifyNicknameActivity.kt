@@ -4,29 +4,27 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
-import com.rescat.rescat_android.Put.Response.PutMyInfoModifyResponse
 
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.R.id.et_ac_modify_my_nickname
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.network.NetworkService
-import com.rescat.rescat_android.ui.activity.sign.SignUpActivity
 import kotlinx.android.synthetic.main.activity_modify_nickname.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ModifyNicknameActivity : AppCompatActivity() {
 
-    val requestCode = 1107
 
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
     }
-
-    internal var modifyValue:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,49 +34,65 @@ class ModifyNicknameActivity : AppCompatActivity() {
     }
 
     private fun setOnCLickListener() {
-
         btn_ac_modify_my_nickname_ok.setOnClickListener {
-            //var modify_nickname: String = et_ac_modify_my_nickname.text.toString()
-            PutMyInfoMoædify()
-
+            PutMyNicknameModify()
         }
 
+        btn_password_check.setOnClickListener {
+            PutNicknameCheck()
+        }
     }
 
-    private fun PutMyInfoMoædify() {
+    private fun PutNicknameCheck() {
+        Log.e("nickname check", " 리스폰 들어옴")
 
+        val input_nickname: String = et_ac_modify_my_nickname.text.toString()
 
-        Log.e("response","리스폰스 들어옴")
-        //edittext에 있는 값 받기
-        val modify_nickname : String = et_ac_modify_my_nickname.text.toString()
+        val putNicknameCheck : Call<Unit> =
+                networkService.putNicknameCheck(input_nickname)
+        putNicknameCheck.enqueue(object : Callback<Unit>{
 
-        //토큰
-
-
-        //통신 시작
-        val putMyInfoModifyResponse : Call<PutMyInfoModifyResponse> =
-           networkService.putMyNicknameModify(modify_nickname)
-        putMyInfoModifyResponse.enqueue(object : Callback<PutMyInfoModifyResponse>{
-
-            override fun onFailure(call: Call<PutMyInfoModifyResponse>, t: Throwable) {
-                Log.e("modify error",t.toString())
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.e("nickname check fail",t.toString())
             }
 
-            override fun onResponse(call: Call<PutMyInfoModifyResponse>, response: Response<PutMyInfoModifyResponse>) {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if (response.isSuccessful){
+                   toast("닉네임을 사용할 수 있습니다.")
 
-                if (response.isSuccessful) {
-                    val intent : Intent = Intent()
-                    intent.putExtra("nickname", "nickname")
-                    setResult(Activity.RESULT_OK, intent)
+                } else{
+                    toast("닉네임을 다시 적어주세요")
+                }
+            }
 
-                    Log.e("modifynick","닉네임 바꾸기 통신 성공")
+        })
+    }
+
+
+
+    private fun PutMyNicknameModify() {
+
+        Log.e("nickname response", " 리스폰 들어옴")
+
+        val input_nickname: String = et_ac_modify_my_nickname.text.toString()
+
+        val putModifyNickname:Call<Unit> =
+            networkService.putMyNicknameModify(input_nickname)
+        putModifyNickname.enqueue(object : Callback<Unit>{
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.e("Modify nickname Fail", t.toString())
+            }
+
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if(response.isSuccessful){
+                    startActivity<ModifyMyInfoActivity>()
                 }
 
+               else {
+                    toast("닉네임 중복확인을 해주세요")
+                }
             }
         })
 
-
     }
-
-
 }

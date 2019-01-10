@@ -4,11 +4,14 @@ import android.Manifest
 import android.app.Dialog
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.location.Geocoder
 import android.location.LocationManager
+import android.os.Build.VERSION_CODES.M
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,17 +25,28 @@ import com.google.android.gms.maps.model.*
 import com.rescat.rescat_android.Get.GetMapResponse
 
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.R.id.*
 import com.rescat.rescat_android.application.RescatApplication
+import com.rescat.rescat_android.model.MapData
+import com.rescat.rescat_android.model.RegionData
 
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.AddMarkerActivity
+import com.rescat.rescat_android.ui.activity.MarkerModifyRequestActivity
 import com.rescat.rescat_android.ui.activity.SearchActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_sign.view.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_my_address.*
 import kotlinx.android.synthetic.main.fragment_cat_map.*
+import kotlinx.android.synthetic.main.fragment_my_page_member.*
+import org.jetbrains.anko.db.NULL
+import org.jetbrains.anko.image
 import org.jetbrains.anko.locationManager
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +59,9 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
     lateinit var MapdataList : ArrayList<GetMapResponse>
 
+
+
+
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
     }
@@ -53,7 +70,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     override fun onMarkerClick(p0: Marker?) : Boolean{
 
         cv_marker_detail.setVisibility(View.VISIBLE)
-
         //toast(p0.toString())
         return true
     }
@@ -65,9 +81,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     var currentLongitude: Double = 0.0
     var currentLatitude: Double = 0.0
 
-
-
-    //
 
 
 
@@ -102,6 +115,19 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
+
+
+    private fun setMyPageView(address1 : String, address2 : String){
+        address1?.let {
+            rb_dialog_my_address_1.text = address1
+        }
+        address2?.let {
+            rb_dialog_my_address_2.text = address2
+        }
+
+    }
+
+
     //버튼클릭리스너
 
     private fun setOnBtnClickListener() {
@@ -125,11 +151,13 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
             setupVisibleMap(2)
 
 
+
         }
 
 
         btn_fg_cmap_filter_hospital.setOnClickListener {
             setupVisibleMap(1)
+
         }
 
         btn_fg_cmap_filter_eat.setOnClickListener {
@@ -145,7 +173,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
             cv_marker_detail.setVisibility(View.GONE)
             activity!!.findViewById<ConstraintLayout>(R.id.popup_more).visibility = View.VISIBLE
         }
-
 
 
 
@@ -179,14 +206,23 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     }
 
 
+    private fun detailInfo(data:GetMapResponse) {
 
-    //통신
+
+
+    }
+
+
+
+
+        //통신
     private fun getMapResponse() {
 
         Log.e("mapresponse","맵통신 연결")
 
 //        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6MSwiZXhwIjoxNTQ5Mjk2MjU4fQ.Svr3JqKjOzmIFoYN2_XY5AZdVFT70GtL3EnACscWJpE"
-        var emdcode ="1108072"
+        var emdcode : Int?
+            emdcode = null
 //
 
         var getMapResponse = networkService.getMapResponse(emdcode)
@@ -200,16 +236,29 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
-                    Log.e("TAG", "지도 통신완료")
+                    Log.e("Mapdatalist", "맵데이터 리스트" + toString())
 
                     MapdataList = response.body()!!
+
 
                     setupVisibleMap(4)
                     allsetupMarkerMap()
 
+                    var listSize : Int = MapdataList.size/2
+
+
+                    Log.e("list size","리스트 사이즈" + listSize)
 
                     //카메라 줌
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(MapdataList[0].lat, MapdataList[0].lng), 15.0f))
+                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(MapdataList[0].lat, MapdataList[0].lng), 15.0f))
+
+
+                    Log.e("lat,lng","위도경도보기"+MapdataList[listSize].lat+MapdataList[listSize].lng)
+
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(MapdataList[listSize].lat,MapdataList[listSize].lng), 15.0f))
+
+
+
 
 //                    mMap.addCircle(
 //                        CircleOptions().center(
@@ -227,9 +276,35 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
             }
         })
 
+    }
+
+
+
+    private fun setMyPageView(catname : String, age : String, tnr : Int ){
+        catname?.let {
+            tv_fg_marker_detail_cat_title.text = catname
+        }
+        age?.let {
+            tv_fg_marker_detail_cat_age.text = age
+        }
+
+        tnr?.let {
+            when(tnr){
+                0 ->  tv_fg_marker_detail_cat_tnr.text = "접종"
+
+                1 -> tv_fg_marker_detail_cat_tnr.text = "안함"
+
+            }
+
+
+
 
 
     }
+
+
+
+}
 
     //지도 시작
     override fun onMapReady(googleMap: GoogleMap) {
@@ -265,7 +340,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         myaddressDialog.setContentView(preferMemberDialogView)
 
         myaddressDialog.rb_dialog_my_address_1.setOnCheckedChangeListener { buttonView, isChecked ->
-
 
             result = myaddressDialog.rb_dialog_my_address_1.text.toString()
             Log.v("asdf","다예맵2 + " + result)
@@ -376,9 +450,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     private fun addNewMarker(data:GetMapResponse) {
 
 
-
-
-
         when(data.category){
 
             2 -> {
@@ -406,26 +477,26 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
         //주소받아오기
-//        val address = Geocoder(activity!!, Locale.KOREAN)
-//            .getFromLocation(data.latitude, data.longitude, 2)
-//
+        val address = Geocoder(activity!!, Locale.KOREAN)
+            .getFromLocation(data.lat, data.lng, 2)
 
+        val idx = data.idx
+
+//
 //       mMarkerOption.position(LatLng(currentLatitude, currentLongitude))
 //            .snippet(address[0].getAddressLine(0).toString()).title(address[0].subLocality)
 
         //mMarker.remove()
-//        currentLatitude = data.latitude
-//        currentLongitude = data.longitude
-//        val address = Geocoder(activity!!, Locale.KOREAN)
-//            .getFromLocation(currentLatitude, currentLongitude, 2)
+        currentLatitude = data.lat
+        currentLongitude = data.lng
 
         //대한민국 경기도 용인시 수지구 성북동 420-1
-//        address[0].getAddressLine(0).toString()
-//
+//        address[idx].getAddressLine(idx).toString()
+
 //        if (address.size!=0){
 //            Log.e("Address", address[0].getAddressLine(0).toString())
 //        }
-//
+
 
 
 //        mMarker = mMap.addMarker(mMarkerOption)

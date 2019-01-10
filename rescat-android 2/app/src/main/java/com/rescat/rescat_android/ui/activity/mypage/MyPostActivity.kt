@@ -25,5 +25,4 @@ class MyPostActivity : AppCompatActivity() {
         tab_my_post.setupWithViewPager(vp_my_post_fragment_container)
     }
 
-
 }

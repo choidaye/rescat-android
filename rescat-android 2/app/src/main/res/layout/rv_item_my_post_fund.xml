@@ -25,7 +25,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center_horizontal"
-                android:text="임시보호"/>
+                android:text="치료비"/>
 
 
     </RelativeLayout>

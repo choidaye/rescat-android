@@ -13,7 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:background="@color/white"
-            android:elevation="8dp"
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
             android:textStyle="bold"
@@ -34,14 +33,14 @@
 
             <TextView
                     android:id="@+id/text_help_apply_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="입양신청"
-                android:layout_centerVertical="true"
-                android:textStyle="bold"
-                android:textColor="#4a4a4a"
-                android:layout_weight="1"
-                android:textSize="20sp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="입양신청"
+                    android:layout_centerVertical="true"
+                    android:textStyle="bold"
+                    android:textColor="#4a4a4a"
+                    android:layout_weight="1"
+                    android:textSize="20sp"/>
 
             <TextView
                     android:layout_width="wrap_content"
@@ -64,25 +63,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-            <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/img_tag_3"/>
-
             <TextView
                     android:id="@+id/text_help_apply_header_desc"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="@color/pink"
-                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="14dp"
+                    android:textColor="#4a4a4a"
                     android:letterSpacing="-0.03"
-                    android:lineSpacingExtra="8sp"
+                    android:lineSpacingExtra="6sp"
                     android:gravity="center_horizontal"
-                    android:text="입양을 하시나요?\n당신의 아름다운 결심을 지지합니다!"
+                    tools:text="작성한 개인정보는 입양을 위해 글 게시자에게 보여집니다."
             />
 
 
@@ -135,37 +126,24 @@
                         android:theme="@style/EditTextStyle"
                         android:layout_marginBottom="16dp"/>
 
-                <LinearLayout android:layout_width="match_parent" android:layout_height="48dp">
-                    <EditText
-                            android:id="@+id/edit_adopt_apply_address1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:layout_weight="1"
-                            android:hint="우편번호"
-                            android:textSize="16sp"
-                            android:textColor="#61000000"
-                            android:theme="@style/EditTextStyle"
-                            android:layout_marginBottom="4dp"/>
-
-                    <Button
-                            android:text="우편번호 검색"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:background="@drawable/button_caramel"
-                            android:fontFamily="sans-serif"
-                            android:textColor="@color/white"
-                            android:id="@+id/btn_search_address"
-                            android:padding="7dp"
-                            app:layout_constraintStart_toEndOf="@+id/et_ac_sign_in_id"
-                            android:layout_marginStart="8dp"/>
-                </LinearLayout>
+                <TextView
+                        android:id="@+id/text_adopt_address_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#4a4a4a"
+                        android:letterSpacing="-0.03"
+                        android:lineSpacingExtra="6sp"
+                        android:gravity="center_horizontal"
+                        tools:text=""
+                />
 
 
                 <EditText
                         android:id="@+id/edit_adopt_apply_address2"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:hint="상세주소"
+                        android:hint="주소"
                         android:textSize="16sp"
                         android:textColor="#61000000"
                         android:theme="@style/EditTextStyle"
@@ -180,65 +158,65 @@
                         android:layout_height="wrap_content"/>
 
                 <!--<RadioGroup-->
-                        <!--android:id="@+id/radio_group_house_type"-->
-                        <!--android:layout_marginTop="10dp"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:checkedButton="@+id/btn_radio_apartment"-->
-                        <!--android:orientation="horizontal">-->
+                <!--android:id="@+id/radio_group_house_type"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:checkedButton="@+id/btn_radio_apartment"-->
+                <!--android:orientation="horizontal">-->
 
-                    <!--<RadioButton-->
-                            <!--android:id="@+id/btn_radio_apartment"-->
-                            <!--android:layout_width="50dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:scaleType="fitCenter"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:textSize="17sp"-->
-                            <!--android:textColor="#4a4a4a"-->
-                            <!--android:buttonTint="@color/pink"-->
-                            <!--android:text="아파트"/>-->
+                <!--<RadioButton-->
+                <!--android:id="@+id/btn_radio_apartment"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textSize="17sp"-->
+                <!--android:textColor="#4a4a4a"-->
+                <!--android:buttonTint="@color/pink"-->
+                <!--android:text="아파트"/>-->
 
-                    <!--<RadioButton-->
-                            <!--android:id="@+id/btn_radio_house"-->
-                            <!--android:layout_width="50dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:scaleType="fitCenter"-->
-                            <!--android:textSize="17sp"-->
-                            <!--android:textColor="#4a4a4a"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:buttonTint="@color/pink"-->
-                            <!--android:text="주택"/>-->
+                <!--<RadioButton-->
+                <!--android:id="@+id/btn_radio_house"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:textSize="17sp"-->
+                <!--android:textColor="#4a4a4a"-->
+                <!--android:layout_weight="1"-->
+                <!--android:buttonTint="@color/pink"-->
+                <!--android:text="주택"/>-->
 
                 <!--</RadioGroup>-->
                 <!--<RadioGroup-->
-                        <!--android:id="@+id/radio_group_house_type2"-->
-                        <!--android:layout_marginTop="10dp"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:orientation="horizontal">-->
+                <!--android:id="@+id/radio_group_house_type2"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal">-->
 
 
-                    <!--<RadioButton-->
-                            <!--android:id="@+id/btn_radio_multiflex"-->
-                            <!--android:layout_width="50dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:scaleType="fitCenter"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:textSize="17sp"-->
-                            <!--android:textColor="#4a4a4a"-->
-                            <!--android:buttonTint="@color/pink"-->
-                            <!--android:text="다세대 주택"/>-->
+                <!--<RadioButton-->
+                <!--android:id="@+id/btn_radio_multiflex"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:layout_weight="1"-->
+                <!--android:textSize="17sp"-->
+                <!--android:textColor="#4a4a4a"-->
+                <!--android:buttonTint="@color/pink"-->
+                <!--android:text="다세대 주택"/>-->
 
-                    <!--<RadioButton-->
-                            <!--android:id="@+id/btn_radio_oneroom"-->
-                            <!--android:layout_width="50dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:scaleType="fitCenter"-->
-                            <!--android:textSize="17sp"-->
-                            <!--android:textColor="#4a4a4a"-->
-                            <!--android:buttonTint="@color/pink"-->
-                            <!--android:layout_weight="1"-->
-                            <!--android:text="원룸"/>-->
+                <!--<RadioButton-->
+                <!--android:id="@+id/btn_radio_oneroom"-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:scaleType="fitCenter"-->
+                <!--android:textSize="17sp"-->
+                <!--android:textColor="#4a4a4a"-->
+                <!--android:buttonTint="@color/pink"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="원룸"/>-->
 
                 <!--</RadioGroup>-->
 
@@ -276,6 +254,7 @@
                             android:layout_weight="1"
                             android:textSize="17sp"
                             android:textColor="#4a4a4a"
+                            android:buttonTint="@color/pink"
                             android:text="있음"/>
 
                     <RadioButton
@@ -286,6 +265,7 @@
                             android:textSize="17sp"
                             android:textColor="#4a4a4a"
                             android:layout_weight="1"
+                            android:buttonTint="@color/pink"
                             android:text="없음"/>
                 </RadioGroup>
 

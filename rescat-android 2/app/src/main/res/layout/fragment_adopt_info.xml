@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.fragment.helpcat.adopt.ProtectInfoFragment">
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent"
+                                             tools:context=".ui.fragment.helpcat.adopt.ProtectInfoFragment">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -216,10 +216,11 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView11"
                     app:layout_constraintStart_toStartOf="@+id/text_adopt_info_kind"/>
             <ImageView
-                    android:src="@drawable/img_main_banner"
+                    android:src="@drawable/img_protect"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/image_adopt_info" android:scaleType="centerCrop"
+                    android:id="@+id/image_adopt_info"
+                    android:scaleType="centerCrop"
                     app:layout_constraintTop_toBottomOf="@+id/text_adopt_info_uniqueness"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

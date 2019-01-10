@@ -8,8 +8,6 @@ import com.rescat.rescat_android.Get.GetMyNoticeResponse
 import com.rescat.rescat_android.Get.GetMySupportingResponse
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
-import com.rescat.rescat_android.model.NoticeData
-import com.rescat.rescat_android.model.SearchData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.adapter.MyNoticeRecyclerViewAdapter
 import com.rescat.rescat_android.ui.adapter.MySupportRecyclcerViewAdapter

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
     <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -16,7 +17,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
                 android:layout_gravity="left"
-                android:text="마이 페이지"
+                android:text="내 활동기록"
                 android:textColor="#4a4a4a"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
@@ -43,6 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar">
+
+
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -50,13 +53,13 @@
         <RelativeLayout
                 android:id="@+id/rl_fg_my_page_member_view"
                 android:layout_width="match_parent"
-                android:layout_height="270dp">
+                android:layout_height="240dp">
 
 
             <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#19f29191"/>
+                    android:layout_height="240dp"
+                    android:src="@drawable/img_mypage_1"/>
 
             <LinearLayout
                     android:layout_width="match_parent"
@@ -99,16 +102,26 @@
             </LinearLayout>
 
 
+
         </RelativeLayout>
-
-
 
         <RelativeLayout
                 android:id="@+id/rl_fg_my_page_member_no_caretaker"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_fg_my_page_member_view"
-                android:visibility="invisible">
+                android:layout_height="214dp"
+                android:layout_below="@+id/rl_fg_my_page_member_view">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="12sp"
+                    android:textColor="#4a4a4a"
+                    android:layout_above="@+id/btn_caretaker_auth"
+                    android:text="케어테이커 인증을 하시면\n
+우리 동네 길냥이, 치료비 / 프로젝트 후원 모금을 진행할 수 있습니다."/>
 
         <Button
                 android:layout_width="320dp"
@@ -117,59 +130,62 @@
                 android:text="케어테이커 인증하기"
                 android:textSize="16sp"
                 android:textColor="@color/white"
-                android:letterSpacing="0.04"
                 android:layout_marginTop="20dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/btn_caretaker_auth"
                 android:background="@drawable/button_caramel"/>
 
         </RelativeLayout>
 
-        <RelativeLayout
-                android:id="@+id/rl_fg_my_page_member_caretaker"
-                android:layout_width="match_parent"
-                android:layout_height="214dp"
-                android:layout_below="@+id/rl_fg_my_page_member_view">
-
-            <LinearLayout
-                    android:id="@+id/btn_ll_my_page_setting_location"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginLeft="21dp"
+            <RelativeLayout
+                    android:id="@+id/rl_fg_my_page_member_caretaker"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <TextView
+                    android:layout_height="214dp"
+                    android:layout_below="@+id/rl_fg_my_page_member_view"
+                    android:visibility="invisible" android:layout_alignParentStart="true"
+                    android:layout_marginTop="0dp">
+
+                <LinearLayout
+                        android:id="@+id/btn_ll_my_page_setting_location"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_gravity="center_vertical"
+                            android:text="내 지역 설정"/>
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="2dp"
+                            android:src="@drawable/ic_mypage_more"/>
+                </LinearLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_my_location_list"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/btn_ll_my_page_setting_location"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15sp"
-                        android:textColor="#4a4a4a"
-                        android:layout_gravity="center_vertical"
-                        android:text="내 지역 설정"/>
+                        android:layout_height="174dp">
 
-                <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="2dp"
-                        android:src="@drawable/ic_mypage_more"/>
-            </LinearLayout>
+                </android.support.v7.widget.RecyclerView>
 
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="#1e000000"/>
 
-
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_my_location_list"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/btn_ll_my_page_setting_location"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-            </android.support.v7.widget.RecyclerView>
-
-            <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="#1e000000"/>
-
-        </RelativeLayout>
+            </RelativeLayout>
 
 
 
@@ -347,7 +363,8 @@
             <RelativeLayout
                     android:id="@+id/btn_my_page_logout"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp">
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="32dp">
 
                 <TextView
                         android:layout_width="wrap_content"

@@ -2,6 +2,7 @@ package com.rescat.rescat_android.ui.fragment.helpcat.adopt
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
@@ -20,7 +21,10 @@ import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.CommentData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.adapter.CommentRecyclerViewAdapter
+import com.rescat.rescat_android.utils.ErrorBodyConverter
+import kotlinx.android.synthetic.main.bottom_sheet.view.*
 import kotlinx.android.synthetic.main.fragment_adopt_comment.*
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,6 +48,7 @@ class ProtectCommentFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         InitRecyclerView()
         setButtonChange()
+        setButtonListener()
     }
 
     override fun onCreateView(
@@ -78,7 +83,9 @@ class ProtectCommentFragment : Fragment() {
 
     private fun InitRecyclerView() {
         val data :ArrayList<CommentData> = ArrayList()
-        commentRecyclerViewAdapter = CommentRecyclerViewAdapter(data)
+        commentRecyclerViewAdapter = CommentRecyclerViewAdapter(data) {
+            showBottomSheetDialog(it)
+        }
         rv_help_cat_comment.adapter = commentRecyclerViewAdapter
         rv_help_cat_comment.layoutManager = LinearLayoutManager(activity)
         context?.let {
@@ -111,6 +118,7 @@ class ProtectCommentFragment : Fragment() {
         })
     }
 
+
     private fun setButtonListener() {
         btn_adopt_comment_send.setOnClickListener {
             //TODO. 예외처리하기!
@@ -133,6 +141,55 @@ class ProtectCommentFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun showBottomSheetDialog(commentIndex:Int) {
+        val view = layoutInflater.inflate(R.layout.bottom_sheet, null)
+        val dialog = BottomSheetDialog(activity!!)
+        dialog.setContentView(view)
+        view.text_bottom_sheet_delete.setOnClickListener {
+            val deleteCareComment: Call<ResponseBody> =
+                networkService.deleteCarePostComment(TEST_TOKEN, idx, commentIndex)
+
+            deleteCareComment.enqueue(object: Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.e("Delete Comment Fail", t.toString())
+                }
+
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if(response.isSuccessful) {
+                        Toast.makeText(activity, "댓글이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+                        //TODO. get Error Message
+                        val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+                        Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                    dialog.dismiss()
+                }
+            })
+        }
+
+        view.text_bottom_sheet_report.setOnClickListener {
+            val reportCareComment: Call<ResponseBody> =
+                networkService.reportCarePostComment(TEST_TOKEN, idx, commentIndex)
+
+            reportCareComment.enqueue(object: Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.e("report Comment Fail", t.toString())
+                }
+
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if(response.isSuccessful) {
+                        Toast.makeText(activity, "해당 댓글을 신고했습니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+//                        val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+//                        Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                    dialog.dismiss()
+                }
+            })
+        }
+        dialog.show()
     }
 
     companion object {
