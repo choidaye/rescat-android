@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.HelpPostData
@@ -16,6 +17,7 @@ import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.helpcat.ProtectApplyActivity
 import com.rescat.rescat_android.ui.adapter.AdoptInfoBannerAdapter
 import kotlinx.android.synthetic.main.fragment_adopt_info.*
+import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +27,7 @@ class ProtectInfoFragment : Fragment() {
 
     lateinit var infoBannerAdapter: AdoptInfoBannerAdapter
     var idx: Int = 0
+    var isFinished: Boolean = false
 
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
@@ -44,6 +47,8 @@ class ProtectInfoFragment : Fragment() {
     }
 
     fun InitData() {
+        image_adopt_info.imageResource = R.drawable.img_protect
+        btn_adopt_send.text = "입보할래요"
         val getHelpPostData: Call<HelpPostData> =
             networkService.getHelpDetailData(idx)
 
@@ -57,6 +62,7 @@ class ProtectInfoFragment : Fragment() {
                     //TODO. 데이터 셋팅
                     val data: HelpPostData = response.body()!!
                     setViewPager(data.photos)
+                    isFinished = data.isFinished
                     text_adopt_info_content.text = data.contents
                     text_adopt_info_name.text = data.name
                     text_adopt_info_age.text = data.age
@@ -100,9 +106,14 @@ class ProtectInfoFragment : Fragment() {
 
     private fun setButtonListener() {
         btn_adopt_send.setOnClickListener {
-            val intent: Intent = Intent(activity, ProtectApplyActivity::class.java)
-            intent.putExtra("idx", idx)
-            startActivity(intent)
+            if(isFinished) {
+                Toast.makeText(activity!!, "신청이 완료된 글입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent: Intent = Intent(activity, ProtectApplyActivity::class.java)
+                intent.putExtra("idx", idx)
+                startActivity(intent)
+            }
+
         }
     }
 

@@ -17,6 +17,7 @@ import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.helpcat.AdoptApplyActivity
 import com.rescat.rescat_android.ui.adapter.AdoptInfoBannerAdapter
 import kotlinx.android.synthetic.main.fragment_adopt_info.*
+import org.jetbrains.anko.imageResource
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,6 +47,8 @@ class AdoptInfoFragment : Fragment() {
     }
 
     fun InitData() {
+        image_adopt_info.imageResource = R.drawable.img_adopt
+        btn_adopt_send.text = "입양할래요"
         val getHelpPostData: Call<HelpPostData> =
             networkService.getHelpDetailData(idx)
 

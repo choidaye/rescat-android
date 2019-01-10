@@ -50,10 +50,11 @@ class AdoptApplyActivity : Activity() {
     }
 
     private fun setInitLayout() {
-        var isChange :Boolean = false
         text_help_apply_title.text = "입양신청"
-        text_help_apply_header_desc.text = "입양을 하시나요?\n당신의 아름다운 결심을 지지합니다."
+        text_help_apply_header_desc.text = "작성한 개인정보는 입양을 위해 글 게시자에게 보여집니다."
+        text_adopt_address_info.text = "입양글 작성자가 참고할 수 있도록 \n고양이를 반려할 주소를 대략적으로 적어주세요."
         edit_adopt_apply_phone.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
         var HouseList : ArrayList<HouseType> = ArrayList()
         HouseList.add(HouseType(0, "아파트", "APARTMENT"))
         HouseList.add(HouseType(1, "주택", "HOUSING"))
@@ -63,32 +64,6 @@ class AdoptApplyActivity : Activity() {
         booleans.addAll(listOf(true, false, false, false))
         radioAdapter = RadiobuttonAdapter(applicationContext, android.R.layout.simple_list_item_checked, HouseList, booleans)
         gridView.adapter = radioAdapter
-
-//        radio_group_house_type?.setOnCheckedChangeListener { group, checkedId ->
-//            if(radio_group_house_type2.checkedRadioButtonId != -1) {
-//                if (isChange) {
-//                    isChange = false
-//                } else {
-//                    isChange = true
-//                    val checked = findViewById<RadioButton>(radio_group_house_type2.checkedRadioButtonId)
-//                    checked.isChecked = false
-//                    checkId = checkedId
-//                }
-//            }
-//        }
-//
-//        radio_group_house_type2?.setOnCheckedChangeListener { group, checkedId ->
-//            if(radio_group_house_type.checkedRadioButtonId != -1) {
-//                if(isChange) {
-//                    isChange = false
-//                } else {
-//                    isChange = true
-//                    val checked = findViewById<RadioButton>(radio_group_house_type.checkedRadioButtonId)
-//                    checked.isChecked = false
-//                    checkId = checkedId
-//                }
-//            }
-//        }
 
         setDatePicker()
     }
@@ -190,8 +165,14 @@ class AdoptApplyActivity : Activity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    //TODO. get Error Message
-                    val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+                    var errorMessage :String = ""
+                    if(response.code() == 400) {
+                        errorMessage = ErrorBodyConverter.convert400(response.errorBody()!!)
+
+                    } else {
+                        errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+                    }
+
                     Toast.makeText(this@AdoptApplyActivity, errorMessage, Toast.LENGTH_SHORT).show()
                 }
             }

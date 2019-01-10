@@ -1,5 +1,6 @@
 package com.rescat.rescat_android.ui.fragment.helpcat
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.support.v4.app.Fragment
@@ -13,6 +14,8 @@ import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.HelpCardData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
+import com.rescat.rescat_android.ui.activity.helpcat.AdoptActivity
+import com.rescat.rescat_android.ui.activity.helpcat.ProtectActivity
 import com.rescat.rescat_android.ui.adapter.HomeFundCardAdapter
 import com.rescat.rescat_android.ui.adapter.HomeHelpCatAdapter
 import com.rescat.rescat_android.ui.adapter.HomeMainBannerAdapter
@@ -95,7 +98,17 @@ class HelpCatFragment : Fragment() {
             override fun onResponse(call: Call<ArrayList<HelpCardData>>, response: Response<ArrayList<HelpCardData>>) {
                 if (response.isSuccessful){
                     HelpCareData = response.body()!!
-                    helpCatAdapter = HomeHelpCatAdapter(HelpCareData)
+                    helpCatAdapter = HomeHelpCatAdapter(HelpCareData) {
+                        lateinit var intent : Intent
+                        if(it == HelpCareData.size) {
+                            (activity as MainActivity).addFragment(HelpFragment())
+                        }else if(HelpCareData.get(it).type == 0)
+                            intent = Intent(activity, AdoptActivity::class.java)
+                        else
+                            intent = Intent(activity, ProtectActivity::class.java)
+                        intent.putExtra("idx", it)
+                        startActivity(intent)
+                    }
                     rv_home_help_cat.adapter = helpCatAdapter
                     rv_home_help_cat.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 

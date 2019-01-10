@@ -179,4 +179,10 @@ class HelpFragment : Fragment() {
         mapping!!.get(textview)!!.visibility = View.GONE
     }
 
+    private fun setWriteButtonListner() {
+        btn_write_help.setOnClickListener {
+            //TODO.작성페이지로 넘어가는거!
+        }
+    }
+
 }

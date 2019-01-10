@@ -1,9 +1,12 @@
 package com.rescat.rescat_android.ui.activity.helpcat
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.ui.activity.MainActivity
 import kotlinx.android.synthetic.main.activity_adopt_complete.*
+
 
 class AdoptCompleteActivity : Activity() {
 
@@ -23,6 +26,12 @@ class AdoptCompleteActivity : Activity() {
     private fun setButtonListener() {
         btn_adopt_apply_exit.setOnClickListener{
             finish()
+        }
+
+        btn_go_home.setOnClickListener {
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
     }
 
