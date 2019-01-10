@@ -22,14 +22,15 @@
                 android:layout_height="wrap_content">
 
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="29dp"
-                android:layout_toRightOf="@+id/btn_ac_search_result_back"
-                android:text="검색결과"
-                android:textColor="#4a4a4a"
-                android:textSize="24sp"/>
-
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:layout_toRightOf="@+id/btn_ac_search_result_back"
+                    android:text="검색결과"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20sp"/>
 
 
 
@@ -37,7 +38,7 @@
                     android:id="@+id/btn_ac_search_result_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back"
+                    android:src="@drawable/ic_exit"
                     android:layout_marginRight="19dp"
                     android:layout_alignParentLeft="true"/>
 
@@ -54,15 +55,19 @@
 
 
 
+
     <android.support.v7.widget.CardView
+            android:id="@+id/cv_marker_detail"
             android:layout_alignParentBottom="true"
             android:layout_width="350dp"
             android:layout_height="152dp"
             android:elevation="16dp"
             app:cardCornerRadius="4dp"
+            android:layout_marginBottom="16dp"
             android:layout_centerHorizontal="true">
 
         <RelativeLayout
+                android:id="@+id/rl_fg_cmap_cat"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -75,117 +80,248 @@
                     android:layout_margin="14dp"/>
 
 
-            <TextView
-                    android:id="@+id/tv_fg_marker_detail_title"
-                    android:layout_toRightOf="@+id/iv_fg_marker_detail_pic"
-                    android:layout_marginTop="14dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#4a4a4a"
-                    android:textSize="18sp"
-                    android:text="티티"/>
-
-
             <RelativeLayout
-                    android:id="@+id/rl_age_line"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_toRightOf="@+id/iv_fg_marker_detail_pic"
-                    android:layout_below="@+id/tv_fg_marker_detail_title">
+                    android:layout_toRightOf="@+id/iv_fg_marker_detail_pic">
+
 
                 <TextView
-                        android:id="@+id/tv_age"
+                        android:id="@+id/tv_fg_marker_detail_cat_title"
+                        android:layout_marginTop="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#6e4d37"
-                        android:text="추정나이"/>
-
-                <TextView
-                        android:id="@+id/tv_fg_marker_detail_cat_age"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_age"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="12sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
                         android:textColor="#4a4a4a"
-                        android:text="3살"/>
+                        android:textSize="18sp"
+                        android:text="티티"/>
 
 
+                <RelativeLayout
+                        android:id="@+id/rl_age_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@+id/tv_fg_marker_detail_cat_title">
+
+                    <TextView
+                            android:id="@+id/tv_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#6e4d37"
+                            android:text="추정나이"/>
+
+                    <TextView
+                            android:id="@+id/tv_fg_marker_detail_cat_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv_age"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="12sp"
+                            android:textColor="#4a4a4a"
+                            android:text="3살"/>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                        android:id="@+id/rl_tnr_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@+id/rl_age_line">
+
+                    <TextView
+                            android:id="@+id/tv_tnr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#6e4d37"
+                            android:text="TNR"/>
+
+                    <TextView
+                            android:id="@+id/tv_fg_marker_detail_cat_tnr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv_tnr"
+                            android:layout_marginLeft="40dp"
+                            android:textSize="12sp"
+                            android:textColor="#4a4a4a"
+                            android:text="3살"/>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                        android:id="@+id/rl_unique_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@+id/rl_tnr_line">
+
+                    <TextView
+                            android:id="@+id/tv_unique"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#6e4d37"
+                            android:text="특이사항"/>
+
+                    <TextView
+                            android:id="@+id/tv_fg_marker_detail_cat_unique"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv_unique"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="12sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_marginRight="18dp"
+                            android:text="참치캔 알레르기 있음. 최대글자최대글자 최대글자 최대글자 최대글자 최대글자 최대글자 최…"/>
+                </RelativeLayout>
             </RelativeLayout>
 
-
             <RelativeLayout
-                    android:id="@+id/rl_tnr_line"
+                    android:id="@+id/rl_fg_cmap_hospital"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_toRightOf="@+id/iv_fg_marker_detail_pic"
-                    android:layout_below="@+id/rl_age_line">
+                    android:visibility="gone">
+
 
                 <TextView
-                        android:id="@+id/tv_tnr"
+                        android:id="@+id/tv_fg_marker_detail_hospital_title"
+                        android:layout_marginTop="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#6e4d37"
-                        android:text="TNR"/>
-
-                <TextView
-                        android:id="@+id/tv_fg_marker_detail_tnr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_tnr"
-                        android:layout_marginLeft="40dp"
-                        android:textSize="12sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
                         android:textColor="#4a4a4a"
-                        android:text="3살"/>
+                        android:textSize="18sp"
+                        android:text="병원"/>
+
+
+                <RelativeLayout
+                        android:id="@+id/rl_discount_info_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@+id/tv_fg_marker_detail_hospital_title">
+
+                    <TextView
+                            android:id="@+id/tv_discount_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#6e4d37"
+                            android:text="할인정보"/>
+
+                    <TextView
+                            android:id="@+id/tv_fg_marker_detail_hospital"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv_discount_info"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_marginRight="18dp"
+                            android:text="할인정보가들어가요 할인정보가 들어가요"/>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                        android:id="@+id/rl_location_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@+id/rl_discount_info_line">
+
+                    <TextView
+                            android:id="@+id/tv_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#6e4d37"
+                            android:text="위치"/>
+
+                    <TextView
+                            android:id="@+id/tv_fg_marker_detail_hospital_location"
+                            android:layout_width="189dp"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@+id/tv_location"
+                            android:layout_marginLeft="23dp"
+                            android:textSize="12sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_marginRight="18dp"
+                            android:text="참치캔 알레르기 있음. 최대글자최대글자 최대글자 최대글자 최대글자 최대글자 최대글자 최…"/>
+                </RelativeLayout>
             </RelativeLayout>
 
+            =
 
             <RelativeLayout
-                    android:id="@+id/rl_unique_line"
+                    android:id="@+id/rl_fg_cmap_food"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_toRightOf="@+id/iv_fg_marker_detail_pic"
-                    android:layout_below="@+id/rl_tnr_line">
+                    android:visibility="gone">
+
 
                 <TextView
-                        android:id="@+id/tv_unique"
+                        android:id="@+id/tv_fg_marker_detail_food_title"
+                        android:layout_marginTop="14dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#6e4d37"
-                        android:text="특이사항"/>
-
-                <TextView
-                        android:id="@+id/tv_fg_marker_detail_unique"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toRightOf="@+id/tv_unique"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="12sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="bold"
                         android:textColor="#4a4a4a"
-                        android:layout_marginRight="18dp"
-                        android:text="참치캔 알레르기 있음. 최대글자최대글자 최대글자 최대글자 최대글자 최대글자 최대글자 최…"/>
+                        android:textSize="18sp"
+                        android:text="티티"/>
+
+
+                <RelativeLayout
+                        android:id="@+id/rl_food_unique_line"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@+id/tv_fg_marker_detail_food_title">
+
+                    <TextView
+                            android:id="@+id/tv_food_unique"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#6e4d37"
+                            android:text="할인정보"/>
+
+                    <TextView
+                            android:id="@+id/tv_fg_marker_detail_food"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/tv_food_unique"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="12sp"
+                            android:textColor="#4a4a4a"
+                            android:layout_marginRight="18dp"
+                            android:text="정보가 들어갑니다 정보를 넣을거예요 정보가 들어갑니다 정보를 들어갑니다 정보를 들어갑니다"/>
+                </RelativeLayout>
             </RelativeLayout>
 
 
             <ImageView
+                    android:id="@+id/btn_marker_detail_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:padding="10dp"
                     android:src="@drawable/ic_more"/>
 
         </RelativeLayout>
 
 
     </android.support.v7.widget.CardView>
-
-
-
-
 
 </RelativeLayout>

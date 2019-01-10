@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="29dp"
                 android:layout_gravity="left"
-                android:text="도와주세요"
+                android:text="내 활동기록"
                 android:fontFamily="sans-serif"
                 android:textColor="#4a4a4a"
                 android:textSize="20sp"
@@ -35,9 +35,9 @@
     <RelativeLayout
             android:id="@+id/rl_fg_my_page_non_member_view"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="220dp"
             android:layout_below="@+id/toolbar"
-            android:background="#19f29191">
+            android:background="@drawable/img_mypage_2">
 
 
         <LinearLayout
@@ -49,9 +49,11 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#4a4a4a"
+                    android:textColor="@color/white"
                     android:layout_marginTop="24dp"
                     android:textSize="22sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
                     android:text="회원가입이 필요해요" />
 
 
@@ -59,7 +61,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:textColor="#4a4a4a"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
                     android:text="현재 비회원입니다"/>
 
         </LinearLayout>

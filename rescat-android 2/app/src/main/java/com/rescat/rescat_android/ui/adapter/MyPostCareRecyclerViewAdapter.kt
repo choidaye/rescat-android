@@ -34,6 +34,7 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
         Log.e("holder  error","홀더 실패")
 
 
+       // Glide.with(holder.itemView.context).load(mypostcarelist[position].photos.url).into(holder.image)
         holder.name.text = mypostcarelist[position].name
         holder.contents.text = mypostcarelist[position].contents
         holder.updatedAt.text = mypostcarelist[position].updatedAt
@@ -46,6 +47,7 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
             Log.e("item click error","아이템 클릭 실패")
 
         }
+
 
 
         val requestOptions = RequestOptions()
@@ -66,8 +68,10 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
         val updatedAt : TextView = itemView.findViewById(R.id.tv_my_post_care_time) as TextView
         val viewCount : TextView = itemView.findViewById(R.id.tv_my_post_care_viewcount) as TextView
         val type : TextView = itemView.findViewById(R.id.tv_my_post_care_type) as TextView
-        val photos : ImageView = itemView.findViewById(R.id.iv_care_cat_photo) as ImageView
+        val photos : ImageView = itemView.findViewById(R.id.iv_care_cat_photo)
         val clickitem : RelativeLayout = itemView.findViewById(R.id.rv_my_post_cafe_list_item) as RelativeLayout
+
+
 
 
     }

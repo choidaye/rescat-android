@@ -33,6 +33,10 @@ class MyPageLocationRecyclerViewAdapter(val ctx: Context, val locationlist: Arra
 
         holder.name.text = locationlist[position].name
 
+        if (position ==0){
+            holder.loction.setBackgroundResource(R.drawable.pink_round_square)
+        }
+
         Log.e("viewholder","뷰홀더 완료")
 
 
@@ -40,6 +44,7 @@ class MyPageLocationRecyclerViewAdapter(val ctx: Context, val locationlist: Arra
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.tv_fg_my_location_address) as TextView
+        val loction:RelativeLayout = itemView.findViewById(R.id.loction) as RelativeLayout
 
     }
 

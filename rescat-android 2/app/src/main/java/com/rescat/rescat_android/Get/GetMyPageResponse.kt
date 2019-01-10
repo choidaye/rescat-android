@@ -8,5 +8,6 @@ data class GetMyPageResponse(
     var nickname : String,
     var phone : String,
     var regions : ArrayList<RegionData>,
-    var role : String
+    var role : String,
+    var name : String
 )

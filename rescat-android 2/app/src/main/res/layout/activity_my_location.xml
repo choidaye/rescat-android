@@ -11,39 +11,51 @@
 
 
     <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:background="@color/white"
+            android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
             android:textStyle="bold"
-            android:theme="?attr/actionBarTheme">
+            android:id="@+id/toolbar">
 
-        <LinearLayout
+
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
-            <ImageView
-                    android:id="@+id/btn_ac_search_result_back"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_back" />
 
             <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="32dp"
-                    android:layout_weight="1"
-                    android:fontFamily="sans-serif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:layout_toRightOf="@+id/btn_ac_modify_my_nickname_back"
                     android:text="내 지역 설정"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20sp"/>
 
-        </LinearLayout>
+            <TextView
+                    android:id="@+id/btn_ac_modify_my_nickname_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="24dp"
+                    android:textSize="18sp"
+                    android:textColor="#4a4a4a"
+                    android:text="완료"/>
+
+
+            <ImageView
+                    android:id="@+id/btn_ac_modify_my_nickname_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    android:layout_marginRight="19dp"
+                    android:layout_alignParentLeft="true"/>
+
+        </RelativeLayout>
+
 
     </android.support.v7.widget.Toolbar>
 
@@ -51,18 +63,20 @@
     <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="#fff5f0"
-            android:layout_marginTop="30dp"
+            android:background="@drawable/img_mylocation"
+            android:layout_marginTop="48dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/toolbar"
             android:id="@+id/iv_ac_my_location_pic"/>
 
 
     <TextView
+            android:id="@+id/tv_my_loction_setting_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#4a4a4a"
+            android:fontFamily="sans-serif-medium"
             android:letterSpacing="-0.02"
             android:lineSpacingExtra="6sp"
             android:gravity="center_horizontal"
@@ -73,113 +87,61 @@
 
 
     <RelativeLayout
-            android:id="@+id/loction1"
-            android:layout_width="246dp"
-            android:layout_height="36dp"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/loction2"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/pink_round_square">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_my_loction_setting_info"
+            android:layout_marginTop="48dp">
 
-
-        <TextView
-                android:id="@+id/tv_ac_my_location_address1"
-                android:layout_width="246dp"
+        <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:letterSpacing="-0.01"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="1dp"
-                android:layout_toLeftOf="@+id/btn_ac_my_location_delete1"
-                android:text="서울특별시 종로구 종로1.2.3.4가" />
+                android:orientation="vertical">
 
-        <ImageView
-                android:id="@+id/btn_ac_my_location_delete1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="13dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_delete_w"/>
+            <TextView
+                    android:id="@+id/tv_my_location_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:textSize="14sp"
+                    android:layout_marginTop="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="sans-serif-regular"
+                    android:textColor="#4a4a4a"
+                    android:text="핵심"/>
+
+            <TextView
+                    android:id="@+id/tv_my_location_sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-regular"
+                    android:textColor="#4a4a4a"
+                    android:text="서브"/>
+
+            <TextView
+                    android:id="@+id/tv_my_location_sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-regular"
+                    android:textColor="#4a4a4a"
+                    android:text="서브"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_my_location_setting_list"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
 
 
 
     </RelativeLayout>
 
-
-
-
-    <RelativeLayout
-            android:id="@+id/loction2"
-            android:layout_width="246dp"
-            android:layout_height="36dp"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/location3"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/caramel_round_square">
-
-
-
-        <TextView
-                android:layout_width="246dp"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:letterSpacing="-0.01"
-                android:gravity="center_horizontal"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="1dp"
-                android:layout_toLeftOf="@+id/btn_ac_my_location_delete2"
-                android:text="서울시 서초구 서초동" />
-
-        <ImageView
-                android:id="@+id/btn_ac_my_location_delete2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="13dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_delete_w"/>
-
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-            android:id="@+id/location3"
-            android:layout_width="246dp"
-            android:layout_height="36dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="101dp"
-            android:background="@drawable/caramel_round_square">
-
-        <TextView
-                android:layout_width="246dp"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:letterSpacing="-0.01"
-                android:gravity="center_horizontal"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/btn_ac_my_location_delete3"
-                android:text="서울시 노원구 공릉동" />
-
-        <ImageView
-                android:id="@+id/btn_ac_my_location_delete3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginRight="13dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_delete_w"/>
-
-
-
-    </RelativeLayout>
 
 
 

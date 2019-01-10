@@ -5,6 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.activity.SearchActivity">
 
     <RelativeLayout
@@ -23,13 +24,15 @@
             android:layout_centerVertical="true"
             android:background="@null"
             android:inputType="text"
-            android:hint="검색어를 넣어주세요"/>
+            android:hint="고양이, 배식소, 병원 이름 검색"/>
 
         <ImageView
                 android:id="@+id/btn_ac_search_searchbtn"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:background="#f2f2f2"
+                android:layout_marginRight="14dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_search"
                 android:layout_alignParentRight="true"/>
 
 
@@ -56,79 +59,16 @@
                 android:text="최근 검색 기록"/>
 
 
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="92dp"
-                android:orientation="vertical">
-        <LinearLayout 
-                android:layout_width="wrap_content" 
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-            
-            
-            <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:background="#f3f3f3"
-                    android:layout_marginRight="8dp"
-                    android:padding="8dp"/>
-            
-            
-             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="키워드가 들어갑니다"/>
-        </LinearLayout>
-
-
-    <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-        <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="#f3f3f3"
-                android:layout_marginRight="8dp"
-                android:padding="8dp"/>
-
-        <TextView
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_ac_search_keyword_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="키워드가 들어갑니다"/>
+                android:layout_marginLeft="24dp">
 
-    </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:background="#f3f3f3"
-                    android:layout_marginRight="8dp"
-                    android:padding="8dp"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="키워드가 들어갑니다"/>
-
-        </LinearLayout>
-
-        </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
 
 
     </LinearLayout>
-
-
 
 
     <LinearLayout
@@ -159,13 +99,5 @@
         </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
-
-
-        <Button
-            android:id="@+id/goresult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-
 
 </RelativeLayout>

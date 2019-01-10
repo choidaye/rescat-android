@@ -49,7 +49,7 @@ class MyPageMemberFragment: Fragment(){
 
         setOnCLickListener()
         getMyPageResponse()
-        //setRecyclerView()
+        setRecyclerView()
 
     }
 
@@ -90,8 +90,9 @@ class MyPageMemberFragment: Fragment(){
     private fun setRecyclerView() {
 
         myPageLocationRecyclerViewAdapter = MyPageLocationRecyclerViewAdapter(activity!!, locationlist)
-        rv_ac_notice_list.adapter = myPageLocationRecyclerViewAdapter
-        rv_ac_notice_list.layoutManager = LinearLayoutManager(activity!!)
+        rv_my_location_list.adapter = myPageLocationRecyclerViewAdapter
+        rv_my_location_list.layoutManager = LinearLayoutManager(activity!!)
+
     }
 
     private fun getMyPageResponse() {
@@ -112,19 +113,25 @@ class MyPageMemberFragment: Fragment(){
                         val role : String = response.body()!!.role
 
 
+                        locationlist.clear()
+                        locationlist.addAll(response.body()!!.regions)
+                        myPageLocationRecyclerViewAdapter.notifyDataSetChanged()
+
+
 
                         if (role == "CARETAKER"){
                             my_bedge.setVisibility(View.VISIBLE)
+                            rl_fg_my_page_member_caretaker.setVisibility(View.VISIBLE)
+                            rl_fg_my_page_member_no_caretaker.setVisibility(View.INVISIBLE)
+
                         }
 
-
                         setMyPageView(id,nickname)
+
+
                     }
                 }
-
-
             })
-
     }
 
 

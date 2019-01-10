@@ -34,39 +34,52 @@ class SignInActivity : AppCompatActivity() {
         btn_login_go.setOnClickListener {
             PostLoginResponse()
         }
+
+        btn_login_back.setOnClickListener {
+            finish()
+        }
     }
 
 
     private fun PostLoginResponse() {
 
-        val input_login_id: String = et_ac_sign_in_id.text.toString()
-        val input_login_pw: String = et_ac_sign_in_pw.text.toString()
+
+        if (et_ac_sign_in_id.text.toString().isNotEmpty() && et_ac_sign_in_pw.text.isNotEmpty()) {
+
+            val input_login_id: String = et_ac_sign_in_id.text.toString()
+            val input_login_pw: String = et_ac_sign_in_pw.text.toString()
+            val deviceToken = ""
 
 
-        val postLoginResponse: Call<PostUserLoginResponse> =
-            networkService.postUserLogin(PostUserLogin(input_login_id, input_login_pw))
+            val postLoginResponse: Call<PostUserLoginResponse> =
+                networkService.postUserLogin(PostUserLogin(input_login_id, input_login_pw, deviceToken))
 
-        postLoginResponse.enqueue(object : Callback<PostUserLoginResponse> {
-            override fun onFailure(call: Call<PostUserLoginResponse>, t: Throwable) {
-                Log.e("Sign In Fail", t.toString())
+            postLoginResponse.enqueue(object : Callback<PostUserLoginResponse> {
+                override fun onFailure(call: Call<PostUserLoginResponse>, t: Throwable) {
+                    Log.e("Sign In Fail", t.toString())
 
-            }
-
-            //통신 성공 시 수행되는 메소드
-            override fun onResponse(call: Call<PostUserLoginResponse>, response: Response<PostUserLoginResponse>) {
-                if (response.isSuccessful){
-
-                    var token : String = response.body()!!.token
-                    Log.v("Sign In Success", "토큰 + " + token)
-                    RescatApplication.preference.token = token
-
-                    startActivity<MainActivity>()
-                }else{
-                    var message : String = response.body()!!.message
-                    toast(message)
                 }
-            }
-        })
+
+                //통신 성공 시 수행되는 메소드
+                override fun onResponse(call: Call<PostUserLoginResponse>, response: Response<PostUserLoginResponse>) {
+                    if (response.isSuccessful) {
+
+                        var token: String = response.body()!!.jwtTokenDto.token
+                        Log.v("Sign In Success", "토큰 + " + token)
+                        RescatApplication.preference.token = token
+
+                        startActivity<MainActivity>()
+                    } else {
+                        var message: String = response.body()!!.message
+                        toast(message)
+                    }
+                }
+            })
+        }
+
+        else {
+            toast("빈칸을 다 채워주세요")
+        }
     }
 
 }

@@ -28,10 +28,8 @@ class MyNoticeRecyclerViewAdapter(val ctx: Context, val noticelist: ArrayList<Ge
     override fun getItemCount(): Int = noticelist.size
 
     override fun onBindViewHolder(holder:  MyNoticeRecyclerViewAdapter.Holder, position: Int) {
-
         holder.contents.text = noticelist[position].notification.contents
         holder.creatAt.text = noticelist[position].createdAt
-
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

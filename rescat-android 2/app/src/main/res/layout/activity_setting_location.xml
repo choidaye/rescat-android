@@ -115,7 +115,7 @@
             android:id="@+id/illust"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="#fff5f0"
+            android:src="@drawable/img_mylocation"
             android:layout_marginTop="32dp"
             android:layout_below="@+id/rl_ac_set_location_my"
             android:layout_centerHorizontal="true"/>
@@ -123,7 +123,7 @@
     <Button
             android:id="@+id/btn_ac_set_loction_ok"
             android:text="완료"
-            android:layout_width="3200dp"
+            android:layout_width="320dp"
             android:layout_height="48dp"
             android:textSize="16sp"
             android:textColor="@color/white"

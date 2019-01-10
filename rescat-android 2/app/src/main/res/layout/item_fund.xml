@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:id="@+id/rv_item_fund"
                                              xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                              android:layout_height="142dp">
 
     <ImageView
             android:layout_width="82dp"
             android:layout_height="82dp" app:srcCompat="@drawable/img_main_banner"
-            android:id="@+id/iv_my_post_fund"
+            android:id="@+id/iv_fund"
             android:scaleType="centerCrop" android:layout_marginTop="14dp" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="16dp" app:layout_constraintStart_toStartOf="parent"/>
     <TextView
@@ -19,9 +20,9 @@
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
             android:text="피부염에 걸린 당근이"
-            android:id="@+id/tv_fund_list_title" app:layout_constraintStart_toEndOf="@+id/iv_my_post_fund"
+            android:id="@+id/tv_fund_list_title" app:layout_constraintStart_toEndOf="@+id/iv_fund"
             android:layout_marginStart="12dp"
-            app:layout_constraintTop_toTopOf="@+id/iv_my_post_fund" android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toTopOf="@+id/iv_fund" android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
             android:layout_width="0dp"
@@ -43,7 +44,7 @@
             android:id="@+id/view_fund_list_entire_percent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp" android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/iv_my_post_fund" android:background="#ffe7d7"/>
+            app:layout_constraintTop_toBottomOf="@+id/iv_fund" android:background="#ffe7d7"/>
     <View
             android:layout_width="0dp"
             android:layout_height="4.2dp"

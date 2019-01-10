@@ -88,7 +88,7 @@ class HelpFragment : Fragment() {
 
         getHelpCatData.enqueue(object :Callback<ArrayList<HelpCardData>> {
             override fun onFailure(call: Call<ArrayList<HelpCardData>>, t: Throwable) {
-                Log.e("Sign Up Fail", t.toString())
+                Log.e("helpcat Fail", t.toString())
             }
 
             override fun onResponse(call: Call<ArrayList<HelpCardData>>, response: Response<ArrayList<HelpCardData>>) {

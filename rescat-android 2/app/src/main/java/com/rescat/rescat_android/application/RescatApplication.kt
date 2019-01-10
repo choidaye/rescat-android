@@ -14,6 +14,7 @@ class RescatApplication : Application() {
 
     private val baseURL = "http://13.209.145.139:8080/"
     lateinit var networkService: NetworkService
+    lateinit var retrofit : Retrofit
 
 
     companion object {

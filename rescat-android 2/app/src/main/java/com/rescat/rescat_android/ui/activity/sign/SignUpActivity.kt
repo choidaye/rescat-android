@@ -31,41 +31,59 @@ class SignUpActivity : AppCompatActivity() {
         btn_sign_up_ok.setOnClickListener {
             PostUserSignUpResponse()
         }
+
+        btn_back.setOnClickListener {
+            finish()
+        }
+
+
     }
 
 
-    private fun PostUserSignUpResponse(){
+    private fun PostUserSignUpResponse() {
 
         //edittext에 있는 값 받기
 
-        val input_id : String = et_ac_sign_in_id.text.toString()
-        val input_pw : String = et_ac_sign_in_pw.text.toString()
-        val input_nickname : String = et_ac_sign_up_nick.text.toString()
-        val input_repw : String = et_ac_sign_up_pwc.text.toString()
+
+        if (et_ac_sign_up_id.text.toString().isNotEmpty() && et_ac_sign_up_pw.text.toString().isNotEmpty()
+            && et_ac_sign_up_pwc.text.toString().isNotEmpty() && et_ac_sign_up_nick.text.isNotEmpty()
+        ) {
+            val input_id: String = et_ac_sign_up_id.text.toString()
+            val input_pw: String = et_ac_sign_up_pw.text.toString()
+            val input_nickname: String = et_ac_sign_up_nick.text.toString()
+            val input_repw: String = et_ac_sign_up_pwc.text.toString()
 
 
-        //통신 시작
-        val postSignUpResponse: Call<PostUserSignUpResponse> =
-            networkService.postUserSignUp(PostUserSignUp(input_id,input_pw,input_repw,input_nickname))
-        postSignUpResponse.enqueue(object : Callback<PostUserSignUpResponse> {
-            override fun onFailure(call: Call<PostUserSignUpResponse>, t: Throwable) {
-                Log.e("Sign Up Fail", t.toString())
+            //통신 시작
+            val postSignUpResponse: Call<PostUserSignUpResponse> =
+                networkService.postUserSignUp(PostUserSignUp(input_id, input_pw, input_repw, input_nickname))
+            postSignUpResponse.enqueue(object : Callback<PostUserSignUpResponse> {
+                override fun onFailure(call: Call<PostUserSignUpResponse>, t: Throwable) {
+                    Log.e("Sign Up Fail", t.toString())
 
-            }
-
-            //통신 성공 시 수행되는 메소드
-            override fun onResponse(call: Call<PostUserSignUpResponse>, response: Response<PostUserSignUpResponse>) {
-                if (response.isSuccessful){
-                var token : String = response.body()!!.token
-                Log.v("Sign Up Success", "토큰 + " + token)
-                startActivity<MainActivity>()
-            }else{
-                 var message : String = response.body()!!.message
-                    toast(message)
                 }
-            }
-        })
+
+                //통신 성공 시 수행되는 메소드
+                override fun onResponse(
+                    call: Call<PostUserSignUpResponse>,
+                    response: Response<PostUserSignUpResponse>
+                ) {
+                    if (response.isSuccessful) {
+
+
+                        var token: String = response.body()!!.token
+                        Log.v("Sign Up Success", "토큰 + " + token)
+                        startActivity<MainActivity>()
+                    } else {
+                        var message: String = response.body()!!.message
+                        toast(message)
+                    }
+                }
+            })
+        }
+        else{
+            toast("빈칸을 다 채워주세요")
+        }
+
     }
-
-
 }
