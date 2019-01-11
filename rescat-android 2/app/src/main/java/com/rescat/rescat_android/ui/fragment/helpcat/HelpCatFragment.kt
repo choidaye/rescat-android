@@ -132,7 +132,7 @@ class HelpCatFragment : Fragment() {
 
                 if (response.isSuccessful){
                     FundCardData = response.body()!!
-                    fundCardAdapter = HomeFundCardAdapter(FundCardData)
+                    fundCardAdapter = HomeFundCardAdapter(activity!!,FundCardData)
                     rv_home_fund_card.adapter = fundCardAdapter
                     rv_home_fund_card.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 

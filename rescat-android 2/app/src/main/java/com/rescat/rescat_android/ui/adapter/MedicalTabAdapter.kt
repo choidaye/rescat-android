@@ -3,7 +3,6 @@ package com.rescat.rescat_android.ui.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.rescat.rescat_android.ui.fragment.helpcat.adopt.AdoptCommentFragment
 import com.rescat.rescat_android.ui.fragment.helpcat.adopt.MedicalCommentFragment
 import com.rescat.rescat_android.ui.fragment.helpcat.adopt.MedicalInfoFragment
 

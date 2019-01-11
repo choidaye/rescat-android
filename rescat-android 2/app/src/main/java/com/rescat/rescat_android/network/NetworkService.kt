@@ -18,6 +18,7 @@ import com.rescat.rescat_android.Post.*
 import com.rescat.rescat_android.Post.Response.PostMarkerRequestResponse
 import com.rescat.rescat_android.Post.Response.PostUserLoginResponse
 import com.rescat.rescat_android.Post.Response.PostUserSignUpResponse
+import com.rescat.rescat_android.Put.PutModifyPassword
 
 import com.rescat.rescat_android.model.RegionData
 import okhttp3.ResponseBody
@@ -27,6 +28,7 @@ import java.io.File
 
 
 interface NetworkService{
+
     //일반유저 생성
     @POST("api/users")
     fun postUserSignUp(
@@ -95,7 +97,7 @@ interface NetworkService{
     //마이페이지 비밀번호 변경
     @PUT("api/users/mypage/edit/password")
     fun putPasswordModify(
-        @Body userPasswordDto : String
+        @Body userPasswordDto : PutModifyPassword
     ) : Call<Unit>
 
 

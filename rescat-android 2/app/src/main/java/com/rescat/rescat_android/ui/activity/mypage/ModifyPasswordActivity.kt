@@ -10,6 +10,7 @@ import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
+import kotlinx.android.synthetic.main.activity_modify_nickname.*
 import kotlinx.android.synthetic.main.activity_modify_pw.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.jetbrains.anko.startActivity
@@ -34,7 +35,7 @@ class ModifyPasswordActivity : AppCompatActivity() {
     }
 
     private fun setOnCLickListener() {
-        btn_ac_modify_my_nickname_ok.setOnClickListener {
+        btn_ac_modify_my_password_ok.setOnClickListener {
 
             PutModifyPW()
 
@@ -42,26 +43,34 @@ class ModifyPasswordActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun PutModifyPW() {
 
-
-        val input_my_pw: String = tv_ac_cuurent_my_pw_input.text.toString()
-        val input_changepw: String = tv_ac_change_my_pw_input.text.toString()
-        val input_changepw_check: String = tv_ac_change_my_pw_check.text.toString()
+        var input_my_pw: String = tv_ac_cuurent_my_pw_input.text.toString()
+        var input_changepw: String = tv_ac_change_my_pw_input.text.toString()
+        var input_changepw_check: String = tv_ac_change_my_pw_check.text.toString()
 
         val putModifyPassword:Call<Unit> =
-                networkService.putPasswordModify(input_changepw)
+                networkService.putPasswordModify(PutModifyPassword(input_my_pw,input_changepw,input_changepw_check))
         putModifyPassword.enqueue(object : Callback<Unit>{
+
             override fun onFailure(call: Call<Unit>, t: Throwable) {
                 Log.e("Modify password Fail", t.toString())
             }
 
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 if(response.isSuccessful){
-                    startActivity<ModifyMyInfoActivity>()
+
+                    Log.v("password", " 통신 성공")
+
+                    finish()
+
+
+                } else {
+                    toast("비밀번호를 재 입력해주세요")
                 }
 
-                toast("비밀번호를 다시한번 확인해주세요")
             }
         })
 

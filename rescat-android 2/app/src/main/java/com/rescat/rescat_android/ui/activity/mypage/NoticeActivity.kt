@@ -35,11 +35,17 @@ class NoticeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notice)
 
+        setOnBtnClickListener()
+
         getMyNoticeResponse()
         setRecyclerView()
     }
 
-
+    private fun setOnBtnClickListener() {
+        btn_back.setOnClickListener {
+            finish()
+        }
+    }
 
 
     private fun setRecyclerView() {

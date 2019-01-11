@@ -1,5 +1,6 @@
 package com.rescat.rescat_android.ui.adapter
 
+import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,7 @@ class SupportAdapter(val data: ArrayList<GetFundingResponse>,
         fun bind(position: Int) {
             itemView.setOnClickListener { itemClick(data[position].idx) }
         }
-
+//
 //        fun bind(data: Int) {
 //            (percent_view.layoutParams as ConstraintLayout.LayoutParams).matchConstraintPercentWidth = 0.8f
 //        }

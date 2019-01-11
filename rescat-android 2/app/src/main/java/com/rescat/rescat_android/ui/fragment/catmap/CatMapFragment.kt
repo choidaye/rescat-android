@@ -24,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
 import com.rescat.rescat_android.Get.GetFundingData
 import com.rescat.rescat_android.Get.GetMapResponse
+import com.rescat.rescat_android.Get.GetMyPageResponse
 import com.rescat.rescat_android.Get.Region
 
 import com.rescat.rescat_android.R
@@ -36,11 +37,13 @@ import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.AddMarkerActivity
 import com.rescat.rescat_android.ui.activity.MarkerModifyRequestActivity
 import com.rescat.rescat_android.ui.activity.SearchActivity
+import com.rescat.rescat_android.ui.activity.caretakerAuth.CareTakerAuthMainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_sign.view.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_my_address.*
 import kotlinx.android.synthetic.main.fragment_cat_map.*
+import kotlinx.android.synthetic.main.fragment_cat_map_nomal_member.*
 import kotlinx.android.synthetic.main.fragment_my_page_member.*
 import kotlinx.android.synthetic.main.fragment_support_info.*
 import org.jetbrains.anko.db.NULL
@@ -56,8 +59,11 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
+
+
 class CatMapFragment : Fragment(), OnMapReadyCallback,
     GoogleMap.OnMarkerClickListener {
+
 
 
     lateinit var MapdataList : ArrayList<GetMapResponse>
@@ -110,11 +116,37 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         super.onViewCreated(view, savedInstanceState)
         setOnBtnClickListener()
         getMyRegionResponse()
+        getUserResponse()
         map.onCreate(savedInstanceState)
         map.onResume()
         map.getMapAsync(this)
 
 
+    }
+
+    private fun getUserResponse() {
+        
+        var getUserResponse = networkService.getMyPage()
+        getUserResponse.enqueue(object : Callback<GetMyPageResponse> {
+            override fun onFailure(call: Call<GetMyPageResponse>, t: Throwable) {
+                Log.e("user response", "내 정보 못받아옴")
+            }
+
+            override fun onResponse(call: Call<GetMyPageResponse>, response: Response<GetMyPageResponse>) {
+
+                if (response.isSuccessful){
+
+                    val role : String = response.body()!!.role
+
+                    if (role == "MEMBER"){
+
+                        memberDialog()
+
+                    }
+                }
+            }
+            
+        })
     }
 
 
@@ -140,11 +172,6 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
                     if (temp.size > 0) {
                        // MyaddressDialog()
 
-                         // rb_dialog_my_address_1.text = temp[0]!!.name
-//                          rb_dialog_my_address_2.text = temp[1].name
-//                          rb_dialog_my_address_3.text = temp[2].name
-
-
                  }
                     else{
                         toast("지역이 없습니다")
@@ -163,6 +190,8 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     //버튼클릭리스너
 
     private fun setOnBtnClickListener() {
+
+
         btn_fg_cmap_search.setOnClickListener{
             startActivity<SearchActivity>()
         }
@@ -382,6 +411,23 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         myaddressDialog.show()
     }
 
+
+    protected fun memberDialog() {
+
+
+        Log.v("asdf","다예맵")
+        var memberDialog = Dialog(activity!!)
+        memberDialog.setCancelable(true)
+
+        val preferMemberDialogView = activity!!.layoutInflater.inflate(R.layout.fragment_cat_map_nomal_member, null)
+        memberDialog.setContentView(preferMemberDialogView)
+
+        memberDialog.btn_fg_nomal_member_caretaker_go.setOnClickListener {
+            startActivity<CareTakerAuthMainActivity>()
+        }
+
+        memberDialog.show()
+    }
 
 
 //

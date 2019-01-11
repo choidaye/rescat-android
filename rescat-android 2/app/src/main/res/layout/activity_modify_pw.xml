@@ -28,14 +28,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="29dp"
                     android:layout_toRightOf="@+id/btn_ac_modify_my_nickname_back"
-                    android:text="전화번호 변경"
+                    android:text="비밀번호 변경"
                     android:fontFamily="sans-serif"
                     android:textStyle="bold"
                     android:textColor="#4a4a4a"
                     android:textSize="20sp"/>
 
             <TextView
-                    android:id="@+id/btn_ac_modify_my_nickname_ok"
+                    android:id="@+id/btn_ac_modify_my_password_ok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -80,7 +80,7 @@
             android:layout_marginTop="10dp"
             android:layout_below="@+id/tv_ac_modify_my_phonenum_input_title">
 
-        <TextView
+        <EditText
                 android:id="@+id/tv_ac_cuurent_my_pw_input"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
