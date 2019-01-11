@@ -14,7 +14,6 @@ import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.HelpCardData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
-import com.rescat.rescat_android.ui.activity.helpcat.SupportAddActivity
 import com.rescat.rescat_android.ui.activity.helpcat.WriteActivity
 import com.rescat.rescat_android.ui.adapter.HomeFundCardAdapter
 import com.rescat.rescat_android.ui.adapter.HomeHelpCatAdapter
@@ -57,8 +56,8 @@ class HelpCatFragment : Fragment() {
     }
 
     private fun setOnBtnClickListener() {
-        btn_support_writer.setOnClickListener {
-            startActivity<SupportAddActivity>()
+        btn_writer.setOnClickListener {
+            startActivity<WriteActivity>()
         }
     }
 
@@ -87,9 +86,6 @@ class HelpCatFragment : Fragment() {
             (activity as MainActivity).addFragment(FundFragment())
         }
 
-        btn_support_writer.setOnClickListener {
-            startActivity<WriteActivity>()
-        }
     }
 
     private fun setRecyclerView() {

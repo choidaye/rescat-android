@@ -21,7 +21,6 @@ import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.CommentData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.adapter.SupportCommentRecyclerViewAdapter
-import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProjectCommentFragment
 import kotlinx.android.synthetic.main.fragment_adopt_comment.*
 import kotlinx.android.synthetic.main.fragment_support_comment.*
 import retrofit2.Call
@@ -130,8 +129,8 @@ class  ProjectCommentFragment : Fragment() {
 
                 override fun onResponse(call: Call<CommentData>, response: Response<CommentData>) {
                     if(response.isSuccessful) {
-                        edit_adopt_comment.text.clear()
-                        edit_adopt_comment.hideKeyboard()
+                        edit_support_comment.text.clear()
+                        edit_support_comment.hideKeyboard()
                         Toast.makeText(activity!!, "댓글이 등록되었습니다", Toast.LENGTH_SHORT).show()
                         getFundingCommentData()
                     }

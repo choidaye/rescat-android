@@ -1,10 +1,7 @@
 package com.rescat.rescat_android.network
 
 import com.rescat.rescat_android.Get.*
-import com.rescat.rescat_android.Post.PostCareApplication
-import com.rescat.rescat_android.Post.PostCareComment
-import com.rescat.rescat_android.Post.PostUserLogin
-import com.rescat.rescat_android.Post.PostUserSignUp
+import com.rescat.rescat_android.Post.*
 import com.rescat.rescat_android.Post.Response.PostMarkerRequestResponse
 import com.rescat.rescat_android.Post.Response.PostUserLoginResponse
 import com.rescat.rescat_android.Post.Response.PostUserSignUpResponse
@@ -153,6 +150,12 @@ interface NetworkService{
         @Query("present") present : Boolean
     ): Call<ArrayList<GetFundingCommentResponse>>
 
+
+//    //후원할래요 댓글 등록
+//    @POST("api/fundings/{idx}/comments")
+//    fun postFundingComment(
+//    ): Call:<>
+
     //후원할래요 데이터 조회
     @GET("api/fundings/{idx}")
     fun getFundingData(
@@ -175,6 +178,13 @@ interface NetworkService{
     //펀딩 글 4개 리스트
     @GET("api/fundings/main")
     fun getMainFunding():Call<ArrayList<GetMainPageFunding>>
+
+
+    //펀딩 글 등록하기
+    @POST("api/fundings")
+    fun postAddFund(
+        @Body fundingRequestDto : PostFundAdd
+    ) : Call<Unit>
 
 
 

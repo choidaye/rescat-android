@@ -42,7 +42,7 @@
                         tools:layout_editor_absoluteX="16dp"/>
 
                 <ImageView
-                        android:id="@+id/btn_support_writer"
+                        android:id="@+id/btn_writer"
                         android:layout_marginLeft="232dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

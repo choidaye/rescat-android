@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.rescat.rescat_android.ui.fragment.helpcat.Project.ProjectCommentFragment
+import com.rescat.rescat_android.ui.fragment.helpcat.Project.ProjectInfoFragment
 
 
 class ProjectTabAdapter(fm: FragmentManager, val idx:Int): FragmentStatePagerAdapter(fm) {
@@ -11,7 +12,7 @@ class ProjectTabAdapter(fm: FragmentManager, val idx:Int): FragmentStatePagerAda
 
 
     override fun getItem(position: Int): Fragment? {
-        val projectInfoFragment = ProjectCommentFragment.newInstance(idx)
+        val projectInfoFragment = ProjectInfoFragment.newInstance(idx)
         val projectcommentFragment = ProjectCommentFragment.newInstance(idx)
         return when (position) {
             0 -> projectInfoFragment
