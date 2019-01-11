@@ -144,6 +144,7 @@
                             android:layout_marginLeft="12dp"
                             android:background="@null"
                             android:hint="01012345678"/>
+
                 </RelativeLayout>
 
 
@@ -173,9 +174,7 @@
                             android:layout_marginLeft="12dp"
                             android:background="@null"
                             android:layout_marginTop="10dp"
-                            android:hint="자기소개를 간략하게 해주세요.
-후원글 승인시 참고하는 용도로
-사용될 예정입니다. "/>
+                            android:hint="자기소개를 간략하게 해주세요.\n후원글 승인시 참고하는 용도로\n사용될 예정입니다. "/>
                 </RelativeLayout>
 
 

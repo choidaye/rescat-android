@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.rescat.rescat_android.R
 import android.util.Log
+import android.widget.Toast
 import com.rescat.rescat_android.Post.PostUserLogin
 import com.rescat.rescat_android.Post.Response.PostUserLoginResponse
 import com.rescat.rescat_android.application.RescatApplication
@@ -69,9 +70,11 @@ class SignInActivity : AppCompatActivity() {
                         RescatApplication.preference.token = token
 
                         startActivity<MainActivity>()
+
+
                     } else {
-                        var message: String = response.body()!!.message
-                        toast(message)
+                        Toast.makeText(applicationContext,"정보가 일치하지 않습니다",Toast.LENGTH_SHORT).show()
+
                     }
                 }
             })

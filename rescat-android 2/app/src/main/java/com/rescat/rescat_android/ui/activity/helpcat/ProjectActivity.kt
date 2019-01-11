@@ -21,6 +21,11 @@ class ProjectActivity : AppCompatActivity() {
         setTabLayout()
         setInitLayout()
         setBackButtonListener()
+        setOnBtnClickListener()
+    }
+
+    private fun setOnBtnClickListener() {
+
     }
 
     private fun setBackButtonListener() {

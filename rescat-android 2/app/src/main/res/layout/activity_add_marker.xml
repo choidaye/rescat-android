@@ -85,6 +85,7 @@
 
 
         <Button
+                android:id="@+id/btn_add_cat_marker"
                 android:layout_width="98dp"
                 android:layout_height="34dp"
                 android:textSize="14sp"
@@ -94,6 +95,7 @@
 
 
         <Button
+                android:id="@+id/btn_add_food_marker"
                 android:layout_width="98dp"
                 android:layout_height="34dp"
                 android:layout_marginLeft="8dp"
@@ -137,10 +139,11 @@
 
 
     <LinearLayout
-            android:id="@+id/ll_ac_add_marker_info"
+            android:id="@+id/ll_ac_add_marker_food_info"
             android:layout_marginTop="28dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_below="@+id/ll_ac_add_marker_upload_pic"
             android:orientation="vertical">
 
@@ -209,6 +212,83 @@
 
 
     </LinearLayout>
+
+
+    <LinearLayout
+            android:id="@+id/ll_ac_add_marker_info_cat"
+            android:layout_marginTop="28dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_ac_add_marker_upload_pic"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#4a4a4a"
+                android:layout_marginLeft="22dp"
+                android:text="정보를 입력해주세요"/>
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="10dp">
+
+            <EditText
+                    android:id="@+id/et_ac_add_marker_info_cat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:background="@null"
+                    android:layout_centerVertical="true"
+                    android:textColor="#61000000"
+                    android:lineSpacingExtra="8sp"
+                    android:hint="배식소 이름"/>
+
+            <View
+                    android:layout_width="320dp"
+                    android:layout_height="1dp"
+                    android:background="#1e000000"
+                    android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:layout_marginLeft="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp">
+
+            <EditText
+                    android:id="@+id/et_ac_add_marker_info_cat_unique"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:background="@null"
+                    android:layout_centerVertical="true"
+                    android:textColor="#61000000"
+                    android:lineSpacingExtra="8sp"
+                    android:hint="특이사항 (56자 이내)"/>
+
+            <View
+                    android:layout_width="320dp"
+                    android:layout_height="1dp"
+                    android:background="#1e000000"
+                    android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
 
 
 

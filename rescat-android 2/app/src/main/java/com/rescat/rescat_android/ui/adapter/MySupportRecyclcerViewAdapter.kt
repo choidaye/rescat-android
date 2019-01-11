@@ -31,6 +31,7 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
         holder.category.text = mysupportinglist[position].category.toString()
 
 
+
 //        try {
 //            var format = SimpleDateFormat("yyyy-MM-dd")
 //
@@ -83,16 +84,9 @@ class MySupportRecyclcerViewAdapter(val ctx: Context, val mysupportinglist: Arra
         val photos: ImageView = itemView.findViewById(R.id.iv_my_support_photo) as ImageView
 
 
-        inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val title: TextView = itemView.findViewById(R.id.tv_my_support_list_title) as TextView
-            val contents: TextView = itemView.findViewById(R.id.tv_my_support_content) as TextView
-            val category: TextView = itemView.findViewById(R.id.tv_my_support_type) as TextView
-            //  val dday : TextView = itemView.findViewById(R.id.tv_my_support_date) as TextView
-            val currentAmount: TextView = itemView.findViewById(R.id.tv_my_support_current_amount) as TextView
-            val photos: ImageView = itemView.findViewById(R.id.iv_my_support_photo) as ImageView
 
 
         }
 
     }
-}
+

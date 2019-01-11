@@ -1,6 +1,7 @@
 package com.rescat.rescat_android.ui.activity
 
 import android.Manifest
+import android.app.Activity
 import android.content.CursorLoader
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -13,6 +14,8 @@ import android.provider.Settings
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
+import android.view.View
+import com.bumptech.glide.Glide
 import com.rescat.rescat_android.R
 import kotlinx.android.synthetic.main.activity_add_marker.*
 import kotlinx.android.synthetic.main.activity_add_marker.view.*
@@ -51,6 +54,13 @@ class AddMarkerActivity : AppCompatActivity() {
             requestReadExternalStoragePermission()
         }
 
+        btn_add_cat_marker.setOnClickListener {
+            ll_ac_add_marker_info_cat.setVisibility(View.VISIBLE)
+        }
+
+        btn_add_food_marker.setOnClickListener {
+            ll_ac_add_marker_food_info.setVisibility(View.VISIBLE)
+        }
     }
 
 
@@ -75,6 +85,8 @@ class AddMarkerActivity : AppCompatActivity() {
         cursor.close()
         return result
     }
+
+
 
     //이 메소드는 외부저장소(앨범과 같은)에 접근 관련해 권한 요청을 하는 로직을 메소드로 만든 것입니다!
     private fun requestReadExternalStoragePermission(){
@@ -110,17 +122,41 @@ class AddMarkerActivity : AppCompatActivity() {
             //결과에 대해 허용을 눌렀는지 체크하는 조건문이구요!
             if(grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 //이곳은 외부저장소 접근을 허용했을 때에 대한 로직을 쓰시면됩니다. 우리는 앨범을 여는 메소드를 호출해주면되겠죠?
-                Log.v("ygyg", "ygyg4")
+                Log.v("permissionresult", "외부저장소 접근 호용")
 
                 showAlbum()
             } else {
                 //이곳은 외부저장소 접근 거부를 했을때에 대한 로직을 넣어주시면 됩니다.
-                Log.v("ygyg", "ygyg5")
+                Log.v("permissionresult", "외부저장소 접근 거부")
 
                 //finish()
 
             }
         }
     }
+
+    //startActivityForResult를 통해 실행한 엑티비티에 대한 callback을 처리하는 메소드입니다!
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        //REQUEST_CODE_SELECT_IMAGE를 통해 앨범에서 보낸 요청에 대한 Callback인지를 체크!!!
+        if (requestCode == REQUEST_CODE_SELECT_IMAGE) {
+            //앨범 사진 선택에 대한 Callback이 RESULT_OK인지 체크!!
+            if (resultCode == Activity.RESULT_OK) {
+                //data.data에는 앨범에서 선택한 사진의 Uri가 들어있다. 사진이 선택되었는지 아닌지를 판단하기 위해 조건을 줌.(null인지 아닌지 체크)
+                if(data != null){
+                    val selectedImageUri : Uri = data.data
+                    //Uri를 getRealPathFromURI라는 메소드를 통해 절대 경로를 알아내고, 인스턴스 변수인 imageURI에 String으로 넣어준다.
+                    imageURI = getRealPathFromURI(selectedImageUri)
+
+                    //Glide를 통해 imageView에 우리가 선택한 이미지를 띄워 줍시다!(무엇을 선택했는지는 알아야 좋겠죠?!)
+                    Glide.with(this@AddMarkerActivity)
+                        .load(selectedImageUri)
+                        .thumbnail(0.1f)
+                        .into(btn_ac_add_marker_img_upload)
+                }
+            }
+        }
+    }
+
 
 }

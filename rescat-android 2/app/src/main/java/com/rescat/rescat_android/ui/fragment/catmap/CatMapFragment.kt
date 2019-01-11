@@ -22,7 +22,9 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
+import com.rescat.rescat_android.Get.GetFundingData
 import com.rescat.rescat_android.Get.GetMapResponse
+import com.rescat.rescat_android.Get.Region
 
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.R.id.*
@@ -40,6 +42,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_my_address.*
 import kotlinx.android.synthetic.main.fragment_cat_map.*
 import kotlinx.android.synthetic.main.fragment_my_page_member.*
+import kotlinx.android.synthetic.main.fragment_support_info.*
 import org.jetbrains.anko.db.NULL
 import org.jetbrains.anko.image
 import org.jetbrains.anko.locationManager
@@ -58,6 +61,7 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
     lateinit var MapdataList : ArrayList<GetMapResponse>
+    var temp = ArrayList<RegionData>()
 
 
 
@@ -89,15 +93,14 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         LocationServices.getFusedLocationProviderClient(activity!!)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        val v = inflater.inflate(R.layout.fragment_cat_map, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cat_map, container, false)
+        return v
     }
 
 
@@ -106,6 +109,7 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnBtnClickListener()
+        getMyRegionResponse()
         map.onCreate(savedInstanceState)
         map.onResume()
         map.getMapAsync(this)
@@ -114,18 +118,46 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
     }
 
 
+    //케어테이커 지역 조회 통신
+    private fun getMyRegionResponse() {
+        Log.e("response", "리스폰스 들어옴")
 
 
+        var getMyLocationResponse = networkService.getMyLocation()
+        getMyLocationResponse.enqueue(object :Callback<ArrayList<RegionData>>{
+            override fun onFailure(call: Call<ArrayList<RegionData>>, t: Throwable) {
+                Log.e("my location error", "통신에러")
+            }
 
-    private fun setMyPageView(address1 : String, address2 : String){
-        address1?.let {
-            rb_dialog_my_address_1.text = address1
-        }
-        address2?.let {
-            rb_dialog_my_address_2.text = address2
-        }
+            override fun onResponse(call: Call<ArrayList<RegionData>>, response: Response<ArrayList<RegionData>>) {
+
+                if (response.isSuccessful){
+                    Log.e("successful","내 지역 리스폰 성공")
+                    Log.v("easdf", "데이터 값 확인 = " + response.body().toString());
+
+                    temp = response.body()!!
+                    Log.e("temp", "템프잘들어오나" +temp.size)
+                    if (temp.size > 0) {
+                       // MyaddressDialog()
+
+                         // rb_dialog_my_address_1.text = temp[0]!!.name
+//                          rb_dialog_my_address_2.text = temp[1].name
+//                          rb_dialog_my_address_3.text = temp[2].name
+
+
+                 }
+                    else{
+                        toast("지역이 없습니다")
+                    }
+
+                }
+            }
+        })
 
     }
+
+
+
 
 
     //버튼클릭리스너
@@ -201,21 +233,13 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
             CircleOption(it)
             addNewMarker(it)
-
         }
     }
 
 
-    private fun detailInfo(data:GetMapResponse) {
 
 
-
-    }
-
-
-
-
-        //통신
+        //지도 마커 및 정보 통신
     private fun getMapResponse() {
 
         Log.e("mapresponse","맵통신 연결")
@@ -240,26 +264,25 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
                     MapdataList = response.body()!!
 
-
                     setupVisibleMap(4)
                     allsetupMarkerMap()
 
                     var listSize : Int = MapdataList.size/2
-
-
                     Log.e("list size","리스트 사이즈" + listSize)
 
-                    //카메라 줌
-                    //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(MapdataList[0].lat, MapdataList[0].lng), 15.0f))
 
+                   //카메라 줌
 
                     Log.e("lat,lng","위도경도보기"+MapdataList[listSize].lat+MapdataList[listSize].lng)
-
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(MapdataList[listSize].lat,MapdataList[listSize].lng), 15.0f))
 
 
+                    //마커 상세 내용 받아오기
+                    iv_fg_marker_detail_pic.image
 
 
+
+                    //반경 설정하기
 //                    mMap.addCircle(
 //                        CircleOptions().center(
 //                            LatLng(
@@ -270,8 +293,9 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 //
 //                    )
 
-                }
+                } else{
 
+                }
 
             }
         })
@@ -280,31 +304,9 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
 
-    private fun setMyPageView(catname : String, age : String, tnr : Int ){
-        catname?.let {
-            tv_fg_marker_detail_cat_title.text = catname
-        }
-        age?.let {
-            tv_fg_marker_detail_cat_age.text = age
-        }
-
-        tnr?.let {
-            when(tnr){
-                0 ->  tv_fg_marker_detail_cat_tnr.text = "접종"
-
-                1 -> tv_fg_marker_detail_cat_tnr.text = "안함"
-
-            }
 
 
 
-
-
-    }
-
-
-
-}
 
     //지도 시작
     override fun onMapReady(googleMap: GoogleMap) {
@@ -339,9 +341,15 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         val preferMemberDialogView = activity!!.layoutInflater.inflate(R.layout.dialog_my_address, null)
         myaddressDialog.setContentView(preferMemberDialogView)
 
+        myaddressDialog.rb_dialog_my_address_1.text = temp[0]!!.name
+        myaddressDialog.rb_dialog_my_address_2.text = temp[1]!!.name
+        myaddressDialog.rb_dialog_my_address_3.text = temp[2]!!.name
+
+
+
         myaddressDialog.rb_dialog_my_address_1.setOnCheckedChangeListener { buttonView, isChecked ->
 
-            result = myaddressDialog.rb_dialog_my_address_1.text.toString()
+            result = myaddressDialog.rb_dialog_my_address_1.text.toString()!!
             Log.v("asdf","다예맵2 + " + result)
         }
 
@@ -350,14 +358,14 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
         myaddressDialog.rb_dialog_my_address_2.setOnCheckedChangeListener { buttonView, isChecked ->
 
 
-            result = myaddressDialog.rb_dialog_my_address_2.text.toString()
+            result = myaddressDialog.rb_dialog_my_address_2.text.toString()!!
             Log.v("asdf","다예맵2 + " + result)
         }
 
         myaddressDialog.rb_dialog_my_address_3.setOnCheckedChangeListener { buttonView, isChecked ->
 
 
-            result = myaddressDialog.rb_dialog_my_address_3.text.toString()
+            result = myaddressDialog.rb_dialog_my_address_3.text.toString()!!
             Log.v("asdf","다예맵2 + " + result)
         }
 
@@ -477,18 +485,18 @@ class CatMapFragment : Fragment(), OnMapReadyCallback,
 
 
         //주소받아오기
-        val address = Geocoder(activity!!, Locale.KOREAN)
-            .getFromLocation(data.lat, data.lng, 2)
-
-        val idx = data.idx
+//        val address = Geocoder(activity!!, Locale.KOREAN)
+//            .getFromLocation(data.lat, data.lng, 2)
+//
+//        val idx = data.idx
 
 //
 //       mMarkerOption.position(LatLng(currentLatitude, currentLongitude))
 //            .snippet(address[0].getAddressLine(0).toString()).title(address[0].subLocality)
 
         //mMarker.remove()
-        currentLatitude = data.lat
-        currentLongitude = data.lng
+//        currentLatitude = data.lat
+//        currentLongitude = data.lng
 
         //대한민국 경기도 용인시 수지구 성북동 420-1
 //        address[idx].getAddressLine(idx).toString()

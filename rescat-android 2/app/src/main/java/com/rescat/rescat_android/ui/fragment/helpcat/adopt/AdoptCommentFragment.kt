@@ -166,8 +166,8 @@ class AdoptCommentFragment : Fragment() {
                         Toast.makeText(activity, "댓글이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
                     } else {
                         //TODO. get Error Message
-//                        val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
-//                        Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+                        val errorMessage = ErrorBodyConverter.convert(response.errorBody()!!)
+                        Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                     dialog.dismiss()
                 }
