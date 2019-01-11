@@ -16,7 +16,6 @@ import com.rescat.rescat_android.ui.activity.helpcat.ProjectActivity
 import com.rescat.rescat_android.ui.activity.helpcat.ProjectApplyActivity
 import com.rescat.rescat_android.ui.adapter.AdoptInfoBannerAdapter
 import com.rescat.rescat_android.ui.adapter.SupportInfoBannerAdapter
-import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProjectInfoFragment
 
 import kotlinx.android.synthetic.main.fragment_support_info.*
 import org.jetbrains.anko.support.v4.toast

@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rescat.rescat_android.Post.Response.CareTakerAuthResponse;
 import com.rescat.rescat_android.Post.Response.CareTakerMobileAuthResponse;
 import com.rescat.rescat_android.R;
 import com.rescat.rescat_android.application.RescatApplication;
@@ -28,7 +27,7 @@ import retrofit2.Response;
  * Created by gominju on 07/01/2019.
  */
 
-public class CareTakerMobileAuthActivity extends AppCompatActivity {
+public class _CareTakerMobileAuthActivity extends AppCompatActivity {
     private ImageView iv_prev;
     private TextView tv_next;
     private Button btn_next;
@@ -86,7 +85,7 @@ public class CareTakerMobileAuthActivity extends AppCompatActivity {
                     getAuthCode();
                     et_code.requestFocus();
                 } else {
-                    Toast.makeText(CareTakerMobileAuthActivity.this, "전화번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_CareTakerMobileAuthActivity.this, "전화번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -123,14 +122,14 @@ public class CareTakerMobileAuthActivity extends AppCompatActivity {
             editor.commit();
             startActivity(intent);
         } else {
-            Toast.makeText(CareTakerMobileAuthActivity.this, "인증 코드가 틀렸습니다", Toast.LENGTH_SHORT).show();
+            Toast.makeText(_CareTakerMobileAuthActivity.this, "인증 코드가 틀렸습니다", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private boolean checkEmpty() {
         if (et_name.getText().toString().isEmpty() || et_code.getText().toString().isEmpty() || et_phone.getText().toString().isEmpty()) {
-            Toast.makeText(CareTakerMobileAuthActivity.this, "빈 칸을 채워주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(_CareTakerMobileAuthActivity.this, "빈 칸을 채워주세요", Toast.LENGTH_SHORT).show();
             return false;
         } else {
             return true;

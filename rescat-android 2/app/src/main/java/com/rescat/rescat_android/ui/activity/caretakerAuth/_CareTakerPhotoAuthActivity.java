@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -15,7 +14,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -35,11 +33,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.rescat.rescat_android.Post.CareTakerAuth;
-import com.rescat.rescat_android.Post.Response.CareTakerAuthResponse;
 import com.rescat.rescat_android.Post.Response.PhotoControllerResponse;
 import com.rescat.rescat_android.R;
 import com.rescat.rescat_android.application.RescatApplication;
 import com.rescat.rescat_android.network.NetworkService;
+import com.rescat.rescat_android.ui.activity.MainActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -51,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import kotlin.Unit;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -63,11 +62,12 @@ import retrofit2.Response;
  * Created by gominju on 08/01/2019.
  */
 
-public class CareTakerPhotoAuthActivity extends AppCompatActivity {
+public class _CareTakerPhotoAuthActivity extends AppCompatActivity {
     private Button btn_finish;
     private ImageView iv_prev, iv_photo, iv_status_lightPink;
     private NetworkService networkService;
     private String TEST_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6NDcsImV4cCI6MTU0OTcyMDA3MH0.vslv1Wl003DMdM1oBVqrnNP-Vrtmt6eaOJxrCd2Zj7I";
+    //eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJSeWFuZ1QiLCJ1c2VyX2lkeCI6NDcsImV4cCI6MTU0OTg3OTc4NH0.lPzwNfA9MHK4DBE52c0SL4N9rXlnsSv0qyw10WlaHoY
 
     // 카메라 사진
     private static final int PICK_FROM_CAMERA = 1;
@@ -111,7 +111,7 @@ public class CareTakerPhotoAuthActivity extends AppCompatActivity {
                 if (isPhotoExist) {
                     changeBar();
                     // popup
-                    final CustomDialog dialog = new CustomDialog(CareTakerPhotoAuthActivity.this);
+                    final CustomDialog dialog = new CustomDialog(_CareTakerPhotoAuthActivity.this);
                     dialog.show();
                     careTakerAuthNetwork();
                 } else {
@@ -168,7 +168,7 @@ public class CareTakerPhotoAuthActivity extends AppCompatActivity {
         }
 
         // 포토 컨트롤러 네트워킹
-        Call<PhotoControllerResponse> responseCall = networkService.getPhtoUri(TEST_TOKEN, photoBody);
+        Call<PhotoControllerResponse> responseCall = networkService.getPhtoUri(photoBody);
         responseCall.enqueue(new Callback<PhotoControllerResponse>() {
             @Override
             public void onResponse(Call<PhotoControllerResponse> call, Response<PhotoControllerResponse> response) {
@@ -195,12 +195,12 @@ public class CareTakerPhotoAuthActivity extends AppCompatActivity {
         try {
             photoFile = createImageFile();
         } catch (IOException e) {
-            Toast.makeText(CareTakerPhotoAuthActivity.this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(_CareTakerPhotoAuthActivity.this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             Log.i("minjuLog", "이미지 처리 오류 : " + e.getMessage().toString());
             finish();
         }
         if (photoFile != null) {
-            photoUri = FileProvider.getUriForFile(CareTakerPhotoAuthActivity.this,
+            photoUri = FileProvider.getUriForFile(_CareTakerPhotoAuthActivity.this,
                     "com.rescat.rescat_android.fileprovider", photoFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri); //사진을 찍어 해당 Content uri를 photoUri에 적용시키기 위함
             startActivityForResult(intent, PICK_FROM_CAMERA);
@@ -281,12 +281,12 @@ public class CareTakerPhotoAuthActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
-            Toast.makeText(CareTakerPhotoAuthActivity.this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(_CareTakerPhotoAuthActivity.this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
             isPhotoExist = false;
         }
         if (requestCode == PICK_FROM_CAMERA) {
             cropImage();
-            MediaScannerConnection.scanFile(CareTakerPhotoAuthActivity.this, //앨범에 사진을 보여주기 위해 Scan을 합니다.
+            MediaScannerConnection.scanFile(_CareTakerPhotoAuthActivity.this, //앨범에 사진을 보여주기 위해 Scan을 합니다.
                     new String[]{photoUri.getPath()}, null,
                     new MediaScannerConnection.OnScanCompletedListener() {
                         public void onScanCompleted(String path, Uri uri) {
@@ -348,7 +348,7 @@ public class CareTakerPhotoAuthActivity extends AppCompatActivity {
             imgUrlStr = croppedFileName.getName();
             Log.i("minjuLog", "imgUrlStr: " + imgUrlStr);
 
-            photoUri = FileProvider.getUriForFile(CareTakerPhotoAuthActivity.this,
+            photoUri = FileProvider.getUriForFile(_CareTakerPhotoAuthActivity.this,
                     "com.rescat.rescat_android.fileprovider", tempFile);
 
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -402,21 +402,28 @@ public class CareTakerPhotoAuthActivity extends AppCompatActivity {
 
         CareTakerAuth careTakerAuth = new CareTakerAuth(photoUri, nickname, phone, regionFullName, type, name);
 
-        Call<Void> authResponseCall = networkService.getCareTakerAuth(TEST_TOKEN, careTakerAuth);
-        authResponseCall.enqueue(new Callback<Void>() {
+        Call<Unit> authResponseCall = networkService.getCareTakerAuth(careTakerAuth);
+        authResponseCall.enqueue(new Callback<Unit>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<Unit> call, Response<Unit> response) {
                 if(response.isSuccessful()) {
                     Log.i("minjuLog", "케어테이커 인증 성공 ");
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 } else {
+                    // TODO 404
+
                     // TODO 409 에러 --> 이미 등록된 유저니깐 그거에 따른 예외처리
+                    Toast.makeText(getApplicationContext(), "케어테이커 인증 에러입니다 다시 시도해주세요", Toast.LENGTH_SHORT).show();
                     Log.i("minjuLog", "케어테이커 인증 에러 " + response.toString());
                 }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<Unit> call, Throwable t) {
                 Log.i("minjuLog", "케어테이커 인증 실패 " + t.getMessage().toString());
+                Toast.makeText(getApplicationContext(), "케어테이커 인증 서버 에러입니다 다시 시도해주세요", Toast.LENGTH_SHORT).show();
+
             }
         });
 

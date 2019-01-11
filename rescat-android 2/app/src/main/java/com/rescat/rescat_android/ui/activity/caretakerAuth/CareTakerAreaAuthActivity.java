@@ -83,7 +83,7 @@ public class CareTakerAreaAuthActivity extends AppCompatActivity {
         if (gps.isGetLocation()) {
             double latitude = gps.getLatitude(); //String.valueOf(latitude)
             double longitude = gps.getLongitude();
-            Log.i("minjuLog", "위도 " + latitude  + ", 경도 : " + longitude);
+            Log.i("minjuLog", "위도 " + latitude + ", 경도 : " + longitude);
 
             // 위도 경도 -> 주소로 바꾸기
 //            GpsToAddress gps;
@@ -101,15 +101,15 @@ public class CareTakerAreaAuthActivity extends AppCompatActivity {
             try {
                 addrArray = gCoder.getFromLocation(latitude, longitude, 1);
                 Address addr = addrArray.get(0);
-                String modifiedAddr = addr.getAdminArea()+" "+addr.getLocality()+" "+addr.getThoroughfare();
-                Log.i("minjuLog", "사용자 위치: " + modifiedAddr + ", addr: " + addr.toString());
-                btn_refresh.setText(addrArray.get(0).getAddressLine(0).toString().substring(5));
-//                btn_refresh.setText(modifiedAddr);
+//                String modifiedAddr = addr.getAdminArea()+" "+addr.getLocality()+" "+addr.getThoroughfare();
+                Log.i("minjuLog", "사용자 위치: " + addrArray.get(0).getAddressLine(0));
+//                Log.i("minjuLog", "getLocality: " + addr.getLocality() + ", getSubLocality:  " + addr.getSubLocality() + ", " );
+                String userAddr = addr.getLocality() + " " + addr.getSubLocality() + " " + addr.getThoroughfare();
+                btn_refresh.setText(userAddr);
 
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-                editor.putString("caretaker_region", modifiedAddr);
+                editor.putString("caretaker_region", userAddr);
                 editor.commit();
-
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.i("minjuLog", "addr trans err");

@@ -21,7 +21,6 @@ import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.CommentData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.adapter.SupportCommentRecyclerViewAdapter
-import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProjectCommentFragment
 import kotlinx.android.synthetic.main.fragment_adopt_comment.*
 import kotlinx.android.synthetic.main.fragment_support_comment.*
 import retrofit2.Call

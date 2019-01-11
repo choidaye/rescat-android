@@ -2,9 +2,11 @@ package com.rescat.rescat_android.ui.activity.sign
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import com.rescat.rescat_android.Post.PostUserSignUp
 import com.rescat.rescat_android.Post.Response.PostUserSignUpResponse
+import com.rescat.rescat_android.Preference.RescatPreference
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.network.NetworkService
@@ -53,6 +55,7 @@ class SignUpActivity : AppCompatActivity() {
             val input_nickname: String = et_ac_sign_up_nick.text.toString()
             val input_repw: String = et_ac_sign_up_pwc.text.toString()
 
+            RescatApplication.preference.nickname = input_nickname
 
             //통신 시작
             val postSignUpResponse: Call<PostUserSignUpResponse> =
