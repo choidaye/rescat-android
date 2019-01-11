@@ -48,6 +48,8 @@ class SupportAddActivity : AppCompatActivity() {
                 intent.putExtra("contents",contents)
                 intent.putExtra("limitAt",limitAt)
                 intent.putExtra("goalAmount",goalAmount).toString()
+                intent.putExtra("mainRegion",mainRegion)
+
 
 
 

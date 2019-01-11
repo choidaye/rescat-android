@@ -116,7 +116,7 @@ class  ProjectCommentFragment : Fragment() {
     }
 
     private fun setButtonListener() {
-        btn_adopt_comment_send.setOnClickListener {
+        btn_support_comment_send.setOnClickListener {
             //TODO. 예외처리하기!
             val postCommentData: PostCareComment = PostCareComment(edit_adopt_comment.text.toString(), idx)
             val postCareComment: Call<CommentData> =

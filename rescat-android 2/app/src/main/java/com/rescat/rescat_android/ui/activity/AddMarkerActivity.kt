@@ -56,10 +56,22 @@ class AddMarkerActivity : AppCompatActivity() {
 
         btn_add_cat_marker.setOnClickListener {
             ll_ac_add_marker_info_cat.setVisibility(View.VISIBLE)
+            ll_ac_add_marker_food_info.setVisibility(View.GONE)
+            btn_add_cat_marker.setImageResource(R.drawable.btn_cat_on)
+            btn_add_food_marker.setImageResource(R.drawable.btn_place_off)
+
+
         }
 
         btn_add_food_marker.setOnClickListener {
             ll_ac_add_marker_food_info.setVisibility(View.VISIBLE)
+            ll_ac_add_marker_info_cat.setVisibility(View.GONE)
+            btn_add_food_marker.setImageResource(R.drawable.btn_place_on)
+            btn_add_cat_marker.setImageResource(R.drawable.btn_cat_off)
+        }
+
+        btn_ac_add_marker_back.setOnClickListener {
+            finish()
         }
     }
 

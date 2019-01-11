@@ -1,7 +1,6 @@
 package com.rescat.rescat_android.ui.adapter
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.rescat.rescat_android.Get.GetMyPageFundResponse
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.ui.activity.helpcat.AdoptActivity
+import org.jetbrains.anko.startActivity
 
 class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayList<GetMyPageFundResponse>) : RecyclerView.Adapter<MyPostFundRecyclerViewAdapter.Holder>(){
 
@@ -30,6 +31,14 @@ class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayL
         holder.contents.text = mypostfundList[position].contents
         holder.limitAt.text = mypostfundList[position].limitAt
         holder.category.inputType = mypostfundList[position].category
+
+
+        holder.clickitem.setOnClickListener {
+            ctx.startActivity<AdoptActivity>("idx" to mypostfundList[position].idx)
+
+            Log.e("item click error","아이템 클릭 실패")
+
+        }
 
 
         val requestOptions = RequestOptions()
@@ -54,6 +63,7 @@ class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayL
         val entire_percent_view : View = itemView.findViewById(R.id.view_my_post_fund_list_entire_percent) as View
         val current_percent_view : View = itemView.findViewById(R.id.view_my_post_fund_list_percent) as View
         val category : TextView = itemView.findViewById(R.id.tv_my_post_fund_type) as TextView
+        val clickitem : RelativeLayout = itemView.findViewById(R.id.rv_my_post_care_list_item) as RelativeLayout
 
 
     }

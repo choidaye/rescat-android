@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.caretakerAuth._CareTakerMobileAuthActivity">
+    tools:context=".ui.activity.caretakerAuth.CareTakerMobileAuthActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -133,6 +133,7 @@
                     android:layout_height="34dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    style="?android:attr/borderlessButtonStyle"
                     android:background="@drawable/button_caramel"
                     android:text="문자발송"
                     android:textColor="@color/white"
@@ -161,6 +162,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/button_caramel"
         android:text="다음"
+        style="?android:attr/borderlessButtonStyle"
         android:textColor="@color/white"
         android:textSize="16sp" />
 

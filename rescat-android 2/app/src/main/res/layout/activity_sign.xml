@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/button_white"
             android:fontFamily="sans-serif-medium"
+            style="?android:attr/borderlessButtonStyle"
             android:id="@+id/btn_skip" android:textAlignment="center" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="20dp" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp" android:layout_marginBottom="20dp"

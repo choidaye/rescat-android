@@ -1,7 +1,6 @@
 package com.rescat.rescat_android.ui.adapter
 
 import android.content.Context
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -69,10 +68,7 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
         val viewCount : TextView = itemView.findViewById(R.id.tv_my_post_care_viewcount) as TextView
         val type : TextView = itemView.findViewById(R.id.tv_my_post_care_type) as TextView
         val photos : ImageView = itemView.findViewById(R.id.iv_care_cat_photo)
-        val clickitem : RelativeLayout = itemView.findViewById(R.id.rv_my_post_cafe_list_item) as RelativeLayout
-
-
-
+        val clickitem : RelativeLayout = itemView.findViewById(R.id.rv_my_post_care_list_item) as RelativeLayout
 
     }
 

@@ -30,14 +30,20 @@ interface NetworkService{
     //일반유저 생성
     @POST("api/users")
     fun postUserSignUp(
-            @Body post: PostUserSignUp
+            @Body userJoinDto: PostUserSignUp
     ): Call<PostUserSignUpResponse>
 
     //유저 로그인
     @POST("api/users/login")
     fun postUserLogin(
-            @Body post: PostUserLogin
+            @Body userJoinDto: PostUserLogin
     ): Call<PostUserLoginResponse>
+
+    //아이디 중복 검사
+    @POST("api/users/duplicate/id")
+    fun postIdCheck(
+       @Query("id") id : String
+    ): Call<Unit>
 
     //지도 마커 조회
     @GET("api/maps")
@@ -140,11 +146,13 @@ interface NetworkService{
         @Query("present") present : Boolean
     ): Call<ArrayList<GetFundingCommentResponse>>
 
+    //후원할래요 댓글 등록
+    @POST("api/users/authentications/caretaker")
+    fun postSupportPostComment(
+        @Body fundingComment : String,
+        @Path ("idx")  idx : Int
+    ): Call<PostSupportComment>
 
-//    //후원할래요 댓글 등록
-//    @POST("api/fundings/{idx}/comments")
-//    fun postFundingComment(
-//    ): Call:<>
 
     //후원할래요 데이터 조회
     @GET("api/fundings/{idx}")
@@ -176,13 +184,9 @@ interface NetworkService{
             @Field("phone") phone: String
     ): Call<CareTakerMobileAuthResponse>
 
-    // 케어테이커 인증 요청
-//    @POST("/api/users/authentications/caretaker")
-//    fun getCareTakerAuth(
-//            @Header("Authorization") auth: String,
-//            @Body careTakerRequest: CareTakerAuth
-//    ): Call<Void>
 
+
+    //케어테이커 인증 요청
     @POST("/api/users/authentications/caretaker")
     fun getCareTakerAuth(
             @Body careTakerRequest: CareTakerAuth
