@@ -134,6 +134,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_centerVertical="true"
                 android:id="@+id/btn_caretaker_auth"
+                style="?android:attr/borderlessButtonStyle"
                 android:background="@drawable/button_caramel"/>
 
         </RelativeLayout>

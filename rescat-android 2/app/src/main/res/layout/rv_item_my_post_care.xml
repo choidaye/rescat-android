@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:id="@+id/rv_my_post_cafe_list_item"
+        android:id="@+id/rv_my_post_care_list_item"
          android:layout_height="112dp">
 
     <RelativeLayout

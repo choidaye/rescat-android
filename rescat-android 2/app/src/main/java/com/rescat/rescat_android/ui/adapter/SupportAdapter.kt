@@ -29,6 +29,7 @@ class SupportAdapter(val data: ArrayList<GetFundingResponse>,
         holder.introduction.text = data[position].introduction
         holder.limitAt.text = data[position].limitAt
         holder.currentAmount.text = data[position].currentAmount.toString()
+        holder.percent.text = data[position].goalAmount.toString()
 
     }
 

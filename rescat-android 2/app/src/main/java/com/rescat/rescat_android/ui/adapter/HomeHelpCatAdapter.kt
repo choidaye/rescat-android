@@ -26,11 +26,15 @@ class HomeHelpCatAdapter(val data : ArrayList<HelpCardData>) : RecyclerView.Adap
         } else {
             holder.type.setImageResource(R.drawable.img_tag_2)
         }
+
+
     }
 
     inner class Holder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val name : TextView = itemView.findViewById((R.id.text_home_help_cat_name))
         val content : TextView = itemView.findViewById(R.id.text_home_help_cat_content)
         val type : ImageView = itemView.findViewById(R.id.image_help_cat_tag)
+
+
     }
 }

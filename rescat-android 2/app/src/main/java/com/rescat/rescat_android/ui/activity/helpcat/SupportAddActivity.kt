@@ -1,9 +1,13 @@
 package com.rescat.rescat_android.ui.activity.helpcat
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import com.rescat.rescat_android.Post.PostFundAdd
 import com.rescat.rescat_android.R
 import kotlinx.android.synthetic.main.activity_support_add.*
 import org.jetbrains.anko.intentFor
@@ -13,14 +17,12 @@ import java.util.*
 class SupportAddActivity : AppCompatActivity() {
 
 
-
-    var title : String = et_ac_add_support_title.text.toString()
-    var introduction: String = et_support_add_simple_info.text.toString()
-    var contents : String = et_support_add_content.text.toString()
-    var mainRegion : String = et_support_add_location.text.toString()
-    var limitAt : String = et_support_add_limit_date.text.toString()
-
-
+    var title : String = ""
+    var introduction : String = ""
+    var contents : String = ""
+    var goalAmount : String = ""
+    var limitAt : String = ""
+    var mainRegion : String = ""
 
 
 
@@ -28,14 +30,31 @@ class SupportAddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_support_add)
 
-
         setDatePicker()
         setOnBtnClickListener()
+
     }
 
     private fun setOnBtnClickListener() {
         btn_support_next.setOnClickListener {
 
+            if (et_ac_add_support_title.text.toString().isNotEmpty()&&et_support_add_simple_info.text.toString().isNotEmpty()&&et_support_add_content.text.toString().isNotEmpty()
+                &&tv_support_add_targe_amount.text.toString().isNotEmpty()&&et_support_add_limit_date.text.toString().isNotEmpty()){
+
+                var intent = Intent(applicationContext, SupportAddUserActivity::class.java)
+
+                intent.putExtra("title",title)
+                intent.putExtra("introduction", introduction)
+                intent.putExtra("contents",contents)
+                intent.putExtra("limitAt",limitAt)
+                intent.putExtra("goalAmount",goalAmount).toString()
+                intent.putExtra("mainRegion",mainRegion)
+
+
+
+
+
+            }
         }
 
     }

@@ -13,6 +13,7 @@ import com.rescat.rescat_android.R
 import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.RegionData
 import com.rescat.rescat_android.network.NetworkService
+import com.rescat.rescat_android.ui.activity.caretakerAuth.CareTakerAuthMainActivity
 import com.rescat.rescat_android.ui.activity.mypage.*
 import com.rescat.rescat_android.ui.adapter.MyNoticeRecyclerViewAdapter
 import com.rescat.rescat_android.ui.adapter.MyPageLocationRecyclerViewAdapter
@@ -84,6 +85,9 @@ class MyPageMemberFragment: Fragment(){
             startActivity<MySupportActivity>()
         }
 
+        btn_caretaker_auth.setOnClickListener {
+            startActivity<CareTakerAuthMainActivity>()
+        }
 
     }
 

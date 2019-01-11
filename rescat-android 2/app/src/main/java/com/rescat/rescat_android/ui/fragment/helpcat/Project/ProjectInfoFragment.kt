@@ -13,8 +13,8 @@ import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.model.PhotoData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.helpcat.ProjectActivity
-import com.rescat.rescat_android.ui.activity.helpcat.ProjectApplyActivity
 import com.rescat.rescat_android.ui.adapter.AdoptInfoBannerAdapter
+
 import com.rescat.rescat_android.ui.adapter.SupportInfoBannerAdapter
 
 import kotlinx.android.synthetic.main.fragment_support_info.*
@@ -25,7 +25,7 @@ import retrofit2.Response
 
 class ProjectInfoFragment :Fragment(){
 
-    lateinit var infoBannerAdapter: AdoptInfoBannerAdapter
+    lateinit var infoBannerAdapter: SupportInfoBannerAdapter
     var idx: Int = 0
     var present : Boolean = true
 
@@ -84,7 +84,7 @@ class ProjectInfoFragment :Fragment(){
     }
 
     private fun setViewPager(photoList : ArrayList<PhotoData>) {
-        infoBannerAdapter = AdoptInfoBannerAdapter(photoList)
+        infoBannerAdapter = SupportInfoBannerAdapter(photoList)
         vp_support_info_banner.adapter = infoBannerAdapter
     }
 

@@ -157,68 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                <!--<RadioGroup-->
-                <!--android:id="@+id/radio_group_house_type"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:checkedButton="@+id/btn_radio_apartment"-->
-                <!--android:orientation="horizontal">-->
 
-                <!--<RadioButton-->
-                <!--android:id="@+id/btn_radio_apartment"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:scaleType="fitCenter"-->
-                <!--android:layout_weight="1"-->
-                <!--android:textSize="17sp"-->
-                <!--android:textColor="#4a4a4a"-->
-                <!--android:buttonTint="@color/pink"-->
-                <!--android:text="아파트"/>-->
-
-                <!--<RadioButton-->
-                <!--android:id="@+id/btn_radio_house"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:scaleType="fitCenter"-->
-                <!--android:textSize="17sp"-->
-                <!--android:textColor="#4a4a4a"-->
-                <!--android:layout_weight="1"-->
-                <!--android:buttonTint="@color/pink"-->
-                <!--android:text="주택"/>-->
-
-                <!--</RadioGroup>-->
-                <!--<RadioGroup-->
-                <!--android:id="@+id/radio_group_house_type2"-->
-                <!--android:layout_marginTop="10dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="horizontal">-->
-
-
-                <!--<RadioButton-->
-                <!--android:id="@+id/btn_radio_multiflex"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:scaleType="fitCenter"-->
-                <!--android:layout_weight="1"-->
-                <!--android:textSize="17sp"-->
-                <!--android:textColor="#4a4a4a"-->
-                <!--android:buttonTint="@color/pink"-->
-                <!--android:text="다세대 주택"/>-->
-
-                <!--<RadioButton-->
-                <!--android:id="@+id/btn_radio_oneroom"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:scaleType="fitCenter"-->
-                <!--android:textSize="17sp"-->
-                <!--android:textColor="#4a4a4a"-->
-                <!--android:buttonTint="@color/pink"-->
-                <!--android:layout_weight="1"-->
-                <!--android:text="원룸"/>-->
-
-                <!--</RadioGroup>-->
 
                 <GridView
                         android:layout_width="match_parent"

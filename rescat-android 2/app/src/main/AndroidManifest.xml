@@ -47,44 +47,17 @@
         <activity
             android:name=".ui.activity.sign.SignActivity"
             android:theme="@style/Theme.Rescat.Splash">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER"/>
-        </intent-filter>
         </activity>
-        <!--<activity-->
-            <!--android:name=".ui.activity.sign.SplashActivity"-->
-            <!--android:theme="@style/Theme.Rescat.Splash"></activity>-->
-        <!--<activity android:name=".ui.activity.sign.SignInActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.sign.SignUpActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.SearchActivity" />-->
-        <!--<activity android:name=".ui.activity.helpcat.AdoptActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.SearchResultActivity"></activity>-->
-        <!--<activity-->
-            <!--android:name=".ui.activity.AddMarkerActivity"-->
-            <!--android:windowSoftInputMode="adjustPan"></activity>-->
-        <!--<activity android:name=".ui.activity.MarkerRequestActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.mypage.NoticeActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.mypage.MyLocationActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.mypage.SettingLocationActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.mypage.ModifyMyInfoActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.mypage.MyPostActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerAuthMainActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
-
-        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerMobileAuthActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerAreaAuthActivity"></activity>-->
-        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerPhotoAuthActivity"></activity>-->
 
         <activity
                 android:name=".ui.activity.sign.SplashActivity"
                 android:theme="@style/Theme.Rescat.Splash">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".ui.activity.sign.SignInActivity">
         </activity>
@@ -148,7 +121,7 @@
         </activity>
         <activity android:name=".ui.activity.helpcat.WriteActivity">
         </activity>
->>>>>>> e03053c5ac1ea325d34f1cd0bafa4e926a1d3445
+
     </application>
 
 </manifest>

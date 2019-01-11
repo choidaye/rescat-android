@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.rescat.rescat_android.R
 import kotlinx.android.synthetic.main.activity_write.*
+import org.jetbrains.anko.startActivity
 
 class WriteActivity : AppCompatActivity() {
 
@@ -25,6 +26,7 @@ class WriteActivity : AppCompatActivity() {
         }
 
         btn_write_support.setOnClickListener {
+            startActivity<SupportAddActivity>()
 
         }
 

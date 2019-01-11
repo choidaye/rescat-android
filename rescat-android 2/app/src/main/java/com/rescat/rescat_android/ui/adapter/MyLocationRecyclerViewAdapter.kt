@@ -34,6 +34,10 @@ class MyLocationRecyclerViewAdapter(val ctx: Context, val mylocationlist: ArrayL
             holder.loction.setBackgroundResource(R.drawable.pink_round_square)
         }
 
+        if(mylocationlist[position].name ==""){
+            holder.loction.setBackgroundResource(R.drawable.btn_location_add)
+        }
+
         Log.e("viewholder","뷰홀더 완료")
 
     }

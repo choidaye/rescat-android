@@ -116,7 +116,7 @@ class  ProjectCommentFragment : Fragment() {
     }
 
     private fun setButtonListener() {
-        btn_adopt_comment_send.setOnClickListener {
+        btn_support_comment_send.setOnClickListener {
             //TODO. 예외처리하기!
             val postCommentData: PostCareComment = PostCareComment(edit_adopt_comment.text.toString(), idx)
             val postCareComment: Call<CommentData> =
@@ -129,8 +129,8 @@ class  ProjectCommentFragment : Fragment() {
 
                 override fun onResponse(call: Call<CommentData>, response: Response<CommentData>) {
                     if(response.isSuccessful) {
-                        edit_adopt_comment.text.clear()
-                        edit_adopt_comment.hideKeyboard()
+                        edit_support_comment.text.clear()
+                        edit_support_comment.hideKeyboard()
                         Toast.makeText(activity!!, "댓글이 등록되었습니다", Toast.LENGTH_SHORT).show()
                         getFundingCommentData()
                     }
