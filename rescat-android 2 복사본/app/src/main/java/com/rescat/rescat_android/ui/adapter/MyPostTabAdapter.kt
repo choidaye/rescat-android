@@ -1,0 +1,27 @@
+package com.rescat.rescat_android.ui.adapter
+
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
+import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProtectCommentFragment
+import com.rescat.rescat_android.ui.fragment.helpcat.adopt.ProtectInfoFragment
+
+class MyPostTabAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm) {
+    override fun getCount(): Int = 2
+
+    override fun getItem(position: Int): Fragment? {
+        return when (position) {
+            0 -> ProtectInfoFragment()
+            1 -> ProtectCommentFragment()
+            else -> null
+        }
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
+            0 -> "입양/임시보호"
+            1 -> "펀딩"
+            else -> null
+        }
+    }
+}
