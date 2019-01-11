@@ -40,6 +40,18 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
         holder.viewCount.inputType = mypostcarelist[position].viewCount
         holder.type.inputType = mypostcarelist[position].type
 
+        val requestOptions = RequestOptions()
+        requestOptions.placeholder(R.drawable.img_default_1)
+//        requestOptions.error(R.drawable.에러시 띄울 이미지)
+//        requestOptions.override(150)
+
+
+        Glide.with(ctx)
+            .setDefaultRequestOptions(requestOptions)
+            .load(mypostcarelist[position].photos)
+            .thumbnail(0.5f)
+            .into(holder.photos)
+
         holder.clickitem.setOnClickListener {
             ctx.startActivity<AdoptActivity>("idx" to mypostcarelist[position].idx)
 
@@ -49,12 +61,6 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
 
 
 
-        val requestOptions = RequestOptions()
-        Glide.with(ctx)
-            .setDefaultRequestOptions(requestOptions)
-            .load(mypostcarelist[position].photos)
-            .thumbnail(1.0f)
-            .into(holder.photos)
 
         Log.e("viewholder","뷰홀더 완료")
 
@@ -69,6 +75,7 @@ class MyPostCareRecyclerViewAdapter(val ctx: Context, val mypostcarelist: ArrayL
         val type : TextView = itemView.findViewById(R.id.tv_my_post_care_type) as TextView
         val photos : ImageView = itemView.findViewById(R.id.iv_care_cat_photo)
         val clickitem : RelativeLayout = itemView.findViewById(R.id.rv_my_post_care_list_item) as RelativeLayout
+
 
     }
 

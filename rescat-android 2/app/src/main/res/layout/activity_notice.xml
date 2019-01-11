@@ -26,7 +26,7 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="29dp"
-                    android:layout_toRightOf="@+id/btn_ac_search_result_back"
+                    android:layout_toRightOf="@+id/btn_back"
                     android:text="우체통"
                     android:fontFamily="sans-serif"
                     android:layout_centerVertical="true"
@@ -35,7 +35,7 @@
                     android:textSize="24sp"/>
 
             <ImageView
-                    android:id="@+id/btn_ac_search_result_back"
+                    android:id="@+id/btn_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

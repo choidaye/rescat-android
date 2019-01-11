@@ -10,13 +10,17 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.rescat.rescat_android.Get.GetMyPageFundResponse
 import com.rescat.rescat_android.R
 import com.rescat.rescat_android.ui.activity.helpcat.AdoptActivity
 import org.jetbrains.anko.startActivity
 
-class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayList<GetMyPageFundResponse>) : RecyclerView.Adapter<MyPostFundRecyclerViewAdapter.Holder>(){
+
+//GetMyPageFundResponse
+
+class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayList<GetMyPageFundResponse>,var requestManager: RequestManager) : RecyclerView.Adapter<MyPostFundRecyclerViewAdapter.Holder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPostFundRecyclerViewAdapter.Holder {
@@ -27,11 +31,25 @@ class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayL
     override fun getItemCount(): Int = mypostfundList.size
 
     override fun onBindViewHolder(holder: MyPostFundRecyclerViewAdapter.Holder, position: Int) {
+
+        requestManager.load(mypostfundList[position].photos).into(holder.photo)
         holder.title.text = mypostfundList[position].title
         holder.contents.text = mypostfundList[position].contents
         holder.limitAt.text = mypostfundList[position].limitAt
         holder.category.inputType = mypostfundList[position].category
 
+
+        val requestOptions = RequestOptions()
+       requestOptions.placeholder(R.drawable.img_default_2)
+//        requestOptions.error(R.drawable.에러시 띄울 이미지)
+//        requestOptions.override(150)
+
+
+        Glide.with(ctx)
+            .setDefaultRequestOptions(requestOptions)
+            .load(mypostfundList[position].photos)
+            .thumbnail(0.5f)
+            .into(holder.photo)
 
         holder.clickitem.setOnClickListener {
             ctx.startActivity<AdoptActivity>("idx" to mypostfundList[position].idx)
@@ -41,12 +59,7 @@ class MyPostFundRecyclerViewAdapter(val ctx: Context, val mypostfundList: ArrayL
         }
 
 
-        val requestOptions = RequestOptions()
-        Glide.with(ctx)
-            .setDefaultRequestOptions(requestOptions)
-            .load(mypostfundList[position].photos)
-            .thumbnail(0.5f)
-            .into(holder.photo)
+
 
         Log.e("viewholder","뷰홀더 완료")
 

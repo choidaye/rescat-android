@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.RequestManager
 import com.rescat.rescat_android.Get.GetMyPageCareResponse
 import com.rescat.rescat_android.Get.GetMyPageFundResponse
 import com.rescat.rescat_android.R
@@ -21,6 +22,7 @@ import retrofit2.Response
 
 class MyPostFundFragment : Fragment(){
 
+    lateinit var requestManager : RequestManager
 
     val networkService: NetworkService by lazy {
         RescatApplication.instance.networkService
@@ -51,7 +53,7 @@ class MyPostFundFragment : Fragment(){
 
 
     private fun setRecyclerView() {
-        myfundRecyclerViewAdapter = MyPostFundRecyclerViewAdapter(activity!!,mypostfundList)
+        myfundRecyclerViewAdapter = MyPostFundRecyclerViewAdapter(activity!!,mypostfundList,requestManager)
         rv_my_post_fund_list.adapter =myfundRecyclerViewAdapter
         rv_my_post_fund_list.layoutManager = LinearLayoutManager(activity!!)
     }
