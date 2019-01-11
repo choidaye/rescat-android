@@ -95,7 +95,7 @@
                 <ImageView
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:background="@color/lightPink" />
+                        android:background="@drawable/img_step_1" />
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -116,7 +116,7 @@
                 <ImageView
                         android:layout_width="90dp"
                         android:layout_height="90dp"
-                        android:background="@color/lightPink" />
+                        android:background="@drawable/img_step_2" />
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -128,24 +128,24 @@
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:background="@color/lightPink" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/img_step_3" />
 
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="3단계\n사진인증"
-                        android:textColor="@color/brown" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="3단계\n사진인증"
+                    android:textColor="@color/brown" />
             </LinearLayout>
 
         </LinearLayout>

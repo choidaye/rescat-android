@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.RelativeLayout
 import com.rescat.rescat_android.R
+import com.rescat.rescat_android.application.RescatApplication
 import com.rescat.rescat_android.ui.fragment.catmap.CatMapFragment
 import com.rescat.rescat_android.ui.fragment.helpcat.HelpCatFragment
 import com.rescat.rescat_android.ui.fragment.mypage.MyPageFragment
@@ -22,8 +23,6 @@ import org.jetbrains.anko.support.v4.startActivity
 class MainActivity : AppCompatActivity() {
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,8 +30,10 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavi()
         setOnBtnClickListener()
 
-
-
+        if (RescatApplication.preference.careTaker == "0") {
+            val dialog = WelcomeDialog(this@MainActivity)
+            dialog.show()
+        }
     }
 
     private fun setOnBtnClickListener() {
@@ -41,7 +42,6 @@ class MainActivity : AppCompatActivity() {
             this.startActivity<MarkerModifyRequestActivity>()
 
         }
-
 
 
     }
@@ -78,20 +78,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == 2009){
+        if (requestCode == 2009) {
             Log.v("ygygygy", "gygygyg22")
             addFragment(MyPageMemberFragment())
 
         }
     }
-
-
-
-
-
 
 
     //백버튼 살리기
@@ -116,8 +110,8 @@ class MainActivity : AppCompatActivity() {
 
     fun addFragment(fragment: Fragment) {
         supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.main_fragment_container, fragment, fragment.javaClass.simpleName)
-            .commit()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, fragment, fragment.javaClass.simpleName)
+                .commit()
     }
 }
