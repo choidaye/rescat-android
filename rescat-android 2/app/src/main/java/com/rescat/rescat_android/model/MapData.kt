@@ -1,6 +1,5 @@
 package com.rescat.rescat_android.model
 
-import android.graphics.Region
 
 data class MapData(
     val idx : Int,
@@ -23,4 +22,4 @@ data class MapData(
 data class Region(
     val code : Int,
     val name : String
-) 
+)

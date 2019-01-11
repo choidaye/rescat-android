@@ -30,6 +30,7 @@ class HomeFundCardAdapter(val data: ArrayList<GetMainPageFunding>): RecyclerView
         } else {
             holder.category.setImageResource(R.drawable.img_tag_2)
         }
+
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {

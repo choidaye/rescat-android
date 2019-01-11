@@ -69,7 +69,7 @@ class NoticeActivity : AppCompatActivity() {
                         noticeRecyclerViewAdapter.noticelist.addAll(temp)
                         noticeRecyclerViewAdapter.notifyItemInserted(position)
                     } else{
-                        toast("실패")
+                        toast("알림이 없습니다")
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package com.rescat.rescat_android.Get
 
-import android.graphics.Region
+
 
 
 data class GetMapResponse(

@@ -15,6 +15,7 @@ import com.rescat.rescat_android.model.HelpCardData
 import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
 import com.rescat.rescat_android.ui.activity.helpcat.SupportAddActivity
+import com.rescat.rescat_android.ui.activity.helpcat.WriteActivity
 import com.rescat.rescat_android.ui.adapter.HomeFundCardAdapter
 import com.rescat.rescat_android.ui.adapter.HomeHelpCatAdapter
 import com.rescat.rescat_android.ui.adapter.HomeMainBannerAdapter
@@ -84,6 +85,10 @@ class HelpCatFragment : Fragment() {
 
         image_more_home_fund_card.setOnClickListener {
             (activity as MainActivity).addFragment(FundFragment())
+        }
+
+        btn_support_writer.setOnClickListener {
+            startActivity<WriteActivity>()
         }
     }
 

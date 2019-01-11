@@ -23,8 +23,10 @@ import com.rescat.rescat_android.network.NetworkService
 import com.rescat.rescat_android.ui.activity.MainActivity
 import com.rescat.rescat_android.ui.activity.helpcat.MedicalActivity
 import com.rescat.rescat_android.ui.activity.helpcat.ProjectActivity
+import com.rescat.rescat_android.ui.activity.helpcat.WriteActivity
 import com.rescat.rescat_android.ui.adapter.SupportAdapter
 import kotlinx.android.synthetic.main.fragment_fund.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -90,6 +92,9 @@ class FundFragment : Fragment() {
             (activity as MainActivity).addFragment(HelpCatFragment())
         }
 
+        btn_write_fund.setOnClickListener {
+            startActivity<WriteActivity>()
+        }
     }
 
     private fun setRecyclerView() {
