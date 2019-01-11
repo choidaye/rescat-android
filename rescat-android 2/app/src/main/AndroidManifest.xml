@@ -47,39 +47,108 @@
         <activity
             android:name=".ui.activity.sign.SignActivity"
             android:theme="@style/Theme.Rescat.Splash">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN"/>-->
-
-            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-        <!--</intent-filter>-->
-        </activity>
-        <activity
-            android:name=".ui.activity.sign.SplashActivity"
-            android:theme="@style/Theme.Rescat.Splash"></activity>
-        <activity android:name=".ui.activity.sign.SignInActivity"></activity>
-        <activity android:name=".ui.activity.sign.SignUpActivity"></activity>
-        <activity android:name=".ui.activity.SearchActivity" />
-        <activity android:name=".ui.activity.helpcat.AdoptActivity"></activity>
-        <activity android:name=".ui.activity.SearchResultActivity"></activity>
-        <activity
-            android:name=".ui.activity.AddMarkerActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".ui.activity.MarkerRequestActivity"></activity>
-        <activity android:name=".ui.activity.mypage.NoticeActivity"></activity>
-        <activity android:name=".ui.activity.mypage.MyLocationActivity"></activity>
-        <activity android:name=".ui.activity.mypage.SettingLocation"></activity>
-        <activity android:name=".ui.activity.mypage.ModifyMyInfoActivity"></activity>
-        <activity android:name=".ui.activity.mypage.MyPostActivity"></activity>
-        <activity android:name=".ui.activity.caretakerAuth.CareTakerAuthMainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.caretakerAuth.CareTakerMobileAuthActivity"></activity>
-        <activity android:name=".ui.activity.caretakerAuth.CareTakerAreaAuthActivity"></activity>
-        <activity android:name=".ui.activity.caretakerAuth.CareTakerPhotoAuthActivity"></activity>
+        <!--<activity-->
+            <!--android:name=".ui.activity.sign.SplashActivity"-->
+            <!--android:theme="@style/Theme.Rescat.Splash"></activity>-->
+        <!--<activity android:name=".ui.activity.sign.SignInActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.sign.SignUpActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.SearchActivity" />-->
+        <!--<activity android:name=".ui.activity.helpcat.AdoptActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.SearchResultActivity"></activity>-->
+        <!--<activity-->
+            <!--android:name=".ui.activity.AddMarkerActivity"-->
+            <!--android:windowSoftInputMode="adjustPan"></activity>-->
+        <!--<activity android:name=".ui.activity.MarkerRequestActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.mypage.NoticeActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.mypage.MyLocationActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.mypage.SettingLocationActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.mypage.ModifyMyInfoActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.mypage.MyPostActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerAuthMainActivity">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
+
+        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerMobileAuthActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerAreaAuthActivity"></activity>-->
+        <!--<activity android:name=".ui.activity.caretakerAuth.CareTakerPhotoAuthActivity"></activity>-->
+
+        <activity
+                android:name=".ui.activity.sign.SplashActivity"
+                android:theme="@style/Theme.Rescat.Splash">
+        </activity>
+        <activity android:name=".ui.activity.sign.SignInActivity">
+        </activity>
+        <activity android:name=".ui.activity.sign.SignUpActivity">
+        </activity>
+        <activity android:name=".ui.activity.SearchActivity"/>
+        <activity android:name=".ui.activity.helpcat.AdoptActivity">
+        </activity>
+        <activity android:name=".ui.activity.SearchResultActivity">
+        </activity>
+        <activity
+                android:name=".ui.activity.AddMarkerActivity"
+                android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity android:name=".ui.activity.MarkerRequestActivity">
+        </activity>
+        <activity android:name=".ui.activity.mypage.NoticeActivity">
+        </activity>
+        <activity android:name=".ui.activity.mypage.MyLocationActivity">
+        </activity>
+        <activity android:name=".ui.activity.mypage.ModifyMyInfoActivity">
+        </activity>
+        <activity android:name=".ui.activity.mypage.ModifyPasswordActivity">
+        </activity>
+        <activity android:name=".ui.activity.mypage.ModifyNicknameActivity"/>
+        <activity android:name=".ui.activity.mypage.MyPostActivity">
+        </activity>
+        <activity android:name=".ui.activity.mypage.QuestionActivity"/>
+        <activity android:name=".ui.activity.caretakerAuth.CareTakerAreaAuthActivity">
+        </activity>
+        <activity android:name=".ui.activity.caretakerAuth.CareTakerAuthMainActivity">
+        </activity>
+        <activity android:name=".ui.activity.caretakerAuth.CareTakerMobileAuthActivity">
+        </activity>
+        <activity android:name=".ui.activity.caretakerAuth.CareTakerPhotoAuthActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.AdoptApplyActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.AdoptCompleteActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProtectActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProtectApplyActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProtectCompleteActivity"/>
+        <activity android:name=".ui.activity.mypage.MySupportActivity">
+        </activity>
+        <activity android:name=".ui.activity.MarkerModifyRequestActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProjectActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.SupportAddActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.SupportAddUserActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProjectApplyActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.SupportAddOkActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.ProjectCompleteActivity">
+        </activity>
+        <activity android:name=".ui.activity.helpcat.WriteActivity">
+        </activity>
+>>>>>>> e03053c5ac1ea325d34f1cd0bafa4e926a1d3445
     </application>
 
 </manifest>

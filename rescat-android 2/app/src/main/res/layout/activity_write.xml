@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.activity.helpcat.WriteActivity">
+
+
+
+    <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:background="@color/white"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:textStyle="bold"
+            android:id="@+id/toolbar">
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:layout_toRightOf="@+id/btn_ac_modify_my_nickname_back"
+                    android:text="글 쓰기"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20sp"/>
+
+
+            <ImageView
+                    android:id="@+id/btn_ac_write_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back"
+                    android:layout_marginRight="19dp"
+                    android:layout_alignParentLeft="true"/>
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#4a4a4a"
+            android:letterSpacing="-0.03"
+            android:gravity="center_horizontal"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="고양이의 입양 혹은 임시보호처가\n필요하신가요?"/>
+
+
+    <Button
+            android:id="@+id/btn_write_adopt"
+            android:text="입양/임시보호 글 작성"
+            android:layout_width="320dp"
+            android:layout_height="42dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            app:layout_constraintTop_toBottomOf="@+id/et_ac_sign_in_pw"
+            android:background="@drawable/button_caramel"/>
+
+    <View
+            android:layout_width="127dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginBottom="46dp"
+            android:layout_gravity="center"
+            android:background="#979797"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#4a4a4a"
+            android:letterSpacing="-0.03"
+            android:gravity="center_horizontal"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:text="프로젝트 및 치료비 후원이 필요하신가요?"/>
+
+    <Button
+            android:id="@+id/btn_write_support"
+            android:text="후원 글 작성"
+            android:layout_width="320dp"
+            android:layout_height="42dp"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            app:layout_constraintTop_toBottomOf="@+id/et_ac_sign_in_pw"
+            android:background="@drawable/button_caramel"/>
+    </LinearLayout>
+
+</RelativeLayout>
