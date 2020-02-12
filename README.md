@@ -1,11 +1,8 @@
 # rescat-android
 
-
+### 사용 라이브러리 
 
 ```
-
-
-### 사용 라이브러리 
 
  //google play service
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
